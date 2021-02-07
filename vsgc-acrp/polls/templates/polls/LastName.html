@@ -1,0 +1,73 @@
+{% load acrp_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<title></title>
+	<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div style="text-align: center" class="jumbotron">
+  <h4>Graduate Research Program on Public-Sector Aviation Issues<br>
+<h5>VSGC Support Members Page</h5></h4>
+</div>
+<div class="text-md-center">
+<h3>Evaluations Summary by Last Name</h3><br>
+</div>
+	<table style="width:100%"> 
+		<th id='polls-avg'>Aplication</th>
+		<th>School</th>
+		<th>Project</th>
+		<th>Advisor</th>
+		<th>Gender</th>
+		<th>Miniority</th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th>Average</th>
+<tr>
+	{% for dAppType, dAppValue in applicantNew.items %}
+	{% for a,b in dAppValue.items %}
+  <td><b><a href="compute_average_detail/{{ b.id }}/">{{ b.App_LastName }}</a></b></td>
+  <td>{{ b.clg_or_univ_Enrolled }}</td>
+  <td>{{ b.Title_of_reserach_project }}</td>
+  <td>{{ b.Ref3_Name }}</td>
+  <td>{{ b.Gender }}</td>
+  <td>{{ b.Ethnicity }}</td>
+  {% endfor %}
+  <td>{{ dAppValue.average }}</td>
+
+</tr>
+{% endfor %}
+ </table>
+</div>
+<script>
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+th = document.getElementById('polls-avg');
+const table = th.closest('table');
+Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+     .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+     .forEach(tr => table.appendChild(tr) );
+
+</script>
+</body>
+</html>

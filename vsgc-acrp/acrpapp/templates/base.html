@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+ .asteriskField {
+    display: none;
+ul
+{
+    list-style-type: none;
+}
+}
+</style>
+<script>
+window.onload = function () {
+    /* event listener */
+    document.getElementById("id_num_team_members").addEventListener('change', addVariableTeamMembers);
+    /* function */
+    function addVariableTeamMembers(){
+        var numTeamMembers = this.value;
+        var el = document.getElementById("team_member_form");
+        el.innerHTML = "";
+
+        var newFormRowDiv = document.createElement("div");
+        newFormRowDiv.setAttribute("class", "form-row");
+
+        var firstFormCol = document.createElement("div");
+        firstFormCol.setAttribute("class", "col-md-4");
+
+        if(numTeamMembers > 0){
+          var firstLabel = document.createElement("label");
+          firstLabel.innerHTML = "Team Member Name:";
+          firstFormCol.appendChild(firstLabel);
+
+          var secondFormCol = document.createElement("div");
+          secondFormCol.setAttribute("class", "col-md-4");
+
+          var secondLabel = document.createElement("label");
+          secondLabel.innerHTML = "Team Member Email:";
+          secondFormCol.appendChild(secondLabel);
+
+          var thirdFormCol = document.createElement("div");
+          thirdFormCol.setAttribute("class", "col-md-4");
+
+
+          var thirdLabel = document.createElement("label");
+          thirdLabel.innerHTML = "Team Member Level:";
+          thirdFormCol.appendChild(thirdLabel);
+
+
+          newFormRowDiv.appendChild(firstFormCol);
+          newFormRowDiv.appendChild(secondFormCol);
+          newFormRowDiv.appendChild(thirdFormCol);
+
+          el.appendChild(newFormRowDiv);
+        }
+       for (i = 0; i < numTeamMembers; i++) {
+          var newFormRowDiv = document.createElement("div");
+          newFormRowDiv.setAttribute("class", "form-row");
+          newFormRowDiv.style.paddingBottom = "10px";
+
+          var firstFormCol = document.createElement("div");
+          firstFormCol.setAttribute("class", "col-md-4");
+
+          var teamMemberName = document.createElement("Input");
+          teamMemberName.setAttribute("type", "text");
+          teamMemberName.setAttribute("id", "teamMemberName-" + i.toString());
+          teamMemberName.setAttribute("name", "teamMemberName-" + i.toString());
+          teamMemberName.required = true;
+          firstFormCol.appendChild(teamMemberName);
+
+          var secondFormCol = document.createElement("div");
+          secondFormCol.setAttribute("class", "col-md-4");
+
+          var teamMemberEmail = document.createElement("Input");
+          teamMemberEmail.setAttribute("type", "text");
+          teamMemberEmail.setAttribute("id", "teamMemberEmail-" + i.toString());
+          teamMemberEmail.setAttribute("name", "teamMemberEmail-" + i.toString());
+          teamMemberEmail.required = true;
+          secondFormCol.appendChild(teamMemberEmail);
+
+          var thirdFormCol = document.createElement("div");
+          thirdFormCol.setAttribute("class", "col-md-4");
+
+          var teamMemberLevel = document.createElement("Input");
+          teamMemberLevel.setAttribute("type", "text");
+          teamMemberLevel.setAttribute("id", "teamMemberLevel-" + i.toString());
+          teamMemberLevel.setAttribute("name", "teamMemberLevel-" + i.toString());
+          teamMemberLevel.required=true;
+          thirdFormCol.appendChild(teamMemberLevel);
+
+
+          newFormRowDiv.appendChild(firstFormCol);
+          newFormRowDiv.appendChild(secondFormCol);
+          newFormRowDiv.appendChild(thirdFormCol);
+
+          el.appendChild(newFormRowDiv);
+
+       }
+    }
+}
+</script>
+</head>
+<body>
+
+  <div class="jumbotron">
+  <h3>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs Design Package Cover Page/Submission Form</h3>
+</div>
+ <div class="container">
+  <p>
+Participating individuals or teams are required to submit the design package using this form. In addition, one hard copy of the full design plus the original of the sign-off (See Appendix D in Design Submission Guidelines) form must be mailed to the Virginia Space Grant Consortium, 600 Butler Farm Road, Suite 2253, Hampton, VA 23666. All electronic and hard copy submissions must meet the 5 pm (Eastern Daylight Time) deadline on April 29, 2021. It is strongly recommended that a mail service that certifies delivery be used. All submissions will be acknowledged via email.<br><br>
+
+By design submission, Competition participants are agreeing that their design may be publicly shared. In addition, participants are giving permission that photographs that may be taken as part of Competition activities can be used for public information purposes and to promote the Program.<br><br>
+
+If you have questions regarding the Design Package submission process, you can contact the Virginia Space Grant Consortium between 8 a.m. and 4:30 p.m. EST on weekdays at 757/766-5210. Click here for <a href="https://vsgc.odu.edu/acrpdesigncompetition/guidelines/">Detailed Submission Guidelines</a></p>
+<br><br>
+<p><b>Full competition guidelines and all updates are posted on the Competition Website: <a href="https://vsgc.odu.edu/acrpdesigncompetition/">ACRP Design Competition</a></b></p>
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

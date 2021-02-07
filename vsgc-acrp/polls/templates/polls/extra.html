@@ -1,0 +1,616 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+</head>
+<body>
+   <div class="container">
+  <div class="jumbotron">
+  <h2>Graduate Research Program on Public-Sector Aviation Issues</h2><br>
+    <h4>Sponsored by Federal Aviation Administration <br>Administered by Airport Cooperative Research Program<br>
+    Transportation Research Board, National Academies<br>Managed by Virginia Space Grant Consortium</h4>
+  </div>
+  <form method="post" enctype="multipart/form-data" action="">
+  {% csrf_token %} 
+   <h2>PART I – APPLICANT PERSONAL INFORMATION</h2>
+  <h4>Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2020 to complete your application.</h4>
+{% if form.stat == 'Evaluation Saved' %}
+  
+  <div class="row">
+    <div class="form-group col-sm-8">
+      <i>{{ f.App_FirstName|as_crispy_field }}</i>
+      <!-- <label for="First Name">First Name:</label>
+       <input type="text" class="form-control" id="First Name" value="{{ f.App_FirstName }}"> -->
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="MiddleName">Middle Name:</label>
+       <input type="text" class="form-control" id="MiddleName" value="{{ f.App_MiddleName }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Last Name">Last Name:</label>
+       <input type="text" class="form-control" id="Last Name" value="{{ form.App_LastName }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="dob">Date of birth:</label>
+       <input type="text" class="form-control" id="dob" value="{{ form.dob }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="place_of_birth">Place of birth:</label>
+       <input type="text" class="form-control" id="place_of_birth" value="{{ form.place_of_birth }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Citizenship:">Citizenship:</label>
+       <input type="text" class="form-control" id="Citizenship:" value="{{ form.Citizenship }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Describe_type_and_status_if_visa_option_is_checked':">Describe type and status if visa option is checked:</label>
+       <input type="text" class="form-control" id="Describe_type_and_status_if_visa_option_is_checked" value="{{ form.Describe_type_and_status_if_visa_option_is_checked }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="visa_expiration:">Expiration date for student visa:</label>
+       <input type="text" class="form-control" id="visa_expiration:" value="{{ form.visa_expiration }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Gender">Gender:</label>
+       <input type="text" class="form-control" id="Gender" value="{{ form.Gender }}">
+      </div>
+    <div class="form-group col-sm-8">
+      <label for="Ethnicity">Ethnicity:</label>
+       <input type="text" class="form-control" id="Ethnicity" value="{{ form.Ethnicity }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Mailing_Address">Mailing Address:</label>
+       <input type="text" class="form-control" id="Mailing_Address" value="{{ form.Mailing_Address }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Mailing_City">Mailing City:</label>
+       <input type="text" class="form-control" id="Mailing_City" value="{{ form.Mailing_City }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Mailing_State">Mailing State:</label>
+       <input type="text" class="form-control" id="Mailing_State" value="{{ form.Mailing_State }}">
+     </div>
+    <div class="form-group col-sm-8">
+      <label for="Mailing_Zip_Code">Mailing Zip Code:</label>
+       <input type="text" class="form-control" id="Mailing_Zip_Code" value="{{ form.Mailing_Zip_Code }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Current_phone">Current Phone:</label>
+       <input type="text" class="form-control" id="Current_phone" value="{{ form.Current_phone }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Permanent_Home_Address">Permanent Home Address:</label>
+       <input type="text" class="form-control" id="Permanent_Home_Address" value="{{ form.Permanent_Home_Address }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Permanent_City">City:</label>
+       <input type="text" class="form-control" id="Permanent_City" value="{{ form.Permanent_City }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Permanent_State">State:</label>
+       <input type="text" class="form-control" id="Permanent_State" value="{{ form.Permanent_State }}">
+    </div>
+    <div class="form-group col-sm-8">
+       <label for="Permanent_Zip_Code">Zip Code:</label>
+       <input type="text" class="form-control" id="Permanent_Zip_Code" value="{{ form.Permanent_Zip_Code }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Permanent_Home_phone">Home Phone:</label>
+       <input type="text" class="form-control" id="Permanent_Home_phone" value="{{ form.Permanent_Home_phone }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Email">Email:</label>
+       <input type="text" class="form-control" id="Email" value="{{ form.Email }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="clg_or_univ_Enrolled">College or University currently enrolled:</label>
+       <input type="text" class="form-control" id="clg_or_univ_Enrolled" value="{{ form.clg_or_univ_Enrolled }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Major_Field">Major Field:</label>
+       <input type="text" class="form-control" id="Major_Field" value="{{ form.Major_Field }}">
+    </div>
+    <div class="form-group col-sm-8">
+      <label for="Degree_objective">Degree Objective:</label>
+       <input type="text" class="form-control" id="Degree_objective" value="{{ form.Degree_objective }}">
+      </div>
+    <div class="form-group col-sm-8">
+      <label for="Expected_Graduation">Expected Month and Year of graduation:</label>
+       <input type="text" class="form-control" id="Expected_Graduation" value="{{ form.Expected_Graduation }}">
+    </div>
+  </div>
+<h4>
+References: Two letters of reference are required; one of which should be a faculty member (not the faculty advisor for the proposed ACRP project) with direct knowledge of the applicant’s ability to conduct the proposed research. Note: The faculty research advisor is not allowed to be listed as one of the two references. Designate the two individuals you have asked to provide references along with contact information. The application system will directly request and secure references from the points of contact provided by the applicant. It is the applicant's responsibility to follow up with reference contacts to ensure that their references have been submitted.</h4><br>
+<h4>
+Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2020 to complete your application.</h4><br>
+<div class=".col-lg-4.ml-lg-auto">
+<h4>Reference Contact 1</h4>
+</div>
+ <div class="row">
+  <div class="col-4">
+    <label for="Ref1_Name">Name:</label>
+       <input type="text" class="form-control" id="Ref1_Name" value="{{ form.Ref1_Name }}">
+  </div>
+  <div class="col-4">
+    <label for="Ref1_Title">Title:</label>
+       <input type="text" class="form-control" id="Ref1_Title" value="{{ form.Ref1_Title }}">
+  </div>
+  <div class="col-4">
+    <label for="Ref1_Dept">Department:</label>
+       <input type="text" class="form-control" id="Ref1_Dept" value="{{ form.Ref1_Dept }}">
+   </div>
+  <div class="col-4">
+     <label for="Ref1_Inst">Institutional Affiliation:</label>
+       <input type="text" class="form-control" id="Ref1_Inst" value="{{ form.Ref1_Inst }}">
+   </div>
+  <div class="col-4">
+    <label for="Ref1_Phone">Phone:</label>
+       <input type="text" class="form-control" id="Ref1_Phone" value="{{ form.Ref1_Phone }}">
+  </div>
+  <div class="col-4">
+     <label for="Ref1_Email">Email:</label>
+       <input type="text" class="form-control" id="Ref1_Email" value="{{ faculty.Ref1_Email }}">
+  </div>
+</div>
+<div class=".col-lg-4.ml-lg-auto">
+<h4>Reference Contact 2</h4>
+</div>
+ <div class="row">
+  <div class="col-4">
+    <label for="Ref2_Name">Name:</label>
+       <input type="text" class="form-control" id="Ref2_Name" value="{{ form.Ref2_Name }}">
+  </div>
+  <div class="col-4">
+    <label for="Ref2_Title">Title:</label>
+      <input type="text" class="form-control" id="Ref2_Title" value="{{ form.Ref2_Title }}">
+  </div>
+  <div class="col-4">
+    <label for="Ref2_Dept">Department:</label>
+       <input type="text" class="form-control" id="Ref2_Dept" value="{{ form.Ref2_Dept }}">
+  </div>
+  <div class="col-4">
+    <label for="Ref2_Inst">Institutional Affiliation:</label>
+       <input type="text" class="form-control" id="Ref2_Inst" value="{{ form.Ref2_Inst }}">
+  </div>
+  <div class="col-4">
+    <label for="Ref2_Phone">Phone:</label>
+       <input type="text" class="form-control" id="Ref2_Phone" value="{{ form.Ref2_Phone }}">
+         </div>
+  <div class="col-4">
+    <label for="Ref2_Email">Email:</label>
+       <input type="text" class="form-control" id="Ref2_Email" value="{{ faculty.Ref2_Email }}">
+  </div>
+</div>
+  <p>PART II – APPLICANT QUALIFICATIONS</p>
+  <table>
+  <thead>
+  <tr>
+    <th><h6>College / University</h6></th>
+    <th><h6>Major Field</h6></th>
+    <th><h6>Location</h6></th>
+    <th><h6>Dates Attended</h6></th>
+    <th><h6>GPA</h6></th>
+    <th><h6>Degree</h6></th>
+    <th><h6>Date degree awarded/ expected</h6></th>
+  </tr>
+</thead>
+<tbody>
+  <tr valign="top">
+    <label class="col-md-1">
+           <td width="96"> <input type="text" class="form-control" id="univ1" value="{{ form.clg_or_univ_1 }}"></td>
+    </label>
+    <label class="col-md-1">
+      <td width="96"> <input type="text" class="form-control" id="major1" value="{{ form.Major_1 }}"></td>
+    </label>
+    <label class="col-md-1">
+           <td width="96"> <input type="text" class="form-control" id="location1" value="{{ form.Location_1 }}"></td>
+
+    </label>
+    <label class="col-md-1">
+      <td width="96"> <input type="text" class="form-control" id="Dates_Attended_1" value="{{ form.Dates_Attended_1 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="GPA_1" value="{{ form.GPA_1 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Degree_1" value="{{ form.Degree_1 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="degree_expected_1" value="{{ form.degree_expected_1 }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="clg_or_univ_2" value="{{ form.clg_or_univ_2 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="Major_2" value="{{ form.Major_2 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="Location_2" value="{{ form.Location_2 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="Dates_Attended_2" value="{{ form.Dates_Attended_2 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="GPA_2" value="{{ form.GPA_2 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="Degree_2" value="{{ form.Degree_2 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="degree_expected_2" value="{{ form.degree_expected_2 }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="clg_or_univ_3" value="{{ form.clg_or_univ_3 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Major_3" value="{{ form.Major_3 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Location_3" value="{{ form.Location_3 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Dates_Attended_3" value="{{ form.Dates_Attended_3 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="GPA_3" value="{{ form.GPA_3 }}"></td>
+    </label>
+
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="Degree_3" value="{{ form.Degree_3 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="degree_expected_3" value="{{ form.degree_expected_3 }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="clg_or_univ_4" value="{{ form.clg_or_univ_4 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Major_4" value="{{ form.Major_4 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="Location_4" value="{{ form.Location_4 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="Dates_Attended_4" value="{{ form.Dates_Attended_4 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="GPA_4" value="{{ form.GPA_4 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="Degree_4" value="{{ form.Degree_4 }}"></td>
+             </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="degree_expected_4" value="{{ form.degree_expected_4 }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="clg_or_univ_5" value="{{ form.clg_or_univ_5 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="Major_5" value="{{ form.Major_5 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Location_5" value="{{ form.Location_5 }}"></td>
+    </label>
+    <label class="col-md-1">
+       <td width="96"> <input type="text" class="form-control" id="Dates_Attended_5" value="{{ form.Dates_Attended_5 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="GPA_5" value="{{ form.GPA_5 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Degree_5" value="{{ form.Degree_5 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="degree_expected_5" value="{{ form.degree_expected_5 }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="clg_or_univ_6" value="{{ form.clg_or_univ_6 }}"></td>    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="Major_6" value="{{ form.Major_6 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="Location_6" value="{{ form.Location_6 }}"></td>
+          </label>
+    <label class="col-md-1">
+          <td width="96"> <input type="text" class="form-control" id="Dates_Attended_6" value="{{ form.Dates_Attended_6 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="GPA_6" value="{{ form.GPA_6 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="Degree_6" value="{{ form.Degree_6 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="degree_expected_6" value="{{ form.degree_expected_6 }}"></td>
+        </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="clg_or_univ_7" value="{{ form.clg_or_univ_7 }}"></td>
+    </label>
+    <label class="col-md-1">
+      <td width="96"> <input type="text" class="form-control" id="Major_7" value="{{ form.Major_7 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Location_7" value="{{ form.Location_7 }}"></td>
+    </label>
+        <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Dates_Attended_7" value="{{ form.Dates_Attended_7 }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="96"> <input type="text" class="form-control" id="GPA_7" value="{{ form.GPA_7 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="Degree_7" value="{{ form.Degree_7 }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="96"> <input type="text" class="form-control" id="degree_expected_7" value="{{ form.degree_expected_7 }}"></td>
+    </label>
+</tr>
+</tbody>
+</table><br>
+<div class="form-group col-sm-8">
+      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
+      <i>{{ form.Interruptions_of_schooling }}</i>
+    </div>
+
+<h4>
+Transcripts: The applicant will need to provide scanned official copies of transcripts for each higher education institution attended. These will be uploaded as part of the required PDF document noted in PART VI of this application.</h4><br>
+<h4>
+Professional Experience: In reverse chronological order, list professional experience, including summer and term-time work.</h4>
+<table>
+  <thead>
+  <tr valign="top">
+    <td width="150"><h6>Name of Employer</h6></td>
+    <td width="150"><h6>Location</h6></td>
+    <td width="150"><h6>Dates</h6></td>
+    <td width="150"><h6>Nature of Work</h6></td>
+  </tr>
+</thead>
+<tbody>
+  <tr valign="top">
+    <label class="col-md-1">
+       <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp1_Name }}"></td>
+           </label>
+
+    <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp1_Location }}"></td>
+    </label>
+
+    <label class="col-md-1">
+        <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp1_Dates }}"></td>
+    </label>
+
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp1_Nature_of_work }}"></td>
+      </label>
+</tr>
+
+<tr valign="top">
+    <label class="col-md-1">
+         <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp2_Name }}"></td>
+       </label>
+    <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp2_Location }}"></td>
+    </label>
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp2_Dates }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp2_Nature_of_work }}"></td>
+    </label>
+</tr>
+
+<tr valign="top">
+    <label class="col-md-1">
+      <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp3_Name }}"></td>
+    </label>
+    <label class="col-md-1">
+     <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp3_Location }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp3_Dates }}"></td>
+    </label>
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp3_Nature_of_work }}"></td>
+    </label>
+</tr>
+
+<tr valign="top">
+    <label class="col-md-1">
+       <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp4_Name }}"></td>    </label>
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp4_Location }}"></td>
+    </label>
+    <label class="col-md-1">
+        <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp4_Dates }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="150"> <input type="text" class="form-control"  value="{{ form.Emp4_Nature_of_work }}"></td>
+    </label>
+</tr>
+</tbody>
+</table>
+<div class="form-group col-sm-8">
+      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
+      <i>{{ form.Prof_exp_Notes }}</i>
+    </div>
+<h4>
+Awards, honors, and publications: List fellowships, scholarships, and other academic and/or professional positions, held since entering college or university.</h4>
+<table>
+  <thead>
+  <tr valign="top">
+    <td width="150"><h6>Award, Honor, or Publication</h6></td>
+    <td width="150"><h6>Dates</h6></td>
+    <td width="150"><h6>Description</h6></td>
+  </tr>
+</thead>
+<tbody>
+  <tr valign="top">
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Award1_Name }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="150"> <input type="text" class="form-control"  value="{{ form.Award1_Date }}"></td>
+    </label>
+    <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Award1_Description }}"></td>
+               </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Award2_Name }}"></td>
+    </label>
+    <label class="col-md-1">
+         <td width="150"> <input type="text" class="form-control"  value="{{ form.Award2_Date }}"></td>
+    </label>
+    <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Award2_Description }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+        <td width="150"> <input type="text" class="form-control"  value="{{ form.Award3_Name }}"></td>
+    </label>
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Award3_Date }}"></td>
+    </label>
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Award3_Description }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+      <td width="150"> <input type="text" class="form-control"  value="{{ form.Award4_Name }}"></td>
+          </label>
+              <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Award4_Date }}"></td>
+               </label>
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Award4_Description }}"></td>
+    </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Award5_Name }}"></td>
+    </label>
+    <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Award5_Date }}"></td>
+    </label>
+    <label class="col-md-1">
+           <td width="150"> <input type="text" class="form-control"  value="{{ form.Award5_Description }}"></td>
+               </label>
+</tr>
+<tr valign="top">
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Award6_Name }}"></td>
+    </label>
+    <label class="col-md-1">
+          <td width="150"> <input type="text" class="form-control"  value="{{ form.Award6_Date }}"></td>
+    </label>
+    <label class="col-md-1">
+            <td width="150"> <input type="text" class="form-control"  value="{{ form.Award6_Description }}"></td>
+    </label>
+</tr>
+</tbody>
+</table>
+<div class="form-group col-sm-8">
+   <label for="Awards_Notes">Additional Notes may be added here:</label>
+       <input type="text" class="form-control" id="Awards_Notes" value="{{ form.Awards_Notes }}">
+      </div>
+    <div class="form-group col-sm-8">
+      <label for="Carrer_goals">Describe your career goals and how this research will contribute to achieving those goals:</label>
+       <input type="text" class="form-control" id="Carrer_goals" value="{{ form.Carrer_goals }}">
+    </div>
+<h6>
+Writing Sample: Provide a writing sample such as a previous publication, a paper written for a class assignment, a research project report or similar example of professional writing. This will be provided as part of the PDF document you will be uploading in Part VI of this application.</h6><br>
+<h3>PART III – RESEARCH PROJECT PROPOSAL</h3>
+<div class="form-group col-sm-8">
+  <label for="Title_of_reserach_project">Title of Research Project:</label>
+       <input type="text" class="form-control" id="Title_of_reserach_project" value="{{ form.Title_of_reserach_project }}">
+    </div>
+<h6>
+Research Project: In 500 words or less, describe the proposed research project, including project objectives, research methods, and expected outcomes. Also indicate how this research work could benefit the aviation community and contribute to your career goals. Applicants are encouraged to use the resources available at the Graduate Research Award Program website to learn about research areas of interest to the Transportation Research Board, past research initiatives and to view research papers previously submitted through the ACRP’s Graduate Research Awards program. A quality research proposal is a key factor in award selection.
+Your Research Project Proposal will be submitted as part of the PDF document you will be uploading in Part VI of this application.</h6><br>
+<p>Note: Citations are not included in the word count for the project description.</p><br>
+<h3>PART IV – FACULTY RESEARCH ADVISOR</h3><br>
+<h6>
+To enrich the educational experience gained from your proposed research project, it is necessary for you to request a faculty member from your university who is familiar with your research project to act as a research advisor to you during the course of the project. Once the research advisor agrees, provide his/her contact information below. The application system will directly request and secure a formal commitment from the faculty advisor using the contact information provided by the applicant. It is the applicant's responsibility to follow up with the faculty research advisor to ensure that the commitment document has been submitted.</h6>
+<p>
+Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2020 to complete your application.</p><br>
+<h5>Research Faculty Advisor Contact Information:</h5>
+<div class="form-group col-sm-8">
+    <label for="RFA_Name">Name:</label>
+       <input type="text" class="form-control" id="RFA_Name" value="{{ form.RFA_Name }}">
+    </div>
+<div class="form-group col-sm-8">
+  <label for="RFA_Title">Title:</label>
+       <input type="text" class="form-control" id="RFA_Title" value="{{ form.RFA_Title }}">
+    </div>
+<div class="form-group col-sm-8">
+  <label for="RFA_Inst">Institution:</label>
+       <input type="text" class="form-control" id="RFA_Inst" value="{{ form.RFA_Inst }}">
+       </div>
+<div class="form-group col-sm-8">
+  <label for="RFA_Phone">Phone:</label>
+       <input type="text" class="form-control" id="RFA_Phone" value="{{ form.RFA_Phone }}">
+    </div>
+<div class="form-group col-sm-8">
+  <i>{{ faculty.RFA_Email|as_crispy_field }}</i>
+   <!-- <label for="RFA_Email">Email:</label>
+       <input type="text" class="form-control" id="RFA_Email" value="{{ faculty.RFA_Email }}"> -->
+    </div>
+
+<h4>PART V – COVER PAGE WITH CERTIFICATIONS</h4><br>
+<p>
+Download the Cover Page with Certifications form. Complete the applicant portion of the form and sign and date this section. Have your university Sponsored Programs Office complete the bottom portion of the form and sign and date it. The signed Cover Page with Certification will be submitted as part of the PDF document you will submit in Part VI of the application. Submit the signed original with the hard copy of your application. The hard copy of the application must be received no later than May 22, 2020.</p>
+
+<h4>PART VI – SUBMISSION OF REQUIRED APPLICATION DOCUMENTS</h4>
+<p>
+Create one PDF document which should be saved as Last Name.First Name.GRA2020 (example: Smith.John.GRA2020). Please do not use spaces in your file name. These documents should be provided as one PDF document with items in the order below:
+1. Cover Page with Certifications
+2. Research Proposal
+3. Writing Sample
+4. Transcripts
+Please try to limit your file size to be no larger than 2 MB.</p>
+<div class="form-group col-sm-8">
+  <label for="RFA_Upload">Upload:</label>
+  <a href="/{{ form.Upload }}"> Full Design </a>
+       <!-- <input type="text" class="form-control" id="Upload" value="{{ form.Upload }}"> -->
+</div>
+<h6>
+Use the save feature when subsequent data entry is required prior to submission. Use your nine-character ID as a pass code to access your application.</h6>
+<p>Notes:
+You will not be able to make changes to the document once it has been submitted; however, you will be able to access the application for printing.
+Please double check that you have selected the final submission box when you are ready to submit your application.
+Application submission confirmation - once you hit continue, a bold red message will appear for you to print for your records. THIS WILL BE THE ONLY CONFIRMATION YOU WILL RECEIVE. NO E-MAIL WILL BE SENT.
+Electronic application submissions are due by May 15, 2020.</p> 
+<div class="row">
+ <div class="form-group col-md-6 mb-0 ">
+  <i>{{ f.stat.0 }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0 ">
+  <i>{{ f.stat.1 }}</i>
+  </div>
+</div>
+
+<input type="submit" value=Submit>
+</form>
+{% endif %}
+</div>
+</body>
+</html>

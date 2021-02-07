@@ -1,0 +1,60 @@
+{% load polls_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+.alnright {   text-align: right;  /* For Edge */
+  text-align-last: right; }
+table{
+  border-collapse: collapse;
+  width:auto;
+}
+td {
+  white-space:nowrap;
+}
+td:last-child {
+  width:100%;
+}
+th, td {
+  padding: 15px;
+}
+
+}
+</style>
+</head>
+<body>
+
+  <div class="jumbotron">
+  <h4 style="text-align: center">Graduate Research Program on Public-Sector Aviation Issues</h4>
+
+</div>
+  <div class="container">
+<div class="text-md-center">
+<h5>Evaluations Sorted by Average Scores</h5>
+</div>
+<br>
+<table> 
+
+
+<tr>
+  {% for i,j in applicantNew.items %}
+  <td style="width:20%"><b><a href="compute_average_detail/{{ i }}/">{{ j.name }}</a></b></td>
+  {% for p,m in j.items %}
+  {% for k,l in m.items %}
+   {% if k != 'total' %}
+  <td style="width:20%"><b>{{ k }}</b> : {{ l }}</td>
+  {% endif %}
+    {% if k == 'total' %}
+  <td style="width:20%"><b>{{ k }}</b> : {{ l }}</td>
+   {% endif %}
+   {% endfor %}
+   {% endfor %}
+</tr>
+{% endfor %}
+ </table>
+ 
+

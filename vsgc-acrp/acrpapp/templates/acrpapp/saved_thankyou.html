@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Application SUbmitted</title>
+</head>
+<body>
+	<div class="container">
+
+		<h2>Thank you, 
+			{% if stat.stat == "Evaluation Saved" %}
+			<p>Now,the status of the application is changed to save for later Submission</p>
+			{% elif stat.stat == "Evaluation Completed" %}
+			<p>Your evaluation was successfully submitted.</p>
+			 {% endif %}
+</body>
+</html>

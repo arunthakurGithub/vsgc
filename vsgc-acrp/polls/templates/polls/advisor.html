@@ -1,0 +1,127 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+ .asteriskField {
+    display: none;
+}
+</style>
+  <title></title>
+</head>
+<body>
+   <div class="container">
+  <div class="jumbotron">
+  <h2>Graduate Research Program on Public-Sector Aviation Issues</h2><br>
+    <h4>Sponsored by Federal Aviation Administration <br>Administered by Airport Cooperative Research Program<br>
+    Transportation Research Board, National Academies<br>Managed by Virginia Space Grant Consortium</h4>
+  </div>
+  <form method="post" enctype="multipart/form-data" action="">
+  {% csrf_token %} 
+   <h2>Reference Request Form</h2>
+   <div class="row">
+    <div class="form-group col-sm-8">
+      <i>{{ f.App_FirstName|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ f.Major_Field|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ f.Title_of_reserach_project|as_crispy_field }}</i>
+    </div>
+    <h6>The above-named applicant has listed you as one of two people who know his/her academic and professional experience and ability. Your views will help us evaluate this applicant's qualifications for receiving an award for conducting research on the above project. Please complete this form and upload a letter of reference as indicated below by May 29, 2019. References will not be accepted after the deadline. Note that the system does not allow you to save your document and return to it.<a href="https://vsgc.odu.edu/acrpgraduateresearchawards/">Learn more</a></h6>
+    {% if ref_num == '1' %}
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref1_Name|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref1_Title|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref1_Inst|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ faculty.Ref1_Email|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref1_Phone|as_crispy_field }}</i>
+      </div>
+    {% elif ref_num == '2' %}
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref2_Name|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref2_Title|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref2_Inst|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ faculty.Ref2_Email|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref2_Phone|as_crispy_field }}</i>
+      </div>
+    {% elif ref_num == '3' %}
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Name|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Title|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Inst|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ faculty.Ref3_Email|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Phone|as_crispy_field }}</i>
+      </div>
+    {% endif %}
+    <div class="form-group col-sm-8">
+      <i>{{ rec.In_what_capacity_do_you_know_the_applicant|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.How_Long_have_you_known_the_applicant|as_crispy_field }}</i>
+    </div>
+    <h6>Please evaluate the applicant in the following areas as compared with other individuals of comparable training, age and experience:</h6>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Knowledge_of_major_field|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Research_skills|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Problem_solving_skills|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Creativity|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Leadership|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Written_communication|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Oral_communication|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Comment_on_the_ability_of_the_applicant|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Add_other_comments_to_the_evaluation|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Signed_letter_of_reference|as_crispy_field }}</i>
+    </div>
+</div>
+<input type="submit" value=Submit>
+</form>
+</div>
+</body>
+</html>

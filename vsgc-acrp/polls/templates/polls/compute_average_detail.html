@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+ <style>
+ 	td {
+    width: 400px;
+}
+ </style>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+  <div class="container">
+  <div class="jumbotron">
+  <h4>Graduate Research Award Program
+Evaluation Form</h4>
+</div>
+<div class="form-row">
+  <div class="form-group col-sm-8">
+    <label for="firstname">First Name:</label>
+    <input type="text" class="form-control" id="firstname" name="firstname" value="{{ applicant.App_FirstName }}"readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="lastname">Last Name:</label>
+    <input type="text" class="form-control" id="lastname" name="lastname" value="{{ applicant.App_LastName }}"readonly>
+  </div>
+
+    <div class="form-group col-sm-8">
+    <label for="college">College or University currently enrolled:</label>
+    <input type="text" class="form-control" id="college" name="college" value="{{ applicant.clg_or_univ_Enrolled }}"readonly>
+  </div>
+</div>
+<p style="background-color: #E1E1E1; text-align: center;" > Faculty Advisor: </p>
+<div class="form-row">
+  <div class="form-group col-sm-8">
+    <label for="faculty_firstname">First Name:</label>
+    <input type="text" class="form-control" id="faculty_firstname" name="faculty_firstname" value="{{ applicant.Ref3_Name }}"readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Inst">Institution:</label>
+    <input type="text" class="form-control" id="Inst" name="Inst" value="{{ applicant.Ref3_Inst }}"readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Package">Full Application Package:</label>
+    <a href="/graward/support/processed_detail/{{ applicant.id }}/">Click here for Application Package</a></td>
+  </div>
+</div>
+			   <p style="background-color: #E1E1E1; text-align: center;" > Evaluation: </p>
+			     <p>Each panelist reviews each candidate’s complete application online. Panelists make notes as they wish. Panelists rank each applicant online using a five point scale:<br>
+									
+
+<table style="width:100%"> 
+	<tr>
+		<th>Evaluator name</th>
+		<th>Score</th>
+	</tr>
+	<tr>
+{% for i,j in applicantNew.items %}
+{% for m,k in j.items %}
+{% for a,b in k.items %}
+
+
+<td>{{ a }}</td>
+<td>{{ b }}</td>
+
+{% endfor %}
+</tr>
+{% endfor %}
+{% endfor %}
+</table>
+</div><br>
+</body>
+</html>
+</html>

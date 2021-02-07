@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="row">
+    <div class="form-group col-sm-8">
+      <i>{{ form.Inst|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ form.title|as_crispy_field }}</i>
+    </div>
+  <div class="form-group col-sm-8">
+    <i>{{ form.design_area|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-sm-8">
+  <i>{{ form.Specific_Challenge|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-sm-8">
+  <i>{{ form.Students_Involved|as_crispy_field }}</i>
+  </div>
+  </div>
+  <h4><i>Contact Information for Faculty Advisor:</i></h4>
+<div class="row">
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_FirstName|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_LastName|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_Department|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_Street_Address|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_City|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_State|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_Zip_Code|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_Telephone|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_Fax|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor1_Email|as_crispy_field }}</i>
+  </div>
+  </div>
+  <div class="row">
+    <h4><b>Contact Information for Second Faculty Advisor (Optional):</b></h4>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_FirstName|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_LastName|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_Department|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_Street_Address|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_City|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_State|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_Zip_Code|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_Telephone|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_Fax|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+  <i>{{ form.Advisor2_Email|as_crispy_field }}</i>
+  </div>
+  
+  <div class="form-group col-md-8">
+  <i>{{ form.num_team_members|as_crispy_field }}</i>
+  </div>
+  <div id="team_member_form">
+  </div>
+</div>
+  <div class="row">
+  <div class="form-group col-sm-8">
+  <i>{{ form.Other_Participants|as_crispy_field }}</i>
+  </div>
+  <div class="form-group col-sm-8">
+  <i>{{ form.Describe|as_crispy_field }}</i>
+  </div>
+    <div class="form-group col-md-8">
+       <i>{{ form.ACRP_University.label_tag }}</i>
+  {% for checkbox in form.ACRP_University %}
+<div class="checkbox">
+    <label>
+            {{ checkbox.tag }} {{ checkbox.choice_label }}
+    </label>
+</div>
+{% endfor %}
+</div>
+
+ <div class="form-group col-sm-8">
+  <i>{{ form.Other|as_crispy_field }}</i>
+  </div>
+  <h5>Please upload all components of the Design Package in PDF Format. See the <a href="http://emerald.ts.odu.edu/acrp2018.nsf/DesignPackageRequirements?OpenPage">detailed submission guidelines</a>  for details. Note: You need to submit a PDF of your full design package. Please try to limit your file size to be no larger than 2 MB.</h5>
+  <div class="form-group col-sm-8">
+  <i>{{ form.Upload|as_crispy_field }}</i>
+</div>
+   </div>
+
+  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+</form>
+{% endblock %}

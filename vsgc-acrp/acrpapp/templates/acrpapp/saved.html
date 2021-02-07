@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+{
+    table-layout: fixed;
+    width: 1200px;
+}
+
+th {
+  text-align: left;
+}</style>
+</head>
+<body>
+  <div class="container">
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h4>
+
+</div>
+<div class="text-md-center">
+<h5>Evaluations Summary</h5>
+</div><br>
+<form method="post" enctype="multipart/form-data">
+
+  {% csrf_token %}
+  <div class="form-row">
+  <div class="form-group col-sm-8">
+    <label for="title">Title of Design:</label>
+    <input type="text" class="form-control" id="title" value="{{ designapp.title }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="FirstName">First Name:</label>
+    <input type="text" class="form-control" id="FirstName" value="{{ designapp.Advisor1_FirstName }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="LastName">Last Name:</label>
+    <input type="text" class="form-control" id="LastName" value="{{ designapp.Advisor1_LastName }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Inst">Institution(s):</label>
+    <input type="text" class="form-control" id="Inst" value="{{ designapp.Inst }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="design_area">Design Challenge Area:</label>
+    <input type="text" class="form-control" id="design_area" value="{{ designapp.design_area }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Specific_Challenge">Specific Challenge Selected:</label>
+    <input type="text" class="form-control" id="Specific_Challenge" value="{{ designapp.Specific_Challenge }}" readonly>
+  </div>
+     <div class="form-group col-sm-8">
+    <b><label for="Upload">Components of the Design Package in PDF Format.</label></b>
+ 
+    <a href="/media/{{ designapp.Upload }}">Full Design </a>
+
+    </div>
+  </div>
+
+
+    <h4>Evaluation</h4>
+    <h5>The Competition Evaluators will use the following in judging submissions. The total number of available points is 130. Evaluators may choose to provide a score in half-point increments.</h5>
+
+<!-- QUESTION-1 -->
+<div class="row">
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest1_1.Q_title }}"><b>1. Introductory Material – 5 points</b></label>
+</div>
+</div>
+    <div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="t1_q1_input" value="{{ quest1_1.Q_questions }}">Does the Executive Summary accurately encapsulate the design? (2 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R1" id="t1_q1_input">
+      <option>{{ res_1.Q_score }}</option>
+      <option value="0">0</option>
+      <option value="0.5" >0.5</option>
+      <option value="1">1</option>
+      <option value="1.5">1.5</option>
+      <option value="2">2</option>    
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C1" value="{{ res_1.Q_comments }}" cols="70" rows="3">{{ res_1.Q_comments }}</textarea>
+</div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest1_2.Q_questions }}">Is the Table of Contents present and does it follow the structure in the Competition Guidelines? (3 points)</label>
+  </div>
+     <div class="form-group col-md-6">
+    <select name="R2" id="t1_q2_input" >
+      <option>{{ res_2.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>    
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C2" value="{{ res_2.Q_comments }}" cols="70" rows="3" >{{ res_2.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R3" id="t1_overall" value="{{ res_3.Q_score }}">
+</div>
+</div>
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C3" value="{{ res_3.Q_comments }}"cols="70" rows="3" \>{{ res_3.Q_comments }}</textarea>
+</div>
+<!-- QUESTION-2 -->
+<div class="row">
+<div class="form-group col-sm-8">
+    <label><b>2. Problem Statement and Background – 10 points</b></label>
+</div>
+</div>
+   <div class="form-row">
+ <div class="form-group col-md-6">
+    <label>Is the Design Challenge clearly stated? (3 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R4" id="t2_q1_input">
+      <option>{{ res_4.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>   
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C4" value="{{ res_4.Q_comments }}" cols="70" rows="3">{{ res_4.Q_comments }}</textarea>
+</div>
+   <div class=" form-row">
+ <div class="form-group col-md-6">
+    <label>Does this section of the design submission demonstrate that the individual or team has a clear understanding of the issues surrounding the design challenge, including current problems and issues as well as state of the art approaches? (7 points)</label>
+</div>
+   <div class="form-group col-md-6">
+    <select name="R5" id="t2_q2_input" onchange="updateTotal();">
+      <option>{{ res_5.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>
+      <option>4.5</option> 
+      <option>5</option> 
+      <option>5.5</option>
+      <option>6</option>
+      <option>6.5</option>
+      <option>7</option>            
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C5" value="{{ res_5.Q_comments }}" cols="70" rows="3" >{{ res_5.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6 "></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R6" id="t2_overall" value="{{ res_6.Q_score }}">
+</div>
+</div>
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C6" value="{{ res_6.Q_comments }}"cols="70" rows="3" >{{ res_6.Q_comments }}</textarea>
+</div>
+<!-- QUESTION-3 -->
+<div class="row">
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest3_1.Q_title }}"><b>3. Literature Review and Problem Solving Approach – 11 points</b></label>
+  </div>
+</div>
+    <div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest3_1.Q_questions }}">An effective summary of literature review is provided. (7 points)</label></div>
+      <div class="form-group col-md-6">
+    <select name="R7" id="t3_q1_input" onchange="updateTotal();">
+       <option>{{ res_7.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>
+      <option>4.5</option> 
+      <option>5</option> 
+      <option>5.5</option>
+      <option>6</option>
+      <option>6.5</option>
+      <option>7</option>     
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C7" value="{{ res_7.Q_comments }}" cols="70" rows="3" >{{ res_7.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest3_2.Q_questions }}">The literature review includes relevant ACRP studies and reports. (4 points)"</label></div>
+      <div class="form-group col-md-6">
+    <select name="R8" id="t3_q2_input" onchange="updateTotal();">
+       <option>{{ res_8.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>   
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C8" value="{{ res_8.Q_comments }}" cols="70" rows="3" >{{ res_8.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R9" id="t3_overall" value="{{ res_9.Q_score }}">
+</div>
+</div>
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C9" value="{{ res_9.Q_comments }}"cols="70" rows="3" >{{ res_9.Q_comments }}</textarea>
+</div>
+<!-- QUESTION-4 -->
+<div class="row">
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest4_1.Q_title }}"><b>4. Problem Solving Approach – 34 points</b></label>
+  </div>
+</div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest4_1.Q_questions }}">How sound is the team’s approach? Are solid engineering/scientific methodologies employed? How effective is the technical analysis? (10 points)</label>
+  </div>
+  <div class="form-group col-md-6">
+    <select name="R10" id="t4_q1_input" onchange="updateTotal();">
+      <option>{{ res_10.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>
+      <option>4.5</option> 
+      <option>5</option> 
+      <option>5.5</option>
+      <option>6</option>
+      <option>6.5</option>
+      <option>7</option> 
+      <option>7.5</option> 
+      <option>8</option>
+      <option>8.5</option>
+      <option>9</option>
+      <option>9.5</option>
+      <option>10</option>                        
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C10" value="{{ res_10.Q_comments }}" cols="70" rows="3" >{{ res_10.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest4_2.Q_questions }}">Is there evidence of thorough design process? (5 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R11" id="t4_q2_input" onchange="updateTotal();">
+      <option>{{ res_11.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>
+      <option>4.5</option> 
+      <option>5</option>   
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C11" value="{{ res_11.Q_comments }}" cols="70" rows="3" >{{ res_11.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest4_3.Q_questions }}">Is the design supported by appropriate drawings, mockups, computer codes, charts, tables or other data as appropriate? (5 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R12" id="t4_q3_input"onchange="updateTotal();">
+      <option>{{ res_12.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>  
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C12" value="{{ res_12.Q_comments }}" cols="70" rows="3" >{{ res_12.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest4_4.Q_questions }}">The degree to which the design shows evidence of understanding of appropriate regulatory and certification issues. (4 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R13" id="t4_q4_input" onchange="updateTotal();">
+      <option>{{ res_13.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>   
+    </select>
+  </div>
+ </div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C13" value="{{ res_13.Q_comments }}" cols="70" rows="3" >{{ res_13.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest4_5.Q_questions }}">How well are the student’s/team’s conclusions supported? (5 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R14" id="t4_q5_input" onchange="updateTotal();">
+      <option>{{ res_14.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>
+      <option>4.5</option>
+      <option>5</option>    
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C14" value="{{ res_14.Q_comments }}" cols="70" rows="3" >{{ res_14.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest4_6.Q_questions }}">
+Is the work presented with an appropriate level of effort for the design participants? (Individual student versus team; undergraduate or graduate or mixed. For example, one would expect a higher level of knowledge and design from an all graduate student team versus an all undergraduate team; one would also expect a higher level of effort for a team versus an individual because the team has multiple contributors and can collectively devote more time than an individual. Award 3 points if the level is deemed as appropriate. Award more points for an effort that exceeds what you would deem typical or appropriate for the number and level of student participants.) (5 points) </label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R15" id="t4_q6_input" onchange="updateTotal();">
+      <option>{{ res_15.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>
+      <option>4.5</option>
+      <option>5</option>    
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C15" value="{{ res_15.Q_comments }}" cols="70" rows="3" >{{ res_15.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R16" id="t4_overall" value="{{ res_16.Q_score }}">
+</div>
+</div>
+
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C16" value="{{ res_16.Q_comments }}" cols="70" rows="3" >{{ res_16.Q_comments }}</textarea>
+</div>
+
+<!-- QUESTION-5 -->
+<div class="row">
+ <div class="form-group col-sm-8">
+    <label for="title" value="{{ quest5_1.Q_title }}"><b>5. Safety Risk Assessment – 8 points</b></label>
+  </div>
+</div>
+    <div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest5_1.Q_questions }}">
+A safety risk assessment of the proposed design considers inherent risks and describes how these risks should be addressed to ensure safe operations. (4 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R17" id="t5_q1_input" onchange="updateTotal();">
+      <option>{{ res_17.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>   
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C17" value="{{ res_17.Q_comments }}" cols="70" rows="3" >{{ res_17.Q_comments }}</textarea>
+</div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest5_2.Q_questions }}">
+Appropriate FAA documents, including Introduction to Safety Management Systems for Airport Operations (FAA Advisory Circular 150/5200-37) and FAA Safety Management System Manual, are understood and referenced in the assessment. (4 points)</label>
+  </div>
+  <div class="form-group col-md-6">
+    <select name="R18" id="t5_q2_input" onchange="updateTotal();">
+      <option>{{ res_18.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option> 
+      <option>3.5</option>
+      <option>4</option>    
+    </select>
+  </div>
+
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C18" value="{{ res_18.Q_comments }}" cols="70" rows="3">{{ res_18.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6"></div>
+  <div class="form-group col-md-6">
+      <label>Subtotal</label>
+      <input type="text" name="R19" id="t5_overall" value="{{ res_19.Q_score }}">
+</div>
+</div>
+
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C19" value="{{ res_19.Q_comments }}" cols="70" rows="3">{{ res_19.Q_comments }}</textarea>
+</div>
+<!-- QUESTION-6 -->
+<div class="row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest6_1.Q_title }}"><b>
+6. Evidence of effective interaction with airport operators and industry experts in the design process. – 12 pointsb></label>
+    <p>Note: per the guidelines, students must connect with both airport operators and industry experts.</b></p>
+  </div>
+</div>
+    <div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest6_1.Q_questions }}">Is there evidence of effective interaction with an airport operator and impact on the design process/result? (6 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R20" id="t6_q1_input" onchange="updateTotal();">
+      <option>{{ res_20.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option>
+      <option>2.5<option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>
+      <option>5.5</option>
+      <option>6</option>  
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C20" value="{{ res_20.Q_comments }}" cols="70" rows="3">{{ res_20.Q_comments }}</textarea>
+</div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest6_2.Q_questions }}">Is there evidence of effective interaction with one or more industry experts with a resulting impact on the design process? (6 points)</label>
+  </div>
+  <div class="form-group col-md-6">
+    <select name="R21" id="t6_q2_input" onchange="updateTotal();">
+      <option>{{ res_21.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option> 
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>
+      <option>5.5</option>
+      <option>6</option>       
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C21" value="{{ res_21.Q_comments }}" cols="70" rows="3">{{ res_21.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R22" id="t6_overall" value="{{ res_22.Q_score }}">
+</div>
+</div>
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C22" value="{{ res_22.Q_comments }}" cols="70" rows="3" >{{ res_22.Q_comments }}</textarea>
+</div>
+<!-- QUESTION-7 -->
+<div class="row">
+ <div class="form-group col-sm-8">
+    <label for="title" value="{{ quest7_1.Q_title }}"><b>7. Practicality and Feasibility of the Proposed Design – 20 points</b></label>
+  </div>
+</div>
+    <div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest7_1.Q_questions }}">
+How well does the proposed design meet identified national needs for the area being addressed? (5 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R23" id="t7_q1_input" onchange="updateTotal();">
+       <option>{{ res_23.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option>
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>  
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C23" value="{{ res_23.Q_comments }}" cols="70" rows="3">{{ res_23.Q_comments }}</textarea></div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest7_2.Q_questions }}">Is a solid cost-benefit analysis provided? Does the proposed solution offer increased affordability and utility? (5 points)</label>
+  </div>
+   <div class="form-group col-md-6">
+    <select name="R24" id="t7_q2_input" onchange="updateTotal();">
+       <option>{{ res_24.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option> 
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>       
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C24" value="{{ res_24.Q_comments }}" cols="70" rows="3" >{{ res_24.Q_comments }}</textarea>
+</div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest7_3.Q_questions }}">What is the potential real-world impact of the proposed solution, including commercial potential? (5 points)</label>
+  </div>
+   <div class="form-group col-md-6">
+    <select name="R25" id="t7_q3_input" onchange="updateTotal();">
+       <option>{{ res_25.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option> 
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>       
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C25" value="{{ res_25.Q_comments }}" cols="70" rows="3">{{ res_25.Q_comments }}</textarea>
+</div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest7_4.Q_questions }}">Is there a description of the processes that would need to be undertaken to bring the design to the product/implementation state? (5 points)</label>
+  </div>
+     <div class="form-group col-md-6">
+    <select name="R26" id="t7_q4_input" onchange="updateTotal();">
+      <option>{{ res_26.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option> 
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>       
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C26" value="{{ res_26.Q_comments }}" cols="70" rows="3" >{{ res_26.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R27" id="t7_overall" value="{{ res_27.Q_score }}">
+</div>
+</div>
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C27" value="{{ res_27.Q_comments }}" cols="70" rows="3">{{ res_27.Q_comments }}</textarea>
+</div>
+<!-- QUESTION-8 -->
+<div class="row">
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest8_1.Q_title }}"><b>8. Innovation – 14 points</b></label>
+  </div>
+</div>
+    <div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest8_1.Q_questions }}">
+Does the design offer fresh thinking or new ways of approaching the problem considering that students are not in the field and possessing expertise or specific working knowledge? Does the design reflect creativity and imagination on the student‘s or team’s part? (14 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R28" id="t8_q1_input" onchange="updateTotal();">
+      <option>{{ res_28.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option>
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>
+      <option>5.5</option>
+      <option>6</option> 
+      <option>6.5</option>
+      <option>7</option> 
+      <option>7.5</option> 
+      <option>8</option>
+      <option>8.5</option>
+      <option>9</option>
+      <option>9.5</option>
+      <option>10</option> 
+      <option>10.5</option> 
+      <option>11</option> 
+      <option>11.5</option>
+      <option>12</option>
+      <option>12.5</option>
+      <option>13</option>
+      <option>13.5</option>
+      <option>14</option>
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C28" value="{{ res_28.Q_comments }}" cols="70" rows="3" >{{ res_28.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R29" id="t8_overall" value="{{ res_29.Q_score }}">
+</div>
+</div>
+
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C29" value="{{ res_29.Q_comments }}" cols="70" rows="3">{{ res_29.Q_comments }}</textarea>
+</div>
+<!-- QUESTION-9 -->
+<div class="row">
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest9_1.Q_title }}"><b>
+9.Overall quality of the design package – 16 points</b></label>
+  </div>
+</div>
+    <div class="form-row">
+ <div class="form-group col-md-6">
+    <label for="title" value="{{ quest9_1.Q_questions }}">
+Is the design well written? (5 points)</label>
+</div>
+  <div class="form-group col-md-6">
+    <select name="R30" id="t9_q1_input" onchange="updateTotal();">
+      <option>{{ res_30.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option>
+      <option>2.5</option>  
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option> 
+      <option>4.5</option> 
+      <option>5</option>  
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C30" value="{{ res_30.Q_comments }}" cols="70" rows="3" >{{ res_30.Q_comments }}</textarea>
+</div>
+ <div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest9_2.Q_questions }}">
+Does the design effectively present the design solution? (3 points)</label>
+  </div>
+    <div class="form-group col-md-6">
+    <select name="R31" id="t9_q2_input" onchange="updateTotal();">
+      <option>{{ res_31.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>       
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C31" value="{{ res_31.Q_comments }}" cols="70" rows="3">{{ res_31.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest9_3.Q_questions }}">Are all required appendices present and complete? (4 points)</label>
+  </div>
+     <div class="form-group col-md-6">
+    <select name="R32" id="t9_q3_input" onchange="updateTotal();">
+      <option>{{ res_32.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>
+      <option>3.5</option>
+      <option>4</option>       
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C32" value="{{ res_32.Q_comments }}" cols="70" rows="3" >{{ res_32.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="title" value="{{ quest9_4.Q_questions }}">
+Is a solid evaluation of the educational experience offered by both the student(s) and faculty advisor(s)? (4 points)</label>
+  </div>
+     <div class="form-group col-md-6">
+    <select name="R33" id="t9_q4_input" onchange="updateTotal();">
+      <option>{{ res_33.Q_score }}</option>
+      <option>0</option>
+      <option>0.5</option>
+      <option>1</option>
+      <option>1.5</option>
+      <option>2</option> 
+      <option>2.5</option>
+      <option>3</option>  
+      <option>3.5</option>
+      <option>4</option>     
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <p>Comments:</p>
+<textarea name="C33" value="{{ res_33.Q_comments }}" cols="70" rows="3" >{{ res_33.Q_comments }}</textarea>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Subtotal</label>
+    <input type="text" name="R34" id="t9_overall" value="{{ res_34.Q_score }}">
+</div>
+</div>
+
+<div class="form-group">
+  <p>Overall Comments:</p>
+<textarea name="C34" value="{{ res_34.Q_comments }}" cols="70" rows="3" >{{ res_34.Q_comments }}</textarea>
+</div>
+</b>
+<div class="form-row">
+  <div class="form-group col-md-6"></div>
+   <div class="form-group col-md-6">
+    <label>Overall</label>
+<input type="text" name="R35" value="{{ res_35.Q_score }}" id="total_overall" readonly>
+</div>
+</div>
+</label>
+<p>Use the save feature when subsequent data entry is required prior to submission.</p>
+<p style="color:red;"><em>Note: You will not be able to make changes in the document once it has been submitted.</em></p>
+<div class="row">
+ <div class="form-group col-md-6 mb-0 ">
+  <i>{{ f.stat.2 }}</i>
+  </div>
+  <div class="form-group col-md-6 mb-0 ">
+  <i>{{ f.stat.3 }}</i>
+  </div>
+</div>
+
+<button type="submit" formnovalidate class="btn btn-primary btn-lg">Submit</button>
+</div>
+</form>
+</div>
+</body>
+<script>
+var q11 = document.getElementById("t1_q1_input");
+var q12 = document.getElementById("t1_q2_input");
+var total_overall = document.getElementById("total_overall");
+console.log(q11);
+console.log(q12);
+var total_q1 = document.getElementById("t1_overall");
+q11.onchange = function() {
+  var total = parseFloat(q11.value) + parseFloat(q12.value);
+  total_q1.value = total;
+  overall();
+  console.log(total);
+}
+q12.onchange = function() {
+  var total = parseFloat(q11.value) + parseFloat(q12.value);
+  total_q1.value = total;
+  overall();
+  console.log(total);
+
+}
+var q21 = document.getElementById("t2_q1_input");
+var q22 = document.getElementById("t2_q2_input");
+var total_overall = document.getElementById("total_overall");
+console.log(q21);
+console.log(q22);
+var total_q2 = document.getElementById("t2_overall");
+q21.onchange = function() {
+  var total = parseFloat(q21.value) + parseFloat(q22.value);
+  total_q2.value = total;
+  overall();
+  console.log(total);
+}
+q22.onchange = function() {
+  var total = parseFloat(q21.value) + parseFloat(q22.value);
+  total_q2.value = total;
+  overall();
+  console.log(total);
+}
+
+var q31 = document.getElementById("t3_q1_input");
+var q32 = document.getElementById("t3_q2_input");
+var total_overall = document.getElementById("total_overall");
+var total_q3 = document.getElementById("t3_overall");
+q31.onchange = function() {
+  var total = parseFloat(q31.value) + parseFloat(q32.value);
+  total_q3.value = total;
+  overall();
+  console.log(total);
+}
+q32.onchange = function() {
+  var total = parseFloat(q31.value) + parseFloat(q32.value);
+  total_q3.value = total;
+  overall();
+  console.log(total);
+}
+
+
+
+
+var q41 = document.getElementById("t4_q1_input");
+var q42 = document.getElementById("t4_q2_input");
+var q43 = document.getElementById("t4_q3_input");
+var q44 = document.getElementById("t4_q4_input");
+var q45 = document.getElementById("t4_q5_input");
+var q46 = document.getElementById("t4_q6_input");
+var total_q4 = document.getElementById("t4_overall");
+var total_overall = document.getElementById("total_overall");
+q41.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+q42.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+q43.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+q44.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+q45.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+q46.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+
+var q51 = document.getElementById("t5_q1_input");
+var q52 = document.getElementById("t5_q2_input");
+var total_overall = document.getElementById("total_overall");
+console.log(q51);
+console.log(q52);
+var total_q5 = document.getElementById("t5_overall");
+q51.onchange = function() {
+  var total = parseFloat(q51.value) + parseFloat(q52.value);
+  total_q5.value = total;
+  overall();
+  console.log(total);
+}
+q52.onchange = function() {
+  var total = parseFloat(q51.value) + parseFloat(q52.value);
+  total_q5.value = total;
+  console.log(total);
+  overall(); 
+}
+
+var q61 = document.getElementById("t6_q1_input");
+var q62 = document.getElementById("t6_q2_input");
+var total_overall = document.getElementById("total_overall");
+console.log(q61);
+console.log(q62);
+var total_q6 = document.getElementById("t6_overall");
+q61.onchange = function() {
+  var total = parseFloat(q61.value) + parseFloat(q62.value);
+  total_q6.value = total;
+  overall();
+  console.log(total);
+}
+q62.onchange = function() {
+  var total = parseFloat(q61.value) + parseFloat(q62.value);
+  total_q6.value = total;
+  console.log(total);
+  overall();
+  
+}
+var q71 = document.getElementById("t7_q1_input");
+var q72 = document.getElementById("t7_q2_input");
+var q73 = document.getElementById("t7_q3_input");
+var q74 = document.getElementById("t7_q4_input");
+var total_q7 = document.getElementById("t7_overall");
+var total_overall = document.getElementById("total_overall");
+q71.onchange = function() {
+  var total = parseFloat(q71.value) + parseFloat(q72.value)+ parseFloat(q73.value)+ parseFloat(q74.value);
+  total_q7.value = total;
+  console.log(total);
+}
+q72.onchange = function() {
+  var total = parseFloat(q71.value) + parseFloat(q72.value)+ parseFloat(q73.value)+ parseFloat(q74.value);
+  total_q7.value = total;
+  console.log(total);
+}
+q73.onchange = function() {
+  var total = parseFloat(q71.value) + parseFloat(q72.value)+ parseFloat(q73.value)+ parseFloat(q74.value);
+  total_q7.value = total;
+  console.log(total);
+}
+q74.onchange = function() {
+  var total = parseFloat(q71.value) + parseFloat(q72.value)+ parseFloat(q73.value)+ parseFloat(q74.value);
+  total_q7.value = total;
+  console.log(total);
+}
+
+var q81 = document.getElementById("t8_q1_input");
+var total_q8 = document.getElementById("t8_overall");
+var total_overall = document.getElementById("total_overall");
+q81.onchange = function() {
+  var total = parseFloat(q81.value);
+  total_q8.value = total;
+  console.log(total);
+  overall();
+}
+var q91 = document.getElementById("t9_q1_input");
+var q92 = document.getElementById("t9_q2_input");
+var q93 = document.getElementById("t9_q3_input");
+var q94 = document.getElementById("t9_q4_input");
+var total_q9 = document.getElementById("t9_overall");
+var total_overall = document.getElementById("total_overall");
+q91.onchange = function() {
+  var total = parseFloat(q91.value) + parseFloat(q92.value)+ parseFloat(q93.value)+ parseFloat(q94.value);
+  total_q9.value = total;
+  overall();
+  console.log(total);
+}
+q92.onchange = function() {
+  var total = parseFloat(q91.value) + parseFloat(q92.value)+ parseFloat(q93.value)+ parseFloat(q94.value);
+  total_q9.value = total;
+  overall();
+  console.log(total);
+}
+q93.onchange = function() {
+  var total = parseFloat(q91.value) + parseFloat(q92.value)+ parseFloat(q93.value)+ parseFloat(q94.value);
+  total_q9.value = total;
+  overall();
+  console.log(total);
+}
+q94.onchange = function() {
+  var total = parseFloat(q91.value) + parseFloat(q92.value)+ parseFloat(q93.value)+ parseFloat(q94.value);
+  total_q9.value = total;
+  overall();
+  console.log(total);
+}
+
+function overall() {
+  var q11 = document.getElementById("t1_q1_input");
+  var q12 = document.getElementById("t1_q2_input");
+  var q21 = document.getElementById("t2_q1_input");
+  var q22 = document.getElementById("t2_q2_input");
+  var q31 = document.getElementById("t3_q1_input");
+  var q32 = document.getElementById("t3_q2_input");
+  var q41 = document.getElementById("t4_q1_input");
+  var q42 = document.getElementById("t4_q2_input");
+  var q43 = document.getElementById("t4_q3_input");
+  var q44 = document.getElementById("t4_q4_input");
+  var q45 = document.getElementById("t4_q5_input");
+  var q46 = document.getElementById("t4_q6_input");
+  var q51 = document.getElementById("t5_q1_input");
+  var q52 = document.getElementById("t5_q2_input");
+  var q61 = document.getElementById("t6_q1_input");
+  var q62 = document.getElementById("t6_q2_input");
+  var q71 = document.getElementById("t7_q1_input");
+  var q72 = document.getElementById("t7_q2_input");
+  var q73 = document.getElementById("t7_q3_input");
+  var q74 = document.getElementById("t7_q4_input");
+  var q81 = document.getElementById("t8_q1_input");
+  var q91 = document.getElementById("t9_q1_input");
+  var q92 = document.getElementById("t9_q2_input");
+  var q93 = document.getElementById("t9_q3_input");
+  var q94 = document.getElementById("t9_q4_input");
+  var total_overall = document.getElementById("total_overall");
+  var number = parseFloat(q11.value) + parseFloat(q12.value) + parseFloat(q21.value) + parseFloat(q22.value) + parseFloat(q31.value) + parseFloat(q32.value)+
+               parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+parseFloat(q51.value) + parseFloat(q52.value)+ parseFloat(q61.value) + parseFloat(q62.value) +parseFloat(q71.value) + parseFloat(q72.value)+ parseFloat(q73.value)+ parseFloat(q74.value)+parseFloat(q81.value)+parseFloat(q91.value) + parseFloat(q92.value)+ parseFloat(q93.value)+ parseFloat(q94.value);
+
+  total_overall.value = number;
+  console.log(number);
+
+
+}
+</script>
+</html>
+

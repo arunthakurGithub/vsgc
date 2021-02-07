@@ -1,0 +1,192 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+ .asteriskField {
+    display: none;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+  <div class="jumbotron">
+  <h3><b>Airport Cooperative Research Program (ACRP)<br> University Design Competition for Addressing Airport <br>Needs<br>Design Package Cover Page/Submission Form</b></h3>
+</div>
+  <p>
+Participating individuals or teams are required to submit the design package using this form. In addition, one hard copy of the full design plus the original of the sign-off (See Appendix D in Design Submission Guidelines) form must be mailed to the Virginia Space Grant Consortium, 600 Butler Farm Road, Suite 2253, Hampton, VA 23666. All electronic and hard copy submissions must meet the 5 pm (Eastern Daylight Time) deadline on April 29, 2019. It is strongly recommended that a mail service that certifies delivery be used. All submissions will be acknowledged via email.<br><br>
+
+By design submission, Competition participants are agreeing that their design may be publicly shared. In addition, participants are giving permission that photographs that may be taken as part of Competition activities can be used for public information purposes and to promote the Program.<br><br>
+
+If you have questions regarding the Design Package submission process, you can contact the Virginia Space Grant Consortium between 8 a.m. and 4:30 p.m. EST on weekdays at 757/766-5210. Click here for <a href="https://vsgc.odu.edu/ACRPDesignCompetition/files/2018-2019-ACRPGuidelines-Interactive.pdf">Detailed Submission Guidelines</a></p>
+<br><br>
+<p><b>Full competition guidelines and all updates are posted on the Competition Website: <a href="https://vsgc.odu.edu/acrpdesigncompetition/">ACRP Design Competition</a></b></p>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-group col-sm-8">
+    <label for="title">Title of Design:</label>
+    <input type="text" class="form-control" id="title" value="{{ designapp.title }}"readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Inst">Institution(s):</label>
+    <input type="text" class="form-control" id="Inst" value="{{ designapp.Inst }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="design_area">Design Challenge Area:</label>
+    <input type="text" class="form-control" id="design_area" value="{{ designapp.design_area }}" readonly>
+  </div>
+   <div class="form-group col-sm-8">
+    <label for="Specific_Challenge">Specific Challenge Selected:</label>
+    <input type="text" class="form-control" id="Specific_Challenge" value="{{ designapp.Specific_Challenge }}" readonly>
+  </div>
+   <div class="form-group col-sm-8">
+    <label for="Students_Involved">Level(s) of students(s) involved:</label>
+    <input type="text" class="form-control" id="Students_Involved" value="{{ designapp.Students_Involved }}" readonly>
+  </div>
+  <h4><i>Contact Information for Faculty Advisor:</i></h4>
+<div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="FirstName">First Name:</label>
+    <input type="text" class="form-control" id="FirstName" value="{{ designapp.Advisor1_FirstName }}" readonly>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+    <label for="LastName">Last Name:</label>
+    <input type="text" class="form-control" id="LastName" value="{{ designapp.Advisor1_LastName }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Department">Department:</label>
+    <input type="text" class="form-control" id="Department" value="{{ designapp.Advisor1_Department }}" readonly>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+    <label for="Street_Address">Street Address:</label>
+    <input type="text" class="form-control" id="Street_Address" value="{{ designapp.Advisor1_Street_Address }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="City">City:</label>
+    <input type="text" class="form-control" id="City" value="{{ designapp.Advisor1_City }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="State">State:</label>
+    <input type="text" class="form-control" id="State" value="{{ designapp.Advisor1_State }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Zip_Code">Zip Code:</label>
+    <input type="text" class="form-control" id="Zip_Code" value="{{ designapp.Advisor1_Zip_Code }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Telephone">Telephone:</label>
+    <input type="text" class="form-control" id="Telephone" value="{{ designapp.Advisor1_Telephone }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Fax">Fax:</label>
+    <input type="text" class="form-control" id="Fax" value="{{ designapp.Advisor1_Fax }}" readonly>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+    <label for="Email ">Email:</label>
+    <input type="text" class="form-control" id="Email" value="{{ designapp.Advisor1_Email }}" readonly>
+  </div>
+  </div>
+  <div class="row">
+    <h4><b>Contact Information for Second Faculty Advisor (Optional):</b></h4>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="FirstName">First Name:</label>
+    <input type="text" class="form-control" id="FirstName" value="{{ designapp.Advisor2_FirstName }}" readonly>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+    <label for="LastName">Last Name:</label>
+    <input type="text" class="form-control" id="LastName" value="{{ designapp.Advisor2_LastName }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Department">Department:</label>
+    <input type="text" class="form-control" id="Department" value="{{ designapp.Advisor2_Department }}" readonly>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+    <label for="Street_Address">Street Address:</label>
+    <input type="text" class="form-control" id="Street_Address" value="{{ designapp.Advisor2_Street_Address }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="City">City:</label>
+    <input type="text" class="form-control" id="City" value="{{ designapp.Advisor2_City }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="State">State:</label>
+    <input type="text" class="form-control" id="State" value="{{ designapp.Advisor2_State }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Zip_Code">Zip Code:</label>
+    <input type="text" class="form-control" id="Zip_Code" value="{{ designapp.Advisor2_Zip_Code }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Telephone">Telephone:</label>
+    <input type="text" class="form-control" id="Telephone" value="{{ designapp.Advisor2_Telephone }}" readonly>
+  </div>
+   <div class="form-group col-md-6 mb-0">
+    <label for="Fax">Fax:</label>
+    <input type="text" class="form-control" id="Fax" value="{{ designapp.Advisor2_Fax }}" readonly>
+  </div>
+  <div class="form-group col-md-6 mb-0">
+    <label for="Email ">Email:</label>
+    <input type="text" class="form-control" id="Email" value="{{ designapp.Advisor2_Email }}" readonly>
+  </div>
+  </div>
+  
+  <div class="form-group col-sm-8">
+    <label for="team members ">Select number of team members:</label>
+    <input type="text" class="form-control" id="team members" value="{{ designapp.num_team_members }}" readonly>
+  </div>
+{% for team in teammember %}
+  <div class="row">
+  <div class="form-group col-sm-4">
+    <label for="name ">Name:</label>
+    <input type="text" class="form-control" id="name" value="{{ team.name }}" readonly>
+  </div>
+  <div class="form-group col-sm-4">
+    <label for="email ">E-mail:</label>
+    <input type="text" class="form-control" id="email" value="{{ team.email }}" readonly>
+  </div>
+   <div class="form-group col-sm-4">
+    <label for="level ">Level:</label>
+    <input type="text" class="form-control" id="level" value="{{ team.level }}" readonly>
+  </div>
+</div>
+{% endfor %}
+</div>
+   <div class="form-group col-sm-8">
+    <label for="Participants ">Estimate number of other participants:</label>
+    <input type="text" class="form-control" id="Participants" value="{{ designapp.Other_Participants }}" readonly>
+  </div>
+   <div class="form-group col-sm-8">
+    <label for="Describe ">Other's please describe</label>
+    <input type="text" class="form-control" id="Describe" value="{{ designapp.Describe }}" readonly>
+  </div>
+   <div class="form-group col-sm-8">
+    <label for="ACRP_University">How did you hear about the ACRP University Design Competition for Addressing Airport Needs?</label>
+    <input type="text" class="form-control" id="ACRP_University" value="{{ designapp.ACRP_University  }}" readonly>
+  </div>
+   <div class="form-group col-sm-8">
+    <label for="Other">Other:</label>
+    <input type="text" class="form-control" id="Other" value="{{ designapp.Other }}" readonly>
+  </div>
+   <div class="form-group col-sm-8">
+    <b><label for="Upload">Components of the Design Package in PDF Format.</label></b>
+    <a href="/media/{{ designapp.Upload }}"> Full Design </a>
+  </div>
+     <div class="form-group col-sm-8">
+    <label for="status">Status:</label>
+    <input type="text" class="form-control" id="status" value="{{ designapp.stat }}" readonly>
+  </div>
+     <div class="form-group col-sm-8">
+    <label for="reason">Reason for disqualification:</label>
+    <input type="text" class="form-control" id="reason" value="{{ designapp.reason }}" readonly>
+  </div>
+  </div>
+</form>
+</body>
+ </div>
+</html>

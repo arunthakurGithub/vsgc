@@ -1,0 +1,98 @@
+{% load polls_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+
+  <div class="jumbotron">
+  <h4 style="text-align: center">Graduate Research Program on Public-Sector Aviation Issues</h4>
+
+</div>
+
+{{ daDB }}
+<!--   <div class="container">
+<div class="text-md-center">
+<h5>Processed Submissions</h5>
+</div>
+<br>
+
+
+{% for xvalue in dApps %}
+<table style="width:100%">
+  <tr>
+  <th>First Name</th>
+  <th>Degree objective</th>
+  <th>Major Field</th>
+  <th>College/University Enrolled</th>
+  <th>Status</th>
+</tr>
+{% for object in xvalue %}
+<tr>
+{% if object.stat == 'Pending' %}
+
+<td><a href="/acrpsite/acrp/EvaluateSubmissions_detail/{{object.Applicant_id}}/">{{ evaluate.App_FirstName }}</a></td>
+    <td>{{ evaluate.Degree_objective }}</td>
+    <td>{{ evaluate.Major_Field }}</td>
+    <td>{{ evaluate.clg_or_univ_Enrolled }}</td>
+    <td>{{ object.stat }}</td>
+   {% elif object.stat == 'Evaluation Saved' %}
+   <td><a href="/acrpsite/acrp/EvaluateSubmissionsSaved_detail/{{object.Applicant_id}}/">{{ evaluate.App_FirstName }}</a></td>
+    <td>{{ evaluate.Degree_objective }}</td>
+    <td>{{ evaluate.Major_Field }}</td>
+    <td>{{ evaluate.clg_or_univ_Enrolled }}</td>
+    <td>{{ object.stat }}</td>
+  {% endif %}
+  {% endfor %}
+  </tr>
+</table>
+ {% endfor %}
+ </div>
+ --></body>
+</html>
+ --><!-- {% for dAppType, dAppValue in dApps.items %}
+<table style="width:100%">
+    <tr>
+  <th>First Name</th>
+  <th>Degree objective</th>
+  <th>Major Field</th>
+  <th>College/University Enrolled</th>
+  <th>Status</th>
+
+</tr>
+<tr>
+  {% for Applicant, userProfile in dAppValue %}
+  <p>{{ userProfile.stat }}</p>
+  {% if userProfile.stat == 'Pending' %}
+    <td><a href="/acrpsite/acrp/EvaluateSubmissions_detail/{{value.id}}/">{{ Applicant.App_FirstName }}</a></td>
+    <td>{{ Applicant.Degree_objective }}</td>
+    <td>{{ Applicant.Major_Field }}</td>
+    <td>{{ Applicant.clg_or_univ_Enrolled }}</td>
+    <td>{{ userProfile.stat }}</td>
+  {% else %}
+  <td><a href="/acrpsite/acrp/EvaluateSubmissions_detail/{{value.id}}/">{{ Applicant.App_FirstName }}</a></td>
+    <td>{{ Applicant.Degree_objective }}</td>
+    <td>{{ Applicant.Major_Field }}</td>
+    <td>{{ Applicant.clg_or_univ_Enrolled }}</td>
+    <td>{{ userProfile.stat }}</td>
+  {% endif %}
+</tr>
+{% endfor %}
+</table>
+<br>
+{% endfor %}
+ --><!-- </div>
+</body>
+</html>

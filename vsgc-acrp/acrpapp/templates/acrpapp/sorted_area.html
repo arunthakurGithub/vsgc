@@ -1,0 +1,61 @@
+{% load acrp_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h4>
+
+</div>
+ <div class="container">
+<div class="text-md-center">
+<h5>Design Submissions for Approval</h5>
+</div>
+<br>
+{% for dAppType, dAppValue in dApps.items %}
+<table style="width:100%">
+   <tr>
+    <th>Reviewer</th>
+    <th>Q1</th>
+    <th>Q2</th>
+    <th>Q3</th>
+    <th>Q4</th>
+    <th>Q5</th>
+    <th>Q6</th>
+    <th>Q7</th>
+    <th>Q8</th>
+    <th>Q9</th>
+    <th>Total</th> 
+  </tr>
+    <h5><i>{{ dType|get_item:dAppType }} --- Average : {{ dAvg|get_item:dAppType }}</i></h5>
+
+  {% for designApp in dAppValue %}
+  <tr>
+    {% if designApp.stat == 'Evaluation Completed' %}
+    <td><a href="/completedsubmissions_detail/{{keys|get_item:designApp.design_app_id}}/{{ designApp.evalutor_id_id }}">
+        {{ evals|get_item:designApp.evalutor_id_id}}</a></td>
+    {% for j in dResult|get_item:designApp.id %}
+      <td>{{ j.Q_score }}</td>
+    {% endfor %}
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+<br>
+{% endfor %}
+</div>
+</body>
+</html>

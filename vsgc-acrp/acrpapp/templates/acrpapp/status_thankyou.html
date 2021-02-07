@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Application Submitted</title>
+</head>
+<body>
+	<div class="container">
+
+		<h2>Thank you, 
+			{% if status.stat == "Approved" %}
+			<p>Now,the status of the application is changed to Approved</p>
+			{% elif status.stat == "Rejected" %}
+			<p>Now,the status of your application is changed to Rejected</p>
+			 {% endif %} 
+	</div>
+
+</body>
+</html>

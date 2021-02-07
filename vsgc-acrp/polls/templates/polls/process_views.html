@@ -1,0 +1,152 @@
+{% load polls_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h4>
+
+</div>
+  <div class="container">
+<div class="text-md-center">
+<h5>Design Submissions for Approval</h5>
+</div>
+<br>
+<table style="width:100%">
+  <tr>
+  <th>First Name</th>
+  <th>Degree objective</th>
+  <th>Major Field</th>
+  <th>College Enrolled</th>
+   <th>Reference-1</th>
+  <th>Reference-2</th>
+  <th>Research Faculty</th>
+</tr>
+
+{% for value in saved %}
+  {% if value.stat == 'Evaluation Completed' %}
+   <tr>
+    <td><a href="/graward/process_detail/{{value.id}}/">{{ value.App_FirstName }}</a></td>
+    <td>{{ value.Degree_objective }}</td>
+    <td>{{ value.Major_Field }}</td>
+    <td>{{ value.clg_or_univ_Enrolled }}</td>
+  {% endif %}
+    {% if rec|get_item:value.id %}
+      {% for x in rec|get_item:value.id %}
+        {% if x.faculty_num == '1' %}
+          <td> Submitted </td>
+        {% else %}
+          <td>Not yet submitted</td>
+        {% endif %}
+        {% if x.faculty_num == '2' %}
+          <td> Submitted </td>
+        {% else %}
+          <td>Not yet submitted</td>
+        {% endif %}
+        {% if x.faculty_num == '3' %}
+          <td> Submitted </td>
+        {% else %}
+          <td>Not yet submitted</td>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <td>Not yet submitted</td>
+      <td>Not yet submitted</td>
+      <td>Not yet submitted</td>
+    {% endif %}
+  {% endfor %}
+</tr>
+</table>
+</div>
+</body>
+</html>
+
+
+{% load polls_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h4>
+
+</div>
+  <div class="container">
+<div class="text-md-center">
+<h5>Design Submissions for Approval</h5>
+</div>
+<br>
+<table style="width:100%">
+  <tr>
+  <th>First Name</th>
+  <th>Degree objective</th>
+  <th>Major Field</th>
+  <th>College Enrolled</th>
+   <th>Reference-1</th>
+  <th>Reference-2</th>
+  <th>Research Faculty</th>
+</tr>
+
+{% for value in saved %}
+  {% if value.stat == 'Evaluation Completed' %}
+   <tr>
+    <td><a href="/process_detail/{{value.id}}/">{{ value.App_FirstName }}</a></td>
+    <td>{{ value.Degree_objective }}</td>
+    <td>{{ value.Major_Field }}</td>
+    <td>{{ value.clg_or_univ_Enrolled }}</td>
+  {% endif %}
+    {% endfor %}
+
+    {% for dAppType, dAppValue in rec.items %}
+     {% for x in dAppValue %}
+        {% if x.faculty_num == '1' %}
+          <td> Submitted </td>
+        {% else %}
+          <td>Not yet submitted</td>
+        {% endif %}
+        {% if x.faculty_num == '2' %}
+          <td> Submitted </td>
+        {% else %}
+          <td>Not yet submitted</td>
+        {% endif %}
+        {% if x.faculty_num == '3' %}
+          <td> Submitted </td>
+        {% else %}
+          <td>Not yet submitted</td>
+        {% endif %}
+      {% endfor %}
+       {% endfor %}
+</tr>
+</table>
+</div>
+</body>
+</html>
+

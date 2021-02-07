@@ -1,0 +1,70 @@
+{% load acrp_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h4>
+
+</div>
+  <div class="container">
+<div class="text-md-center">
+<h5>Design Submissions for Approval</h5>
+</div>
+<br>
+{% for dAppType, dAppValue in dApps.items %}
+<table style="width:100%">
+    <tr>
+  <th>Last Name</th>
+  <th>Institution</th>
+  <th>Status</th>
+  <th>Submitted Date</th>
+
+</tr>
+  <h5><i>{{ dType|get_item:dAppType }}</i></h5>
+  {% for designApp in dAppValue %}
+  <tr>
+    {% if designApp.stat == 'Application is submitted' %}
+     {% byte2str designApp.ekey as eKey %}
+    <td style="width:25%"><a href="/process_detail/{{ eKey }}/">{{ designApp.Advisor1_LastName }}</a></td>
+    <td style="width:25%">{{ designApp.Inst }}</td>
+    {% if designApp.stat %}
+    <td style="width:25%">Pending</td>
+    {% endif %}
+    <td style="width:25%">{{ designApp.created_at }}</td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+<br>
+{% endfor %}
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

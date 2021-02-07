@@ -1,0 +1,27 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Application SUbmitted</title>
+</head>
+<body>
+	<div class="container">
+	<div class="jumbotron">
+  <h2>Graduate Research Program on Public-Sector Aviation Issues</h2><br>
+    <h4>Sponsored by Federal Aviation Administration <br>Administered by Airport Cooperative Research Program<br>
+    Transportation Research Board, National Academies<br>Managed by Virginia Space Grant Consortium</h4>
+  </div>
+  <h2>Reference Request Form</h2>
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p>
+    This is a reminder that your Student {{ details }} has given your details as faculty advisor,Please click the link below and submit the refernce form.
+  </p>
+  
+
+  <a href="{{ url }}">Recommendation url</a>
+
+	</div>
+
+</body>
+</html>
