@@ -79,27 +79,27 @@ WSGI_APPLICATION = 'acrpsite.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': "acrpsite",
-#         'USER': 'rbond001',#'zubair',
-#         'PASSWORD':'J8e4MYjS7365eREn',# 'sahil92',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "acrpsite",
-        'USER': 'root',#'zubair',
-        'PASSWORD':'',# 'sahil92',
-        'HOST': '127.0.0.1',
+        'USER': 'rbond001',#'zubair',
+        'PASSWORD':'J8e4MYjS7365eREn',# 'sahil92',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': "acrpsite",
+#         'USER': 'root',#'zubair',
+#         'PASSWORD':'',# 'sahil92',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
@@ -154,18 +154,18 @@ MESSAGE_TAGS={
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 #MEDIA_ROOT= '/opt/vsgc-acrp/vsgc-acrp/media/'
-MEDIA_URL = 'media/'
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = "rbond4747@gmail.com"
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_PORT = '587'
+MEDIA_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = False
-EMAIL_HOST = 'smtp.odu.edu'
-EMAIL_HOST_USER = "donotreply@acrp.odu.edu"
-EMAIL_PORT = '25'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "rbond4747@gmail.com"
+EMAIL_HOST_PASSWORD = 'Bindupp:1327'
+EMAIL_PORT = '587'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = False
+# EMAIL_HOST = 'smtp.odu.edu'
+# EMAIL_HOST_USER = "donotreply@acrp.odu.edu"
+# EMAIL_PORT = '25'
 

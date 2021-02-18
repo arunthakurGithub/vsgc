@@ -788,7 +788,7 @@ Electronic application submissions are due by May 15, 2020.</p>
       }
     var uploadDiv = document.getElementById("upload-div");
     uploadDiv.children[0].innerHTML = "/"+uploadDiv.children[0].innerHTML;
-    uploadDiv.children[0].href = "/media"+uploadDiv.children[0].innerHTML;
+    uploadDiv.children[0].href = uploadDiv.children[0].innerHTML;
     console.log("Upload Div: ",uploadDiv.children[0].href);
   </script>
 </div>

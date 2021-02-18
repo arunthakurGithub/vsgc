@@ -60,7 +60,7 @@ def index(request):
                             messages.error(request,('Please fill all three reference emails '))
                         else:
                             for i in range(1,4):
-                                msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'http://127.0.0.1:8000/graward/advisor/'+fDetails['cheque_no']+'/'+str(i)})
+                                msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/advisor/'+fDetails['cheque_no']+'/'+str(i)})
                                 send_mail('django test mail','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
                             return render(request,'polls/Thankyou.html',{'f':f})
                             return HttpResponseRedirect("/graward/")
@@ -140,7 +140,7 @@ def saved_application(request,Applicant_id):
                         messages.error(request,('Please fill all three reference emails '))
                     else:
                         for i in range(1,4):
-                            msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'http://127.0.0.1:8000/graward/advisor/'+fDetails['cheque_no']+'/'+str(i)})
+                            msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/advisor/'+fDetails['cheque_no']+'/'+str(i)})
                             send_mail('django test mail','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
                         return HttpResponseRedirect("/graward/evaluator/search")
             else:
@@ -777,19 +777,19 @@ def reference_reminder(request):
         rec3=Recommendation_fields.objects.filter(Applicant_id=applicantId,faculty_num=3)
         if rec1.count()==0:
             fac1=get_object_or_404(Faculty,Applicant_id=applicantId)
-            msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'http://127.0.0.1:8000/graward/advisor/'+appli[i].cheque_no+'/'+'1'})
+            msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'1'})
             send_mail('django test mail','Hello '+appli[i].Ref1_Name,settings.EMAIL_HOST_USER,[fac1.Ref1_Email],html_message=msg_html,fail_silently=False)
             print(fac1.Ref1_Email)
             print(1)
         if rec2.count()==0:
             fac2=get_object_or_404(Faculty,Applicant_id=applicantId)
-            msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'http://127.0.0.1:8000/graward/advisor/'+appli[i].cheque_no+'/'+'2'})
+            msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'2'})
             send_mail('django test mail','Hello '+appli[i].Ref2_Name,settings.EMAIL_HOST_USER,[fac2.Ref2_Email],html_message=msg_html,fail_silently=False)
             print(fac2.Ref2_Email)
             print(2)
         if rec3.count()==0:
             fac3=get_object_or_404(Faculty,Applicant_id=applicantId)
-            msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'http://127.0.0.1:8000/graward/advisor/'+appli[i].cheque_no+'/'+'3'})
+            msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'3'})
             send_mail('django test mail','Hello '+appli[i].Ref3_Name,settings.EMAIL_HOST_USER,[fac3.Ref3_Email],html_message=msg_html,fail_silently=False)
             print(fac3.Ref3_Email)
             print(3)

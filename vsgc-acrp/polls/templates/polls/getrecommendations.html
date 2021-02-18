@@ -116,12 +116,29 @@
     <div class="form-group col-sm-8">
       <i>{{ rec.Add_other_comments_to_the_evaluation|as_crispy_field }}</i>
     </div>
-    <div class="form-group col-sm-8">
-      <i>{{ rec.Signed_letter_of_reference|as_crispy_field }}</i>
+<p>Please upload a signed letter of reference on institution letterhead here:</p>
+    <div class="form-group col-sm-8" id =upload-div>
+      {{ rec.Signed_letter_of_reference }}
     </div>
 </div>
 <input type="submit" value=Submit>
 </form>
+  <script>
+    function hideField() {
+      check = document.getElementsById("visa")[0].value;  
+      response = document.getElementById("put your id here");
+      if (check === "Open") {
+         response.style.display = "none";
+        }else{
+          response.style.display = "block";
+        }
+      }
+    var uploadDiv = document.getElementById("upload-div");
+    uploadDiv.children[0].innerHTML = "/"+uploadDiv.children[0].innerHTML;
+    uploadDiv.children[0].href = uploadDiv.children[0].innerHTML;
+    console.log("Upload Div: ",uploadDiv.children[0].href);
+  </script>
+
 </div>
 </body>
 </html>

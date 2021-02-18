@@ -737,7 +737,7 @@ Please try to limit your file size to be no larger than 2 MB.</p>
 {% else %}
   {% for i in final %}
     {% if i in refRec %}
-      <a href="http://127.0.0.1:8000/graward/recom/{{ f.cheque_no.value }}/{{ i }}"> Reference Contact {{ i }} Recommendation</a><br>
+      <a href="https://vsgcapps.odu.edu/graward/recom/{{ f.cheque_no.value }}/{{ i }}"> Reference Contact {{ i }} Recommendation</a><br>
     {% else %}
       <p> Reference Contact {{ i }} Recommendation - Not Submitted</p><br>
     {% endif %}
@@ -774,7 +774,7 @@ Electronic application submissions are due by May 15, 2020.</p>
       }
     var uploadDiv = document.getElementById("upload-div");
     uploadDiv.children[0].innerHTML = "/"+uploadDiv.children[0].innerHTML;
-    uploadDiv.children[0].href = "/media"+uploadDiv.children[0].innerHTML;
+    uploadDiv.children[0].href = uploadDiv.children[0].innerHTML;
     console.log("Upload Div: ",uploadDiv.children[0].href);
   </script>
 
