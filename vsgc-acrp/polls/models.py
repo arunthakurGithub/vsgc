@@ -153,7 +153,7 @@ class Applicant(models.Model):
     Ref3_Inst=models.CharField(max_length=128,blank=True)
     Ref3_Phone=models.CharField(max_length=128,blank=True)
     #Upload=models.FileField(max_length=256,upload_to='media/',null=True)
-    Upload=models.FileField(max_length=256,upload_to='grawards/',null=True)
+    Upload=models.FileField(max_length=256,upload_to='upload/',null=True)
 
 
     RADIOS = [

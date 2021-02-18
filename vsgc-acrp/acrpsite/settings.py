@@ -79,27 +79,27 @@ WSGI_APPLICATION = 'acrpsite.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "acrpsite",
-        'USER': 'rbond001',#'zubair',
-        'PASSWORD':'J8e4MYjS7365eREn',# 'sahil92',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': "acrpsite",
-#         'USER': 'root',#'zubair',
-#         'PASSWORD':'',# 'sahil92',
-#         'HOST': '127.0.0.1',
+#         'USER': 'rbond001',#'zubair',
+#         'PASSWORD':'J8e4MYjS7365eREn',# 'sahil92',
+#         'HOST': 'localhost',
 #         'PORT': '3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "acrpsite",
+        'USER': 'root',#'zubair',
+        'PASSWORD':'',# 'sahil92',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
