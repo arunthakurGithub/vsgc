@@ -731,9 +731,9 @@ Create one PDF document which should be saved as Last Name.First Name.GRA2020 (e
 3. Writing Sample<br>
 4. Transcripts<br>
 Please try to limit your file size to be no larger than 2 MB.</p>
-<div class="form-group col-sm-8">
-<a href="/media/{{ f.Upload }}"></a>
-</div>
+<div id="upload-div">
+  {{ f.Upload }}
+</div> 
 <h6>
 Use the save feature when subsequent data entry is required prior to submission. Use your nine-character ID as a pass code to access your application.</h6>
 <p>Notes:
@@ -743,6 +743,21 @@ Application submission confirmation - once you hit continue, a bold red message 
 Electronic application submissions are due by May 15, 2020.</p> 
 </form>
 {% endif %}
+  <script>
+    function hideField() {
+      check = document.getElementsById("visa")[0].value;  
+      response = document.getElementById("put your id here");
+      if (check === "Open") {
+         response.style.display = "none";
+        }else{
+          response.style.display = "block";
+        }
+      }
+    var uploadDiv = document.getElementById("upload-div");
+    uploadDiv.children[0].innerHTML = "/"+uploadDiv.children[0].innerHTML;
+    uploadDiv.children[0].href = "/media"+uploadDiv.children[0].innerHTML;
+    console.log("Upload Div: ",uploadDiv.children[0].href);
+  </script>
 </div>
 </body>
 </html>

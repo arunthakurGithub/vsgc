@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'bfo%v50iwa8z&si6m4f)!2^mwhhp!vrgcie*qzozn0oug=zvxb'
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['vsgcapps.odu.edu','128.82.98.60','[::1]','127.0.0.1']
 
@@ -93,7 +93,7 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': "vsgcacrp",
+#         'NAME': "acrpsite",
 #         'USER': 'root',#'zubair',
 #         'PASSWORD':'',# 'sahil92',
 #         'HOST': '127.0.0.1',
@@ -156,9 +156,16 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 #MEDIA_ROOT= '/opt/vsgc-acrp/vsgc-acrp/media/'
 MEDIA_URL = 'media/'
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = "rbond4747@gmail.com"
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT = '587'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = "rbond4747@gmail.com"
-EMAIL_HOST_PASSWORD = 'Bindupp:1327'
-EMAIL_PORT = '587'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.odu.edu'
+EMAIL_HOST_USER = "donotreply@acrp.odu.edu"
+EMAIL_PORT = '25'
+

@@ -3,6 +3,9 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required, permission_required
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('index', views.index, name='index'),
@@ -12,6 +15,7 @@ urlpatterns = [
     path('evaluator/submit_application/<int:Applicant_id>/', views.submit_application, name='submit_application'),
     path('advisor/<str:cheque_no>/<int:ref_num>', views.advisor, name='advisor'),
     path('', TemplateView.as_view(template_name='polls/urls.html')),
+    path('errorreq', TemplateView.as_view(template_name='polls/extra.html')),
     path('elog/',views.user,name='user'),
     path('errorvisa/', TemplateView.as_view(template_name='polls/errorvisa.html')),
 

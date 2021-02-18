@@ -1,5 +1,6 @@
 {% load crispy_forms_tags %}
 {% include 'polls/messages.html' %}
+<!doctype html>
 <html lang="en">
 <head>
    <meta charset="utf-8">
@@ -20,6 +21,20 @@
 </style>
 </head>
 <body>
+  {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
    <div class="container">
    <div style="text-align: center" class="jumbotron">
   <h4>Graduate Research Program on Public-Sector Aviation Issues<br>
@@ -739,13 +754,10 @@ Create one PDF document which should be saved as Last Name.First Name.GRA2020 (e
 3. Writing Sample<br>
 4. Transcripts<br>
 Please try to limit your file size to be no larger than 2 MB.</p>
-  <div class="form-group col-sm-8">
-  <i>{{ f.Upload|as_crispy_field }}</i>
-</div>
-   <div class="form-group col-sm-8">
-    <b><label for="Upload">Components of the Design Package in PDF Format.</label></b>
-    <a href="/{{ f.Upload }}"> Full Design </a
-  </div>
+  <!-- <a href="/"{{ f.Upload }}> Full Design </a> -->
+<div id="upload-div">
+  {{ f.Upload }}
+</div> 
 <h6>
 Use the save feature when subsequent data entry is required prior to submission. Use your nine-character ID as a pass code to access your application.</h6>
 <p>Notes:
@@ -764,7 +776,6 @@ Electronic application submissions are due by May 15, 2020.</p>
 
 <input type="submit" value=Submit>
 </form>
-<script>
   <script>
     function hideField() {
       check = document.getElementsById("visa")[0].value;  
@@ -775,8 +786,11 @@ Electronic application submissions are due by May 15, 2020.</p>
           response.style.display = "block";
         }
       }
+    var uploadDiv = document.getElementById("upload-div");
+    uploadDiv.children[0].innerHTML = "/"+uploadDiv.children[0].innerHTML;
+    uploadDiv.children[0].href = "/media"+uploadDiv.children[0].innerHTML;
+    console.log("Upload Div: ",uploadDiv.children[0].href);
   </script>
-</script>
 </div>
 </body>
 </html>

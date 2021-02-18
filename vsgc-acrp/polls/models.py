@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy
 from django.core.validators import MaxValueValidator
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
+
 # from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
@@ -151,7 +152,8 @@ class Applicant(models.Model):
     Ref3_Title=models.CharField(max_length=128,blank=True)
     Ref3_Inst=models.CharField(max_length=128,blank=True)
     Ref3_Phone=models.CharField(max_length=128,blank=True)
-    Upload=models.FileField(max_length=256,upload_to='media/upload/',blank=True)
+    #Upload=models.FileField(max_length=256,upload_to='media/',null=True)
+    Upload=models.FileField(max_length=256,upload_to='grawards/',null=True)
 
 
     RADIOS = [

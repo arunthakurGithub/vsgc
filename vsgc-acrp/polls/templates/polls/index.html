@@ -31,8 +31,8 @@ ul
 <body>
   <div class="container">
    <div style="text-align: center" class="jumbotron">
-  <h4>Graduate Research Program on Public-Sector Aviation Issues<br>
-    Sponsored by: Federal Aviation Administration<br>
+  <h3>Graduate Research Program on Public-Sector Aviation Issues</h3><br>
+    <h4>Sponsored by: Federal Aviation Administration<br>
     Administered by: Airport Cooperative Research Program<br>
   Transportation Research Board, National Academies<br>
   Managed by: Virginia Space Grant Consortium</h4>
@@ -65,7 +65,11 @@ ul
             {% endfor %}
             </ul>
         {% endif %} -->
+
   <div class="form-group col-sm-8">
+    <a href="http://emerald.ts.odu.edu/graward2020.nsf/ApplicationInstructions?OpenPage">Click here for Application Instructions: Please Read Carefully</a>
+    <p>
+Choose a nine-character identifier that can be used to track your application. You do not have to complete your application in one session. You may temporarily save your application and for subsequent data entry you will use the nine-character ID to retrieve your saved application.</p>
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.cheque_no|as_crispy_field }}</i>
     </div>
@@ -74,7 +78,6 @@ ul
 
 <div class="row">
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.App_FirstName|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
@@ -170,7 +173,7 @@ ul
       <i>{{ form.Degree_objective|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
+<!--       <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i id="datepicker">{{ form.Expected_Graduation|as_crispy_field }}</i>
     </div>
   </div>
