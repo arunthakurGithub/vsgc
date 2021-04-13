@@ -1,4 +1,4 @@
-{% load crispy_forms_tags %}
+k{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,15 +31,15 @@ th, td {
 </form>
 <div>
 
-  {% if Applicant.stat == 'Evaluation Saved' %}
+  {% if Applicant_details.stat == 'Evaluation Saved' %}
   <table>
-      <td> Click here to modify your application --->>><a href="/graward/evaluator/saved_application/{{Applicant.id}}/">{{ Applicant.App_FirstName }}</a></td>
+      <td> Click here to modify your application --->>><a href="/graward/evaluator/saved_application/{{Applicant_details.id}}/">{{ Applicant_details.App_FirstName }}</a></td>
        <!-- <td>{{ data.App_LastName }}</td>
        <td>{{ data.stat }}<br/></td> 
  -->  </table>
  <br>
 
- {% elif Applicant.stat == 'Evaluation Completed' %}<br><br>
+ {% elif Applicant_details.stat == 'Evaluation Completed' %}<br><br>
  Sorry!You have already submitted the form.You can't make any changes.
 
  {% else %}
@@ -53,3 +53,4 @@ th, td {
 </div>
 </body>
 </html>
+

@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Applicant,Faculty,Recommendation_fields,user_profile
+from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details
 from django.conf import settings
 
 
@@ -26,7 +26,7 @@ class ApplicantForm(forms.ModelForm):
   
 
     class Meta:
-        model=Applicant
+        model=Applicant_details
         fields=["App_FirstName","App_MiddleName",'App_LastName','dob','place_of_birth','Citizenship','Describe_type_and_status_if_visa_option_is_checked',
         'visa_expiration','Gender','Ethnicity','Mailing_Address','Mailing_City','Mailing_State','Mailing_Zip_Code','Current_phone','Permanent_Home_Address',
         'Permanent_City','Permanent_State','Permanent_Zip_Code','Permanent_Home_phone','Email','clg_or_univ_Enrolled','Major_Field','Degree_objective','Expected_Graduation',
@@ -90,7 +90,7 @@ class ApplicantForm(forms.ModelForm):
         if stat == 'Evaluation Saved':
             self.cleaned_data
         else:
-            self.fields_required(["App_FirstName","App_MiddleName",'App_LastName','dob','place_of_birth','Citizenship','Gender','Ethnicity','Mailing_Address','Mailing_City','Mailing_State','Mailing_Zip_Code','Current_phone','Permanent_Home_Address',
+            self.fields_required(["App_FirstName",'App_LastName','dob','place_of_birth','Citizenship','Gender','Ethnicity','Mailing_Address','Mailing_City','Mailing_State','Mailing_Zip_Code','Current_phone','Permanent_Home_Address',
         'Permanent_City','Permanent_State','Permanent_Zip_Code','Permanent_Home_phone','Email','clg_or_univ_Enrolled','Major_Field','Degree_objective','Expected_Graduation',
         'Ref1_Name','Ref1_Title','Ref1_Dept','Ref1_Inst','Ref1_Phone','Ref2_Name','Ref2_Title','Ref2_Dept','Ref2_Inst','Ref2_Phone','clg_or_univ_1','Location_1',
         'Major_1','Dates_Attended_1','GPA_1','Degree_1','degree_expected_1','Emp1_Name','Emp1_Location','Emp1_Dates','Emp1_Nature_of_work',
@@ -108,7 +108,7 @@ class SearchForm(forms.Form):
 
 class FacultyForm(forms.ModelForm):
     class Meta:
-        model=Faculty
+        model=Faculty_details
         fields=['Ref1_Email','Ref2_Email','Ref3_Email']
         labels={
         'Ref1_Email':'E-mail','Ref2_Email':'E-mail','Ref3_Email':'Email:'}
@@ -116,7 +116,7 @@ class FacultyForm(forms.ModelForm):
 
 class Recommendation_fields_Form(forms.ModelForm):
     class Meta:
-        model=Recommendation_fields
+        model=Recommendation_fields_details
         fields=['In_what_capacity_do_you_know_the_applicant','How_Long_have_you_known_the_applicant','Knowledge_of_major_field','Research_skills','Problem_solving_skills',
                 'Creativity','Leadership','Written_communication','Oral_communication','Comment_on_the_ability_of_the_applicant','Add_other_comments_to_the_evaluation',
                 'Signed_letter_of_reference']
@@ -130,7 +130,7 @@ class Recommendation_fields_Form(forms.ModelForm):
 
 class Status(forms.ModelForm):
     class Meta:
-        model=user_profile
+        model=user_profile_details
         fields=['stat','ranking']
         labels={'stat':'Approve/Disqualify','ranking':'Select ranking for the applicant:'}
         widgets={

@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 # from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
-class Applicant(models.Model):
+class Applicant_details(models.Model):
     App_FirstName=models.CharField(max_length=128)
     App_MiddleName=models.CharField(max_length=128,blank=True)
     App_LastName=models.CharField(max_length=128,blank=True)
@@ -170,15 +170,15 @@ class Applicant(models.Model):
     # cheque_no = models.CharField(validators=[RegexValidator(regex='^.{9}$', message='Length has to be 9 numbers', code='nomatch')],max_length=128,unique=True)
 
 
-class Faculty(models.Model):
-    Applicant = models.ForeignKey('Applicant', on_delete=models.DO_NOTHING)
+class Faculty_details(models.Model):
+    Applicant_details = models.ForeignKey('Applicant_details', on_delete=models.DO_NOTHING)
     Ref1_Email=models.EmailField(max_length=70,blank=True)
     Ref2_Email=models.EmailField(max_length=70,blank=True)
     Ref3_Email=models.CharField(max_length=128,blank=True)
 
 
-class Recommendation_fields(models.Model):
-    Applicant = models.ForeignKey('Applicant', on_delete=models.DO_NOTHING)
+class Recommendation_fields_details(models.Model):
+    Applicant_details = models.ForeignKey('Applicant_details', on_delete=models.DO_NOTHING)
     In_what_capacity_do_you_know_the_applicant=models.CharField(max_length=256)
     How_Long_have_you_known_the_applicant=models.CharField(max_length=128)
     major_field=[
@@ -204,9 +204,9 @@ class Recommendation_fields(models.Model):
 
 
 
-class user_profile(models.Model):
+class user_profile_details(models.Model):
     eval_id=models.ForeignKey(User, on_delete=models.DO_NOTHING,related_name='polls')
-    Applicant = models.ForeignKey('Applicant', on_delete=models.DO_NOTHING)
+    Applicant_details = models.ForeignKey('Applicant_details', on_delete=models.DO_NOTHING)
     RANKING = [
     ('5','5 – Outstanding'),
     ('4.5','4.5'),
@@ -232,4 +232,5 @@ class user_profile(models.Model):
          max_length=25,
          choices=RADIOS,
     )
+
 

@@ -31,13 +31,13 @@ th, td {
 </form>
 <div>
 
-  {% if Applicant.stat == 'Evaluation Completed' %}
+  {% if Applicant_details.stat == 'Evaluation Completed' %}
   <table>
-      <td>Please click here to view your application---> <a href="/graward/evaluator/submit_application/{{Applicant.id}}/">{{ Applicant.App_FirstName }}</a></td>
+      <td>Please click here to view your application---> <a href="/graward/evaluator/submit_application/{{Applicant_details.id}}/">{{ Applicant_details.App_FirstName }}</a></td>
   </table>
  <br>
 
- {% elif Applicant.stat == 'Evaluation Saved' %}<br><br>
+ {% elif Applicant_details.stat == 'Evaluation Saved' %}<br><br>
  Sorry! You haven't submitted the form please click <a href="/graward/evaluator/search"> Here</a> To submit your form
  
 {% else %}
@@ -49,3 +49,4 @@ th, td {
 </div>
 </body>
 </html>
+

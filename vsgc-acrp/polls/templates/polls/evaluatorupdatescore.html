@@ -47,7 +47,7 @@ An applicant has been ranked using the following scale:<br>
    {% for i,j in item.items %}
      <td><b>{{ j.App_FirstName }} {{ j.App_LastName }}  {{ j.clg_or_univ_Enrolled }}</b></td>
      {% for m,n in j.items %}
-     <td><a href="EvaluateSaved_detail/{{ m.Applicant_id }}/{{ m.eval_id_id }}/">{{n}}</a>: {{ m.ranking }}</td>
+     <td><a href="EvaluateSaved_detail/{{ m.Applicant_details_id }}/{{ m.eval_id_id }}/">{{n}}</a>: {{ m.ranking }}</td>
      {% endfor %}
    {% endfor %}
 </tr>
@@ -55,6 +55,7 @@ An applicant has been ranked using the following scale:<br>
 </table>
 <hr>
 </div>
+
 
 
 
