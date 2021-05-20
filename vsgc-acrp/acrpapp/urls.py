@@ -17,6 +17,7 @@ urlpatterns = [
     path('Applicant/', views.Applicanturl, name='Applicanturl'),
     path('Applicantdetail/<str:ekey>/', views.Applicantdetail, name='Applicantdetail'),
     path('elogin/',views.user_login,name='user_login'),
+    path('reviewerLogin/',views.reviewer_login,name='reviewer_login'),
     path('acrpmembers/', views.acrpmembers, name='acrpmembers'),
     path('evaluator/', views.evaluator, name='evaluator'),
     path('sorted/', views.sorted_id, name='sorted_id'),

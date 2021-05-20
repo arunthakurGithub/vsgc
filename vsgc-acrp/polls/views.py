@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.forms import ModelForm
-from .forms import ApplicantForm,SearchForm,FacultyForm,Recommendation_fields_Form,Status
-from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details
+from .forms import ApplicantForm,SearchForm,FacultyForm,Recommendation_fields_Form,Status,FacultyAdvisor_fields_Form
+from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details,FacultyAdvisor_fields
 from django.shortcuts import get_list_or_404, get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
@@ -59,9 +59,12 @@ def index(request):
                         if ref1Email == '' or ref2Email == '' or ref3Email =='':
                             messages.error(request,('Please fill all three reference emails '))
                         else:
-                            for i in range(1,4):
+                            for i in range(1,3):
                                 msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/advisor/'+fDetails['cheque_no']+'/'+str(i),'name':fDetails['Ref'+str(i)+'_Name']})
-                                send_mail('django test mail','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
+                                send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
+                            for i in range(3,4):
+                                msg_html =render_to_string('polls/advisorRecommendation.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+fDetails['cheque_no']+'/'+'3','name':fDetails['Ref'+'3'+'_Name']})
+                                send_mail('django test mail','Hello '+fDetails['Ref'+'3'+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+'3'+'_Email']],html_message=msg_html,fail_silently=False)
                             return render(request,'polls/Thankyou.html',{'f':f})
                             return HttpResponseRedirect("/graward/")
                 else:
@@ -95,16 +98,6 @@ def search(request):
     else:
         return render(request,'polls/searchbox.html',{'form' : form})
 
-# def search(request):
-#   form = SearchForm()
-#   if request.method == "POST":
-#       passCode = request.POST.get('searchValue')
-#       print(passCode)
-#       x = Applicant.objects.get(cheque_no=passCode)
-#       print(x.Email)
-#       return render(request,'polls/searchbox.html',{'form' : form,'Applicant' : x})
-#   else:
-#       return render(request,'polls/searchbox.html',{'form' : form})
 
 
 
@@ -139,9 +132,12 @@ def saved_application(request,Applicant_details_id):
                     if ref1Email == '' or ref2Email == '' or ref3Email =='':
                         messages.error(request,('Please fill all three reference emails '))
                     else:
-                        for i in range(1,4):
+                        for i in range(1,3):
                             msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/advisor/'+fDetails['cheque_no']+'/'+str(i),'name':fDetails['Ref'+str(i)+'_Name']})
                             send_mail('django test mail','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
+                        for i in range(3,4):
+                            msg_html =render_to_string('polls/advisorRecommendation.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+fDetails['cheque_no']+'/'+'3','name':fDetails['Ref'+'3'+'_Name']})
+                            send_mail('django test mail','Hello '+fDetails['Ref'+'3'+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+'3'+'_Email']],html_message=msg_html,fail_silently=False)
                         return HttpResponseRedirect("/graward/evaluator/search")
             else:
                 return HttpResponseRedirect("/graward/evaluator/search")
@@ -198,7 +194,43 @@ def advisor(request,cheque_no, ref_num):
             return render(request,'polls/advisor_error.html')
 
 
- 
+def FacultyAdvisorRecommendation(request,cheque_no, ref_num):
+    if (ref_num>3 or ref_num<=2):
+        return render(request,'polls/errormsg.html')
+    else:
+        saved=get_object_or_404(Applicant_details,cheque_no=cheque_no)
+        if not submitted(saved.id,ref_num):
+            saved_faculty = get_object_or_404(Faculty_details,Applicant_details_id = saved.id)
+            rec=FacultyAdvisor_fields_Form()
+            if request.method == "POST":
+                rec=FacultyAdvisor_fields_Form(request.POST,request.FILES)
+                if rec.is_valid():
+                    ref1 = request.POST['Have_you_examined_the_applicant_proposed_researchplan']
+                    ref2 = request.POST['Do_you_consider_the_applicant_research_plan_reasonable']
+                    ref3 = request.POST['If_no_please_comment_1']
+                    ref4 = request.POST['Research_within_the_time_frame_indicated']
+                    ref5 = request.POST['If_no_please_comment_2']
+                    ref6 = request.POST['Will_the_applicant_receive_academic_credit_this_work']
+                    ref7 = request.POST['If_yes_please_indicate_the_nature_of_this_academic_credit']
+                    ref8 = request.POST['Work_of_the_applicant_on_this_project']
+                    ref9 = request.POST['Applicant_receives_this_research_award']
+                    ref10 = request.FILES['Upload_your_reference_commitment_letter_signed']
+                    recom=FacultyAdvisor_fields(Have_you_examined_the_applicant_proposed_researchplan=ref1,Do_you_consider_the_applicant_research_plan_reasonable=ref2,
+                        If_no_please_comment_1=ref3,Research_within_the_time_frame_indicated=ref4,If_no_please_comment_2=ref5,
+                        Will_the_applicant_receive_academic_credit_this_work=ref6,If_yes_please_indicate_the_nature_of_this_academic_credit=ref7,
+                        Work_of_the_applicant_on_this_project=ref8,Applicant_receives_this_research_award=ref9,Upload_your_reference_commitment_letter_signed=ref10,
+                        Applicant_details=saved,faculty_num=ref_num)
+                    recom.save()
+                    return render(request,'polls/Thankyou.html') 
+                print(' !!! Form Invalid !!!')
+                return render(request,'polls/errormsg.html',{'form':rec})
+            else:
+                f=ApplicantForm(instance = saved)
+                faculty_form = FacultyForm(instance = saved_faculty)
+                rec=FacultyAdvisor_fields_Form()
+                return render(request,'polls/FacultyAdvisorRecommendation.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec ,'ref_num':str(ref_num)})
+        else:
+            return render(request,'polls/advisor_error.html')
 def submitted(Applicant_details_id,ref_num):
     try:
         found=Recommendation_fields_details.objects.get(Applicant_details_id=Applicant_details_id,faculty_num=ref_num)
@@ -208,16 +240,6 @@ def submitted(Applicant_details_id,ref_num):
         print('--> Data Not Found')
         return False
 
-# def submit(request):
-#   form = SearchForm()
-#   if request.method == "POST":
-#       passCode = request.POST.get('searchValue')
-#       print(passCode)
-#       x = Applicant.objects.get(cheque_no=passCode)
-#       print(x.Email)
-#       return render(request,'polls/submit.search.html',{'form' : form,'Applicant' : x})
-#   else:
-#       return render(request,'polls/submit.search.html',{'form' : form})
 
 def submit(request):
     form = SearchForm()
@@ -298,23 +320,38 @@ def support(request):
 
 def process(request):
     details={}
+    details1={}
     saved=Applicant_details.objects.filter(stat="Evaluation Completed")
     for i in saved:
         vals=list(Recommendation_fields_details.objects.filter(Applicant_details_id=i.id).values_list('faculty_num', flat=True))
+        vals1=list(FacultyAdvisor_fields.objects.filter(Applicant_details_id=i.id).values_list('faculty_num', flat=True))
+        print("vals1",vals1)
         tmp = []
-        for f in range(0,3):
+        for f in range(0,2):
             if str(f+1) in vals:
                 tmp.append(str(f+1))
             else:
                 tmp.append(0)
         details[i.id] = tmp
-    print(details)
-    return render(request,'polls/process.html',{'saved':saved, 'rec': details})
-
+    savednew=Applicant_details.objects.filter(stat="Evaluation Completed")
+    for i in savednew:
+        vals1=list(FacultyAdvisor_fields.objects.filter(Applicant_details_id=i.id).values_list('faculty_num', flat=True))
+        print("vals1",vals1)
+        tmp1=[]
+        for f in range(2,3):
+            if str(f+1) in vals1:
+                tmp1.append(str(f+1))
+            else:
+                tmp1.append(0)
+        details1[i.id] = tmp1
+    print(tmp)
+    print(tmp1)
+    return render(request,'polls/process.html',{'saved':saved, 'rec': details,'rec1':details1})
 
 def process_detail(request,Applicant_details_id):
     saved=get_object_or_404(Applicant_details,pk=Applicant_details_id)
     refRec = []
+    refRec1 = []
     saved_faculty = get_object_or_404(Faculty_details,Applicant_details_id = Applicant_details_id)
     if request.method == "POST":
         saved.stat=request.POST["stat"]
@@ -344,7 +381,22 @@ def process_detail(request,Applicant_details_id):
             # rec=Recommendation_fields_Form(instance=rec)
         except:
             rec = 'Not Submitted'
-        return render(request,'polls/process_detail.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec,'refRec':refRec,'final':[1,2,3]})
+        faculty_form1 = FacultyForm(instance = saved_faculty)
+        try:
+            rec1=FacultyAdvisor_fields.objects.order_by('faculty_num')
+            rec1 = rec1.filter(Applicant_details_id=saved.id)
+            numRec1=FacultyAdvisor_fields.objects.filter(Applicant_details_id=saved.id).count()
+            print('--> num of records : ', numRec)
+            print('--> Retrieved Records :',rec)
+            for i in rec1:
+                print('----> ',i.faculty_num)
+                refRec1.append(int(i.faculty_num))
+            print("refrec1",refRec1)
+            # rec=Recommendation_fields_Form(instance=rec)
+        except:
+            rec1 = 'Not Submitted'
+        return render(request,'polls/process_detail.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec,'refRec':refRec,'rec1':rec1,'refRec1':refRec1,'final':[1,2],'final1':[3]})
+
 
 def processed(request):
     saved=Applicant_details.objects.filter(stat__in=("Approved","Rejected"))
@@ -378,6 +430,16 @@ def getrecommendations(request,cheque_no,ref_num):
     faculty_form = FacultyForm(instance = saved_faculty)
     rec=Recommendation_fields_Form(instance=rec)
     return render(request,'polls/getrecommendations.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec ,'ref_num':str(ref_num)})
+
+
+def facultygetrecommendation(request,cheque_no,ref_num):
+    saved=get_object_or_404(Applicant_details,cheque_no=cheque_no)
+    saved_faculty = get_object_or_404(Faculty_details,Applicant_details_id = saved.id)
+    rec=get_object_or_404(FacultyAdvisor_fields,Applicant_details_id=saved.id,faculty_num=ref_num)
+    f=ApplicantForm(instance = saved)
+    faculty_form = FacultyForm(instance = saved_faculty)
+    rec=FacultyAdvisor_fields_Form(instance=rec)
+    return render(request,'polls/facultygetrecommendations.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec ,'ref_num':str(ref_num)})
 
 def RecommendationsAllInternal(request):
     saved=Applicant_details.objects.filter(stat=("Approved"))
@@ -774,26 +836,19 @@ def reference_reminder(request):
         print(applicantId)
         rec1=Recommendation_fields_details.objects.filter(Applicant_details_id=applicantId,faculty_num=1)
         rec2=Recommendation_fields_details.objects.filter(Applicant_details_id=applicantId,faculty_num=2)
-        rec3=Recommendation_fields_details.objects.filter(Applicant_details_id=applicantId,faculty_num=3)
+        rec3=FacultyAdvisor_fields.objects.filter(Applicant_details_id=applicantId,faculty_num=3)
         if rec1.count()==0:
             fac1=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
             msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'1','name':appli[i].Ref1_Name})
-            send_mail('django test mail','Hello '+appli[i].Ref1_Name,settings.EMAIL_HOST_USER,[fac1.Ref1_Email],html_message=msg_html,fail_silently=False)
-            print(fac1.Ref1_Email)
-            print(1)
+            send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref1_Name,settings.EMAIL_HOST_USER,[fac1.Ref1_Email],html_message=msg_html,fail_silently=False)
         if rec2.count()==0:
             fac2=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
             msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'2','name':appli[i].Ref2_Name})
-            send_mail('django test mail','Hello '+appli[i].Ref2_Name,settings.EMAIL_HOST_USER,[fac2.Ref2_Email],html_message=msg_html,fail_silently=False)
-            print(fac2.Ref2_Email)
-            print(2)
+            send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref2_Name,settings.EMAIL_HOST_USER,[fac2.Ref2_Email],html_message=msg_html,fail_silently=False)
         if rec3.count()==0:
             fac3=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
-            msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'3','name':appli[i].Ref3_Name})
+            msg_html=render_to_string('polls/advisorRecommendation.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+appli[i].cheque_no+'/'+'3','name':appli[i].Ref3_Name})
             send_mail('django test mail','Hello '+appli[i].Ref3_Name,settings.EMAIL_HOST_USER,[fac3.Ref3_Email],html_message=msg_html,fail_silently=False)
-            print(fac3.Ref3_Email)
-            print(3)
-        print('rec',rec1)
     return render(request,'polls/reference_reminder.html')
     # advisor=faculty.objects.get(Applicant_id=)
 

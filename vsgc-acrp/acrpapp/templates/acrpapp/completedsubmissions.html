@@ -35,7 +35,8 @@ th, td {
   <h3>{{ dType|get_item:dAppType }}</h3>
   {% for designApp in dAppValue %}
   <tr>
-    <td><a href="/completedsubmissions_detail/{{designApp.ekey}}/">{{ designApp.Advisor1_LastName }}</a></td>
+    {% byte2str designApp.ekey as eKey %}
+    <td><a href="/completedsubmissions_detail/{{ eKey }}/">{{ designApp.Advisor1_LastName }}</a></td>
     <td>{{ designApp.Inst }}</td>
     {% if designApp.stat %}
     <td>Evaluation Completed</td>

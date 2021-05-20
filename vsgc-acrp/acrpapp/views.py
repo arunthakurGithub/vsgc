@@ -140,7 +140,7 @@ def process(request):
 from django.shortcuts import get_object_or_404
 @login_required(login_url='/login/')
 def process_detail(request,ekey):
-    da={'AM':78,'AE':77,'AO':79,'RS':80}
+    da={'AM':62,'AE':61,'AO':63,'RS':64}
     designapp = DesignApp.objects.get_by_ekey_or_404(ekey)
     designapp_id = designapp.id
     teammember=TeamMember.objects.filter(design_app_id=designapp_id)
@@ -267,7 +267,6 @@ def evaluator(request):
             daDb[i]=[]
             for j in d_eval:
                 daDb[i].append((DesignApp.objects.get(id=j.design_app_id),j))
-        print('daDb',daDb)
         return render(request,'acrpapp/evaluator.html',{'dApps' : daDb,'dType':daType, 'stat':d_eval})
 
 
@@ -371,7 +370,28 @@ def evaluator_login(request):
     else:
         return render(request , 'registration/login.html' , {}) 
 
+def reviewer_login(request):
+    if request.method == 'POST':
+        username = request.POST['Username']
+        password = request.POST['Password']
+        user = authenticate(username = username , password = password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                if request.user.groups.filter(name='acrpapp_review_all_submissions').exists():
+                    return HttpResponseRedirect('/processed/')  
+                else:
+                    return HttpResponse("You do not have permission to view this page")
+            
+            else:
+                return HttpResponse("ACCount not active!!")
 
+        else:
+            print("someone tried to login and falied!")
+            return HttpResponse("Invalid credentials!")
+
+    else:
+        return render(request , 'registration/login.html' , {}) 
 
 
    

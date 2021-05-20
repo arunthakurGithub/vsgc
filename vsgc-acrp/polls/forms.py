@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details
+from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details,FacultyAdvisor_fields
 from django.conf import settings
 
 
@@ -68,7 +68,7 @@ class ApplicantForm(forms.ModelForm):
                 'Interruptions_of_schooling':forms.Textarea(attrs={'rows':3, 'cols':6}),
                 'Prof_exp_Notes':forms.Textarea(attrs={'rows':3, 'cols':6}),
                 'Awards_Notes':forms.Textarea(attrs={'rows':3, 'cols':6}),
-                'Carrer_goals':forms.Textarea(attrs={'rows':3, 'cols':6}),
+                'Carrer_goals':forms.Textarea(attrs={'rows':3, 'cols':40}),
                 'stat' :forms.RadioSelect(),
                 'Expected_Graduation': DateInput(),
                 }
@@ -127,6 +127,37 @@ class Recommendation_fields_Form(forms.ModelForm):
                'Add_other_comments_to_the_evaluation':'Please add any other comments that you consider to be pertinent to the evaluation of the applicant and that are not covered adequately by your other responses',
                'Signed_letter_of_reference':'Please upload a signed letter of reference on institution letterhead here:'
                }
+class FacultyAdvisor_fields_Form(forms.ModelForm):
+    class Meta:
+        model=FacultyAdvisor_fields
+        fields=['Have_you_examined_the_applicant_proposed_researchplan','Do_you_consider_the_applicant_research_plan_reasonable','If_no_please_comment_1','Research_within_the_time_frame_indicated','If_no_please_comment_2',
+        'Will_the_applicant_receive_academic_credit_this_work','If_yes_please_indicate_the_nature_of_this_academic_credit','Work_of_the_applicant_on_this_project',
+        'Applicant_receives_this_research_award','Upload_your_reference_commitment_letter_signed']
+
+        labels={'Have_you_examined_the_applicant_proposed_researchplan':'1. Have you examined the applicant’s proposed research plan?',
+        'Do_you_consider_the_applicant_research_plan_reasonable':'2. Do you consider the applicant’s research plan reasonable?',
+        'If_no_please_comment_1':'If no, please comment:',
+        'Research_within_the_time_frame_indicated':'3. Do you believe that this applicant can complete the proposed research within the time frame indicated?',
+        'If_no_please_comment_2':'If no, please comment:',
+        'Will_the_applicant_receive_academic_credit_this_work':'4. Will the applicant receive academic credit for this work?',
+        'If_yes_please_indicate_the_nature_of_this_academic_credit':'If yes, please indicate the nature of this academic credit. [Note: Receiving academic credit in no way counts against the applicant.]',
+        'Work_of_the_applicant_on_this_project':'5. Please indicate briefly how you plan to monitor and advise on the work of the applicant on this project:',
+        'Applicant_receives_this_research_award':'6. I am willing to be the research advisor to the applicant if the applicant receives this research award:',
+        'Upload_your_reference_commitment_letter_signed':'Upload your reference and commitment letter signed on university letterhead here .pdf is the preferred file type'
+             }
+
+        widgets={
+                'Have_you_examined_the_applicant_proposed_researchplan' :forms.RadioSelect(),
+                'Do_you_consider_the_applicant_research_plan_reasonable':forms.RadioSelect(),
+                'Research_within_the_time_frame_indicated':forms.RadioSelect(),
+                'Will_the_applicant_receive_academic_credit_this_work':forms.RadioSelect(),
+                'Applicant_receives_this_research_award':forms.RadioSelect(),
+                'If_no_please_comment_1':forms.Textarea(attrs={'rows':3, 'cols':6}),
+                'If_no_please_comment_2':forms.Textarea(attrs={'rows':3, 'cols':6}),
+                'If_yes_please_indicate_the_nature_of_this_academic_credit':forms.Textarea(attrs={'rows':3, 'cols':6}),
+                'Work_of_the_applicant_on_this_project':forms.Textarea(attrs={'rows':3, 'cols':6}),
+                }
+
 
 class Status(forms.ModelForm):
     class Meta:

@@ -36,7 +36,6 @@ th, td {
   <th>Reference-2</th>
   <th>Research Faculty</th>
 </tr>
-
 {% for value in saved %}
   {% if value.stat == 'Evaluation Completed' %}
    <tr>
@@ -51,8 +50,6 @@ th, td {
           <td> Submitted </td>
         {% elif x == '2' %}
           <td> Submitted </td>
-        {% elif x == '3' %}
-          <td> Submitted </td>
         {% else %}
           <td>Not yet submitted</td>
         {% endif %}
@@ -60,6 +57,17 @@ th, td {
     {% else %}
       <td>Not yet submitted</td>
       <td>Not yet submitted</td>
+    {% endif %}
+
+    {% if rec1|get_item:value.id %}
+      {% for x in rec1|get_item:value.id %}
+        {% if x == '3' %}
+          <td> Submitted </td>
+        {% else %}
+          <td>Not yet submitted</td>
+        {% endif %}
+      {% endfor %}
+    {% else %}
       <td>Not yet submitted</td>
     {% endif %}
   {% endfor %}

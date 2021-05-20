@@ -45,7 +45,8 @@ th, td {
   {% for designApp in dAppValue %}
   <tr>
     {% if designApp.stat == 'Evaluation Completed' %}
-    <td><a href="/completedsubmissions_detail/{{keys|get_item:designApp.design_app_id}}/{{ designApp.evalutor_id_id }}">
+{% byte2str keys|get_item:designApp.design_app_id as eKey %}
+    <td><a href="/completedsubmissions_detail/{{ eKey }}/{{ designApp.evalutor_id_id }}/">
         {{ evals|get_item:designApp.evalutor_id_id}}</a></td>
     {% for j in dResult|get_item:designApp.id %}
       <td>{{ j.Q_score }}</td>

@@ -28,6 +28,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['vsgcapps.odu.edu','128.82.98.60','[::1]','127.0.0.1']
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10000000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10000000
 
 # Application definition
 

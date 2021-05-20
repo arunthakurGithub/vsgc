@@ -1,0 +1,93 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+ .asteriskField {
+    display: none;
+}
+</style>
+  <title></title>
+</head>
+<body>
+   <div class="container">
+  <div class="jumbotron">
+  <h2>Graduate Research Program on Public-Sector Aviation Issues</h2><br>
+    <h4>Sponsored by Federal Aviation Administration <br>Administered by Airport Cooperative Research Program<br>
+    Transportation Research Board, National Academies<br>Managed by Virginia Space Grant Consortium</h4>
+  </div>
+  <h2>Faculty Research Advisor Form
+</h2>
+<h5>The applicant noted below has indicated your willingness to serve as the faculty research advisor for research proposed to the Graduate Research Award Program. The research product of research award recipients can be considerably enhanced if a faculty member at the applicant’s university acts as an advisor to the applicant during the conduct of the research. Therefore, each applicant is required to designate such an advisor who will be available to him/her throughout the course of the research project to provide advice as it progresses. When research papers by award winners are published by the Transportation Research Board, the faculty member will be identified as the research advisor.<br><br>
+
+
+Please complete the form provided below and upload a signed letter of commitment/support on your institution’s letterhead as soon as possible but no later than May 28, 2021. Student applications close on May 14, 2021 at 4:30 PM EDT and faculty advisor commitments and references will not be accepted after May 28, 2021. If the student’s application package is not complete on May 28, 2021 with faculty advisor commitment and references, the application will be NOT be considered.<br><br>
+
+
+
+Note that you will not be able to save this form and return to it.</h5>
+  <form method="post" enctype="multipart/form-data" action="">
+  {% csrf_token %} 
+   <h2>Reference Request Form</h2>
+   <div class="row">
+    <div class="form-group col-sm-8">
+      <i>{{ f.App_FirstName|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ f.Title_of_reserach_project|as_crispy_field }}</i>
+    </div>
+    {% if ref_num == '3' %}
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Name|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Title|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Inst|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ faculty.Ref3_Email|as_crispy_field }}</i>
+      </div>
+      <div class="form-group col-sm-8">
+        <i>{{ f.Ref3_Phone|as_crispy_field }}</i>
+      </div>
+    {% endif %}
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Have_you_examined_the_applicant_proposed_researchplan|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Do_you_consider_the_applicant_research_plan_reasonable|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.If_no_please_comment_1|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Research_within_the_time_frame_indicated|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.If_no_please_comment_2|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Will_the_applicant_receive_academic_credit_this_work|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.If_yes_please_indicate_the_nature_of_this_academic_credit|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Work_of_the_applicant_on_this_project|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Applicant_receives_this_research_award|as_crispy_field }}</i>
+    </div>
+    <div class="form-group col-sm-8">
+      <i>{{ rec.Upload_your_reference_commitment_letter_signed|as_crispy_field }}</i>
+    </div>
+</div>
+</form>
+</div>
+</body>
+</html>

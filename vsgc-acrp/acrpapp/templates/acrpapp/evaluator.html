@@ -40,11 +40,14 @@ th {
   {% for designApp, userProfile in dAppValue %}
   <tr>
     {% if userProfile.stat == 'Pending' %}
-      <td><a href="/evaluator_detail/{{designApp.ekey}}/">{{ designApp.Advisor1_LastName }}</a></td>
+    {% byte2str designApp.ekey as eKey %}
+      <td><a href="/evaluator_detail/{{ eKey }}/">{{ designApp.Advisor1_LastName }}</a></td>
       <td>{{ designApp.Inst }}</td>
       <td>{{ userProfile.stat }}</td>
     {% else %}
-      <td><a href="/saved/{{designApp.ekey}}/">{{ designApp.Advisor1_LastName }}</a></td>
+    {% byte2str designApp.ekey as eKey %}
+
+      <td><a href="/saved/{{ eKey }}/">{{ designApp.Advisor1_LastName }}</a></td>
       <td>{{ designApp.Inst }}</td>
       <td>{{ userProfile.stat }}</td>
     {% endif %}

@@ -1,9 +1,10 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser 
 from django.utils.translation import gettext_lazy
 from django.conf import settings
 from django.contrib.auth.models import User
 from encrypted_id.models import EncryptedIDModel
+from .validators import validate_file_size
+from django.db import models
 
 # Create your models here.
 class Applicant(EncryptedIDModel):
@@ -138,9 +139,9 @@ class DesignApp(EncryptedIDModel):
     num_team_members = models.PositiveIntegerField(default="0")
     Other_Participants=models.CharField(max_length=100,default="",blank=True)
     Describe=models.CharField(max_length=256,default="",blank=True)
-    ACRP_University = models.CharField(max_length=256,null=True)
+    ACRP_University = models.CharField(max_length=256,null=True,verbose_name="Please check How did you hear about the ACRP University Design Competition for Addressing Airport Needs?")
     Other = models.CharField(max_length=100,default='',blank=True)
-    Upload=models.FileField(max_length=256,upload_to='media/', null=True)
+    Upload=models.FileField(max_length=256,upload_to='media/', null=True,validators=[validate_file_size])
     #Upload=models.FileField(max_length=256,upload_to=settings.MEDIA_URL,null=True)
 
     RADIOS = [
@@ -158,7 +159,8 @@ class DesignApp(EncryptedIDModel):
 
     reason=models.CharField(max_length=128,default="")
     created_at = models.DateField(auto_now_add=True)
-    
+    def __str__(self):
+        return self.name + ": " + str(self.filepath)
 
 class DesignApp1(DesignApp):
     class Meta:
@@ -184,9 +186,9 @@ class TeamMember(models.Model):
     ('Graduate','Graduate'),
     ]
 
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    level=models.CharField( max_length=20,choices=levels)
+    name = models.CharField(max_length=500)
+    email = models.CharField(max_length=500)
+    level=models.CharField( max_length=100,choices=levels)
     design_app = models.ForeignKey('DesignApp', on_delete=models.DO_NOTHING)
 
 

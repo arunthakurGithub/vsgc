@@ -146,7 +146,7 @@ class Applicant_details(models.Model):
     Award6_Date=models.CharField(max_length=128,blank=True)
     Award6_Description=models.CharField(max_length=128,blank=True)
     Awards_Notes=models.CharField(max_length=128,blank=True)
-    Carrer_goals=models.CharField(max_length=128,blank=True)
+    Carrer_goals=models.TextField(max_length=512,blank=True)
     Title_of_reserach_project=models.CharField(max_length=128,blank=True)
     Ref3_Name=models.CharField(max_length=128,blank=True)
     Ref3_Title=models.CharField(max_length=128,blank=True)
@@ -202,7 +202,43 @@ class Recommendation_fields_details(models.Model):
     faculty_num=models.CharField(max_length=10)
 
 
+class FacultyAdvisor_fields(models.Model):
+    Applicant_details = models.ForeignKey('Applicant_details', on_delete=models.DO_NOTHING)
+    proposed = [
+    ('Yes','Yes'),
+    ('No','No'),
+    ]
+    Have_you_examined_the_applicant_proposed_researchplan = models.CharField(
+         max_length=25,
+         choices=proposed,
+         default="",
+    )
+    Do_you_consider_the_applicant_research_plan_reasonable=models.CharField(
+         max_length=25,
+         choices=proposed,
+    )
+    If_no_please_comment_1=models.CharField(max_length=128,blank=True)
+    Research_within_the_time_frame_indicated=models.CharField(
+         max_length=25,
+         choices=proposed,
+         default="",
+    )
+    If_no_please_comment_2=models.CharField(max_length=128,blank=True)
+    Will_the_applicant_receive_academic_credit_this_work = models.CharField(
+         max_length=25,
+         choices=proposed,
+         default="",
+    )
+    If_yes_please_indicate_the_nature_of_this_academic_credit=models.CharField(max_length=128,blank=True)
+    Work_of_the_applicant_on_this_project= models.CharField(max_length=256,blank=True)
+    Applicant_receives_this_research_award = models.CharField(
+         max_length=25,
+         choices=proposed,
+         default="",
+    )
 
+    Upload_your_reference_commitment_letter_signed = models.FileField(max_length=256,upload_to='media/upload',blank=True)
+    faculty_num=models.CharField(max_length=10,default="")
 
 class user_profile_details(models.Model):
     eval_id=models.ForeignKey(User, on_delete=models.DO_NOTHING,related_name='polls')
