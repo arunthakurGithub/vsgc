@@ -18,6 +18,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='polls/urls.html')),
     path('errorreq', TemplateView.as_view(template_name='polls/extra.html')),
     path('elog/',views.user,name='user'),
+    path('grareviewers/',views.reviewer_login , name = 'grareviewer'),
     path('errorvisa/', TemplateView.as_view(template_name='polls/errorvisa.html')),
     path('CoverPage2021_KW',TemplateView.as_view(template_name='pdf/CoverPage2021_KW.html')),
     path('GraduateResearchAwardProgramApplication',TemplateView.as_view(template_name='pdf/Application For Graduate Research Award Program_Instructions.html')),

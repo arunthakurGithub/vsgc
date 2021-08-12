@@ -203,7 +203,7 @@ class responce(models.Model):
     design_app = models.ForeignKey('DesignApp', on_delete=models.DO_NOTHING)
     description=models.ForeignKey('emp',on_delete=models.DO_NOTHING)
     Q_score=models.FloatField(max_length=100,default='0.5',blank=True)
-    Q_comments=models.CharField(max_length=500,default="",blank=True)
+    Q_comments=models.CharField(max_length=1024,default="",blank=True)
     evalutor_id=models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
 

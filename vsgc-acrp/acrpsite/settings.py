@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'bfo%v50iwa8z&si6m4f)!2^mwhhp!vrgcie*qzozn0oug=zvxb'
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['vsgcapps.odu.edu','128.82.98.60','[::1]','127.0.0.1']
 

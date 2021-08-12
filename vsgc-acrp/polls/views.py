@@ -282,7 +282,27 @@ def submit_application(request,Applicant_details_id):
         faculty_form = FacultyForm(instance = saved_faculty)
         return render(request,'polls/submit_application.html',{'form' : saved,'f':f, 'faculty':faculty_form})
 
-
+def reviewer_login(request):
+    if request.method == ''POST':
+        username = request.POST['Username']
+        password = request.POST['Password']
+        user = authenticate(username = username , password = password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                if request.user.groups.filter(name = 'polls_review_all_submissions').exists():
+                    return HttpResponseRedirect('/support/processed/')
+                else:
+                    return HttpResponse("you don't have permission to view this page")
+            else:
+                return HttpResponse('User not active")
+       else:
+           print('someone tried to ogin and failed')
+           return HttpResponse("Invalid Credentials")
+     
+    else:
+        return render(request, 'registration/project2.html' ,{})        
+  
 def user(request):
     if request.method == 'POST':
         username = request.POST['Username']
@@ -848,7 +868,7 @@ def reference_reminder(request):
         if rec3.count()==0:
             fac3=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
             msg_html=render_to_string('polls/advisorRecommendation.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+appli[i].cheque_no+'/'+'3','name':appli[i].Ref3_Name})
-            send_mail('django test mail','Hello '+appli[i].Ref3_Name,settings.EMAIL_HOST_USER,[fac3.Ref3_Email],html_message=msg_html,fail_silently=False)
+            send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref3_Name,settings.EMAIL_HOST_USER,[fac3.Ref3_Email],html_message=msg_html,fail_silently=False)
     return render(request,'polls/reference_reminder.html')
     # advisor=faculty.objects.get(Applicant_id=)
 
