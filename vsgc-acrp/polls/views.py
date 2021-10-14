@@ -283,7 +283,7 @@ def submit_application(request,Applicant_details_id):
         return render(request,'polls/submit_application.html',{'form' : saved,'f':f, 'faculty':faculty_form})
 
 def reviewer_login(request):
-    if request.method == ''POST':
+    if request.method == 'POST':
         username = request.POST['Username']
         password = request.POST['Password']
         user = authenticate(username = username , password = password)
@@ -291,14 +291,14 @@ def reviewer_login(request):
             if user.is_active:
                 login(request, user)
                 if request.user.groups.filter(name = 'polls_review_all_submissions').exists():
-                    return HttpResponseRedirect('/support/processed/')
+                    return HttpResponseRedirect('/graward/support/processed')
                 else:
                     return HttpResponse("you don't have permission to view this page")
             else:
-                return HttpResponse('User not active")
-       else:
-           print('someone tried to ogin and failed')
-           return HttpResponse("Invalid Credentials")
+                return HttpResponse("Account not active")
+        else:
+            print('someone tried to ogin and failed')
+            return HttpResponse("Invalid Credentials")
      
     else:
         return render(request, 'registration/project2.html' ,{})        
