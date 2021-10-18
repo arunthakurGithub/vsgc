@@ -214,13 +214,13 @@ All updates will be posted on the Competition Website:<a href="https://vsgc.odu.
     {% endfor %}
   </div>
   </div>
-  <div class="row">
-
-   <div class="form-group col-sm-8">
-    <!-- <b>{{ form.Students_Involved.label_tag }}</b> -->
-  <i>{{ form.semester|as_crispy_field }}</i>
+    <div class="row">
+    <div class="form-group col-sm-8">
+    <label for="Sem">Semester:</label>
+    <input type="text" class="form-control" id="Inst" value="{{ saved.semester }}">
   </div>
-  </div>
+</div>
+    <br>
 </form>
 </div>
 </body>

@@ -212,21 +212,49 @@ def Applicanturl(request):
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
         for i in perms: 
-            daDb[i] = Applicant.objects.filter(design_area=i)
+            daDb[i] = Applicant.objects.filter(design_area=i,semester__in=(['Fall 2020'],['Spring 2021']))
             
         return render(request,'acrpapp/Applicant.html',{'dApps' : daDb,'dType':daType})
+
+
+@login_required(login_url='/login/') 
+def Applicanturl21(request):    
+    daDetails = []  
+    daDb = {}   
+    daResults = {}  
+    daType = {  
+        'AM':'Airport Management and Planning', 
+        'AE':'Airport Environment Interactions',    
+        'AO':'Airport Operations and Maintenance',  
+        'RS':'Runway Safety/Runway Incursions/Runway Excursions'    
+    }   
+    perms = getPermissionsFAAS(request) 
+    if len(perms) > 0:  
+        for i in perms:     
+            daDb[i] = Applicant.objects.filter(design_area=i,semester__in=(['Fall 2021'],['Spring 2022']))  
+         return render(request,'acrpapp/Applicant.html',{'dApps' : daDb,'dType':daType})
 
 def Applicantdetail(request,ekey):
     saved = Applicant.objects.get_by_ekey_or_404(ekey)
     applicant_id=saved.id
-    print(saved.ekey)
     if request.method == "POST":
         updated_form = ApplicantForm(request.POST,request.FILES, instance = saved)
         if updated_form.is_valid():
             f = updated_form.save()
     else:
         f=ApplicantForm(instance = saved)
-        return render(request,'acrpapp/ApplicantDetail.html',{'form':f})
+        return render(request,'acrpapp/ApplicantDetail.html',{'form':f,'saved':saved})
+
+def Applicantdetail21(request,ekey):
+    saved = Applicant.objects.get_by_ekey_or_404(ekey)
+    applicant_id=saved.id
+    if request.method == "POST":
+        updated_form = ApplicantForm(request.POST,request.FILES, instance = saved)
+        if updated_form.is_valid():
+            f = updated_form.save()
+    else:
+        f=ApplicantForm(instance = saved)
+        return render(request,'acrpapp/ApplicantDetail.html',{'form':f,'saved':saved})
 
 
 def getPermissions(request):
