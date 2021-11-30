@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h4>
+</div>
+<div class="text-md-center">
+<h5>Evaluations Summary</h5>
+</div><br>
+<form method="post" enctype="multipart/form-data">
+
+  {% csrf_token %}
+  <div class="form-group col-sm-8">
+    <label for="title">Title of Design:</label>
+    <input type="text" class="form-control" id="title" value="{{ designapp.title }}"readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="FirstName">First Name:</label>
+    <input type="text" class="form-control" id="FirstName" value="{{ designapp.Advisor1_FirstName }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="LastName">Last Name:</label>
+    <input type="text" class="form-control" id="LastName" value="{{ designapp.Advisor1_LastName }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Inst">Institution(s):</label>
+    <input type="text" class="form-control" id="Inst" value="{{ designapp.Inst }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="design_area">Design Challenge Area:</label>
+    <input type="text" class="form-control" id="design_area" value="{{ designapp.design_area }}" readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Specific_Challenge">Specific Challenge Selected:</label>
+    <input type="text" class="form-control" id="Specific_Challenge" value="{{ designapp.Specific_Challenge }}" readonly>
+  </div>
+     <div class="form-group col-sm-8">
+    <b><label for="Upload">Components of the Design Package in PDF Format.</label></b>
+ 
+    <a href="/{{ designapp.Upload }}">Full Design </a>
+
+    </div>
+
+
+    <h4>Evaluation</h4>
+    <h5>The Competition Evaluators will use the following in judging submissions. The total number of available points is 130. Evaluators may choose to provide a score in half-point increments.</h5>
+
+<!-- QUESTION-1 -->
+
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest1_1.Q_title }}"><b>1. Introductory Material – 5 points</b></label>
+</div>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="t1_q1_input" value="{{ quest1_1.Q_questions }}">Does the Executive Summary accurately encapsulate the design? (2 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_1.Q_score }}" readonly>
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_1.Q_comments }}" cols="70" rows="3" readonly>{{ res_1.Q_comments }}</textarea>
+</div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest1_2.Q_questions }}">Is the Table of Contents present and does it follow the structure in the Competition Guidelines? (3 points)</label>
+  </div>
+  <div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_2.Q_score }}" readonly>
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_2.Q_comments }}" cols="50" rows="3" readonly>{{ res_2.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+ <input type="text" name="" class="form-control" id="t1_overall" oninput="overall()"  value="{{ res_3.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_3.Q_comments }}"cols="50" rows="3" readonly>{{ res_3.Q_comments }}</textarea>
+</div>
+
+
+<!-- QUESTION-2 -->
+
+<div class="form-group col-sm-8">
+    <label><b>2. Problem Statement and Background – 10 points</b></label>
+</div>
+   <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label>Is the Design Challenge clearly stated? (3 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_4.Q_score }}" readonly>
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_4.Q_comments }}" cols="50" rows="3" readonly>{{ res_4.Q_comments }}</textarea>
+</div>
+   <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label>Does this section of the design submission demonstrate that the individual or team has a clear understanding of the issues surrounding the design challenge, including current problems and issues as well as state of the art approaches? (7 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_5.Q_score }}" readonly>
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_5.Q_comments }}" cols="50" rows="3" readonly>{{ res_5.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+ <input type="text" name="" class="form-control" id="t2_overall" oninput="overall()" value="{{ res_6.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_6.Q_comments }}"cols="50" rows="3" readonly>{{ res_6.Q_comments }}</textarea>
+</div>
+
+<!-- QUESTION-3 -->
+
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest3_1.Q_title }}"><b>3. Literature Review – 7 points</b></label>
+  </div>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest3_1.Q_questions }}">An effective summary of literature review is provided. (7 points)</label></div>
+    <div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_7.Q_score }}" readonly>
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_7.Q_comments }}" cols="50" rows="3" readonly>{{ res_7.Q_comments }}</textarea>
+</div>
+ <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label>The literature review includes relevant ACRP studies and reports. (4 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_8.Q_score }}" readonly>
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_8.Q_comments }}" cols="50" rows="3" readonly>{{ res_8.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+ <input type="text" name="" class="form-control" id="t3_overall" oninput="overall()" value="{{ res_9.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_9.Q_comments }}"cols="50" rows="3" readonly>{{ res_9.Q_comments }}</textarea>
+</div>
+
+
+<!-- QUESTION-4 -->
+
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest4_1.Q_title }}"><b>4. Problem Solving Approach – 34 points</b></label>
+  </div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest4_2.Q_questions }}">How sound is the team’s approach? Are solid engineering/scientific methodologies employed? How effective is the technical analysis? (10 points)</label>
+  </div>
+ <div class="form-group col-sm-1 mb-0">
+     <input type="text" name="" class="form-control" value="{{ res_10.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_10.Q_comments }}" cols="50" rows="3" readonly>{{ res_10.Q_comments }}</textarea>
+</div>
+<div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest4_2.Q_questions }}">Is there evidence of thorough design process? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+       <input type="text" name="" class="form-control" value="{{ res_11.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_11.Q_comments }}" cols="50" rows="3" readonly>{{ res_11.Q_comments }}</textarea>
+</div>
+<div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest4_3.Q_questions }}">Is the design supported by appropriate drawings, mockups, computer codes, charts, tables or other data as appropriate? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_12.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_12.Q_comments }}" cols="50" rows="3" readonly>{{ res_12.Q_comments }}</textarea>
+</div>
+<div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest4_4.Q_questions }}">The degree to which the design shows evidence of understanding of appropriate regulatory and certification issues. (4 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_13.Q_score }}" readonly>
+     </div>
+ </div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_13.Q_comments }}" cols="50" rows="3" readonly>{{ res_13.Q_comments }}</textarea>
+</div>
+<div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest4_5.Q_questions }}">How well are the student’s/team’s conclusions supported? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_14.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_14.Q_comments }}" cols="50" rows="3" readonly>{{ res_14.Q_comments }}</textarea>
+</div>
+<div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest4_6.Q_questions }}">
+Is the work presented an appropriate level of effort for the design participants? (Individual student versus team; undergraduate or graduate or mixed. For example, one would expect a higher level of knowledge and design from an all graduate student team versus an all undergraduate team; one would also expect a higher level of effort for a team versus an individual because the team has multiple contributors and can collectively devote more time than an individual. Award 3 points if the level is deemed as appropriate. Award more points for an effort that exceeds what you would deem typical or appropriate for the number and level of student participants.) (5 points) </label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_15.Q_score }}" readonly> 
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_15.Q_comments }}" cols="50" rows="3" readonly>{{ res_15.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+  <input type="text" name="" class="form-control" id="t4_overall" oninput="overall()"  value="{{ res_16.Q_score }}" readonly> 
+</div>
+</div>
+
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_16.Q_comments }}" cols="50" rows="3" readonly>{{ res_16.Q_comments }}</textarea>
+</div>
+
+<!-- QUESTION-5 -->
+
+ <div class="form-group col-sm-8">
+    <label for="title" value="{{ quest5_1.Q_title }}"><b>5. Safety Risk Assessment – 8 points</b></label>
+  </div>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest5_1.Q_questions }}">
+A safety risk assessment of the proposed design considers inherent risks and describes how these risks should be addressed to ensure safe operations. (4 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+   <input type="text" name="" class="form-control" value="{{ res_17.Q_score }}" readonly> 
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_17.Q_comments }}" cols="50" rows="3" readonly>{{ res_17.Q_comments }}</textarea>
+</div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest5_2.Q_questions }}">
+Appropriate FAA documents, including Introduction to Safety Management Systems for Airport Operations (FAA Advisory Circular 150/5200-37) and FAA Safety Management System Manual, are understood and referenced in the assessment. (4 points)</label>
+  </div>
+<div class="form-group col-sm-1 mb-0">
+   <input type="text" name="" class="form-control" value="{{ res_18.Q_score }}" readonly> 
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_18.Q_comments }}" cols="50" rows="3" readonly>{{ res_18.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+  <div class="form-group col-sm-1 mb-0">
+      <label>Subtotal</label>
+  <input type="text" name="" class="form-control" id="t5_overall" oninput="overall()"  value="{{ res_19.Q_score }}" readonly> 
+</div>
+</div>
+
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_19.Q_comments }}" cols="50" rows="3" readonly>{{ res_19.Q_comments }}</textarea>
+</div>
+
+
+<!-- QUESTION-6 -->
+
+ <div class="form-group col-sm-8">
+    <label for="title" value="{{ quest5_1.Q_title }}"><b>
+6. Evidence of effective interaction with airport operators and industry experts in the design process. – 12 pointsb></label>
+    <p>Note: per the guidelines, students must connect with both airport operators and industry experts.</b></p>
+  </div>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest6_1.Q_questions }}">Is there evidence of effective interaction with an airport operator and impact on the design process/result? (6 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_20.Q_score }}" readonly> 
+     </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_20.Q_comments }}" cols="50" rows="3" readonly>{{ res_20.Q_comments }}</textarea>
+</div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest6_2.Q_questions }}">Is there evidence of effective interaction with one or more industry experts with a resulting impact on the design process? (6 points)</label>
+  </div>
+<div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_21.Q_score }}" readonly> 
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_21.Q_comments }}" cols="50" rows="3" readonly>{{ res_21.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+ <input type="text" name="" class="form-control" id="t5_overall" oninput="overall()" value="{{ res_20.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_22.Q_comments }}" cols="50" rows="3" readonly>{{ res_22.Q_comments }}</textarea>
+</div>
+
+
+<!-- QUESTION-7 -->
+
+ <div class="form-group col-sm-8">
+    <label for="title" value="{{ quest7_1.Q_title }}"><b>7. Practicality and Feasibility of the Proposed Design – 20 points</b></label>
+  </div>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest7_1.Q_questions }}">
+How well does the proposed design meet identified national needs for the area being addressed? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_23.Q_score }}" readonly> 
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_23.Q_comments }}" cols="50" rows="3" readonly>{{ res_23.Q_comments }}</textarea></div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest7_2.Q_questions }}">Is a solid cost-benefit analysis provided? Does the proposed solution offer increased affordability and utility? (5 points)</label>
+  </div>
+ <div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_24.Q_score }}" readonly> 
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_24.Q_comments }}" cols="50" rows="3" readonly>{{ res_24.Q_comments }}</textarea>
+</div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest7_3.Q_questions }}">What is the potential real-world impact of the proposed solution, including commercial potential? (5 points)</label>
+  </div>
+ <div class="form-group col-sm-1 mb-0">
+     <input type="text" name="" class="form-control" value="{{ res_25.Q_score }}" readonly> 
+      </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_25.Q_comments }}" cols="50" rows="3" readonly>{{ res_25.Q_comments }}</textarea>
+</div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest7_4.Q_questions }}">Is there a description of the processes that would need to be undertaken to bring the design to the product/implementation state? (5 points)</label>
+  </div>
+  <div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_26.Q_score }}" readonly>
+     </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_26.Q_comments }}" cols="50" rows="3" readonly>{{ res_26.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+<input type="text" name="" class="form-control" id="t7_overall" oninput="overall()" value="{{ res_27.Q_score }}" readonly>
+
+</div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_27.Q_comments }}" cols="50" rows="3" readonly>{{ res_27.Q_comments }}</textarea>
+</div>
+
+
+<!-- QUESTION-8 -->
+
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest8_1.Q_title }}"><b>8. Innovation – 14 points</b></label>
+  </div>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest8_1.Q_questions }}">
+Does the design offer fresh thinking or new ways of approaching the problem considering that students are not in the field and possessing expertise or specific working knowledge? Does the design reflect creativity and imagination on the student‘s or team’s part? (14 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+   <input type="text" name="" class="form-control" value="{{ res_28.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_28.Q_comments }}" cols="50" rows="3" readonly>{{ res_28.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+   <input type="text" name="" class="form-control" id="t8_overall" oninput="overall()"  value="{{ res_29.Q_score }}" readonly>
+</div>
+</div>
+
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_29.Q_comments }}" cols="50" rows="3" readonly>{{ res_29.Q_comments }}</textarea>
+</div>
+
+
+<!-- QUESTION-9 -->
+
+<div class="form-group col-sm-8">
+    <label for="title" value="{{ quest9_1.Q_title }}"><b>
+9.Overall quality of the design package – 16 points</b></label>
+  </div>
+    <div class="row">
+ <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest9_1.Q_questions }}">
+Is the design well written? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_30.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_30.Q_comments }}" cols="50" rows="3" readonly>{{ res_30.Q_comments }}</textarea>
+</div>
+ <div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest9_2.Q_questions }}">
+Does the design effectively present the design solution? (3 points)</label>
+  </div>
+  <div class="form-group col-sm-1 mb-0">
+   <input type="text" name="" class="form-control" value="{{ res_31.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_31.Q_comments }}" cols="50" rows="3" readonly>{{ res_31.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest9_3.Q_questions }}">Are all required appendices present and complete? (4 points)</label>
+  </div>
+  <div class="form-group col-sm-1 mb-0">
+   <input type="text" name="" class="form-control" value="{{ res_32.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_32.Q_comments }}" cols="50" rows="3" readonly>{{ res_32.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0">
+    <label for="title" value="{{ quest9_4.Q_questions }}">
+Is a solid evaluation of the educational experience offered by both the student(s) and faculty advisor(s)? (4 points)</label>
+  </div>
+  <div class="form-group col-sm-1 mb-0">
+    <input type="text" name="" class="form-control" value="{{ res_33.Q_score }}" readonly>
+  </div>
+</div>
+<div class="form-group col-sm-8">
+  <p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_33.Q_comments }}" cols="50" rows="3" readonly>{{ res_33.Q_comments }}</textarea>
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Subtotal</label>
+   <input type="text" name="" class="form-control" id="t8_overall" oninput="overall()" value="{{ res_34.Q_score }}" readonly>
+</div>
+</div>
+
+<div class="form-group col-sm-8">
+  <p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_34.Q_comments }}" cols="50" rows="3" readonly>{{ res_34.Q_comments }}</textarea>
+</div>
+
+</div>
+<div class="row">
+  <div class="form-group col-md-6 mb-0"></div>
+   <div class="form-group col-sm-1 mb-0">
+    <label>Overall</label>
+<input type="text" name="" class="form-control" id="total_overall" value="{{ res_35.Q_score }}" readonly>
+</div>
+</div>
+</form>
+</div>
+</body>
+</html>

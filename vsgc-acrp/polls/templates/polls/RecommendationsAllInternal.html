@@ -1,0 +1,53 @@
+{% load polls_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+
+  <div class="jumbotron">
+  <h4 style="text-align: center;">Graduate Research Program on Public-Sector Aviation Issues</h4>
+
+</div>
+  <div class="container">
+<div class="text-md-center">
+<h5>RecommendationsAllInternal</h5>
+</div>
+<br>
+
+<table style="width:100%">
+    <tr>
+  <th>Applicant Name</th>
+  <th>Faculty 1</th>
+  <th>Faculty 2</th>
+  <th>Faculty 3</th>
+
+</tr>
+<tr>
+  {% for value in saved %}
+    <td>{{ value.App_FirstName }} {{value.App_LastName }}</td>
+    <td><a href="http://127.0.0.1:8000/graward/recom/{{ value.cheque_no }}/{{ 1 }}">{{ value.Ref1_Name }}</a> </td>
+    <td><a href="http://127.0.0.1:8000/graward/recom/{{ value.cheque_no }}/{{ 2 }}">{{ value.Ref2_Name }}</td>
+    <td><a href="http://127.0.0.1:8000/graward/recom/{{ value.cheque_no }}/{{ 3 }}">{{ value.Ref3_Name }}</td>
+
+</tr>
+{% endfor %}
+
+</table>
+<br>
+
+</div>
+</body>
+</html>

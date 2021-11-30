@@ -1,0 +1,288 @@
+[{
+    "model": "acrpapp.emp",
+    "pk": 1,
+    "fields": {
+      "Q_title": "1. Introductory Material – 5 points",
+      "Q_questions": "Does the Executive Summary accurately encapsulate the design? (2 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 2,
+    "fields": {
+      "Q_title": "1. Introductory Material – 5 points",
+      "Q_questions": "Is the Table of Contents present and does it follow the structure in the Competition Guidelines? (3 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 3,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 4,
+    "fields": {
+      "Q_title": "2. Problem Statement and Background – 10 points",
+      "Q_questions": "Is the Design Challenge clearly stated? (3 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 5,
+    "fields": {
+      "Q_title": "2. Problem Statement and Background – 10 points",
+      "Q_questions": "Does this section of the design submission demonstrate that the individual or team has a clear understanding of the issues surrounding the design challenge, including current problems and issues as well as state of the art approaches? (7 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 6,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+
+  {
+    "model": "acrpapp.emp",
+    "pk": 7,
+    "fields": {
+      "Q_title": "3. Literature Review – 11 points",
+      "Q_questions": "An effective summary of literature review is provided. (7 points)"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 8,
+    "fields": {
+      "Q_title": "3. Literature Review – 11 points",
+      "Q_questions": "The literature review includes relevant ACRP studies and reports. (4 points)"
+
+    }
+  },
+    {
+    "model": "acrpapp.emp",
+    "pk": 9,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+
+  {
+    "model": "acrpapp.emp",
+    "pk": 10,
+    "fields": {
+      "Q_title": "4. Problem Solving Approach – 34 points",
+      "Q_questions": "How sound is the team’s approach? Are solid engineering/scientific methodologies employed? How effective is the technical analysis? (10 points)"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 11,
+    "fields": {
+      "Q_title": "4. Problem Solving Approach – 34 points",
+      "Q_questions": "Is there evidence of thorough design process? (5 points)"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 12,
+    "fields": {
+      "Q_title": "4. Problem Solving Approach – 34 points",
+      "Q_questions": "Is the design supported by appropriate drawings, mockups, computer codes, charts, tables or other data as appropriate? (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 13,
+    "fields": {
+      "Q_title": "4. Problem Solving Approach – 34 points",
+      "Q_questions": "The degree to which the design shows evidence of understanding of appropriate regulatory and certification issues. (4 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 14,
+    "fields": {
+      "Q_title": "4. Problem Solving Approach – 34 points",
+      "Q_questions": "How well are the student’s/team’s conclusions supported? (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 15,
+    "fields": {
+      "Q_title": "4. Problem Solving Approach – 34 points",
+      "Q_questions": "Is the work presented with an appropriate level of effort for the design participants? (Individual student versus team; undergraduate or graduate or mixed. For example, one would expect a higher level of knowledge and design from an all graduate student team versus an all undergraduate team; one would also expect a higher level of effort for a team versus an individual because the team has multiple contributors and can collectively devote more time than an individual. Award 3 points if the level is deemed as appropriate. Award more points for an effort that exceeds what you would deem typical or appropriate for the number and level of student participants.) (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 16,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 17,
+    "fields": {
+      "Q_title": "5. Safety Risk Assessment – 8 points",
+      "Q_questions": "A safety risk assessment of the proposed design considers inherent risks and describes how these risks should be addressed to ensure safe operations. (4 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 18,
+    "fields": {
+      "Q_title": "5. Safety Risk Assessment – 8 points",
+      "Q_questions": "Appropriate FAA documents, including Introduction to Safety Management Systems for Airport Operations (FAA Advisory Circular 150/5200-37) and FAA Safety Management System Manual, are understood and referenced in the assessment. (4 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 19,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 20,
+    "fields": {
+      "Q_title": "6. Evidence of effective interaction with airport operators and industry experts in the design process. – 12 points",
+      "Q_questions": "Is there evidence of effective interaction with an airport operator and impact on the design process/result? (6 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 21,
+    "fields": {
+      "Q_title": "6. Evidence of effective interaction with airport operators and industry experts in the design process. – 12 points",
+      "Q_questions": "Is there evidence of effective interaction with one or more industry experts with a resulting impact on the design process? (6 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 22,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 23,
+    "fields": {
+      "Q_title": "7. Practicality and Feasibility of the Proposed Design – 20 points",
+      "Q_questions": "How well does the proposed design meet identified national needs for the area being addressed? (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 24,
+    "fields": {
+      "Q_title": "7. Practicality and Feasibility of the Proposed Design – 20 points",
+      "Q_questions": "Is a solid cost-benefit analysis provided? Does the proposed solution offer increased affordability and utility? (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 25,
+    "fields": {
+      "Q_title": "7. Practicality and Feasibility of the Proposed Design – 20 points",
+      "Q_questions": "What is the potential real-world impact of the proposed solution, including commercial potential? (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 26,
+    "fields": {
+      "Q_title": "7. Practicality and Feasibility of the Proposed Design – 20 points",
+      "Q_questions": "Is there a description of the processes that would need to be undertaken to bring the design to the product/implementation state? (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 27,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 28,
+    "fields": {
+      "Q_title": "8. Innovation – 14 points",
+      "Q_questions": "Does the design offer fresh thinking or new ways of approaching the problem considering that students are not in the field and possessing expertise or specific working knowledge? Does the design reflect creativity and imagination on the student‘s or team’s part? (14 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 29,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 30,
+    "fields": {
+      "Q_title": "9.Overall quality of the design package – 16 points",
+      "Q_questions": "Is the design well written? (5 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 31,
+    "fields": {
+      "Q_title": "9.Overall quality of the design package – 16 points",
+      "Q_questions": "Does the design effectively present the design solution? (3 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 32,
+    "fields": {
+      "Q_title": "9.Overall quality of the design package – 16 points",
+      "Q_questions": "Are all required appendices present and complete? (4 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 33,
+    "fields": {
+      "Q_title": "9.Overall quality of the design package – 16 points",
+      "Q_questions": "Is a solid evaluation of the educational experience offered by both the student(s) and faculty advisor(s)? (4 points)"
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 34,
+    "fields": {
+      "Q_title": "SubTotal"
+
+    }
+  },
+  {
+    "model": "acrpapp.emp",
+    "pk": 35,
+    "fields": {
+      "Q_title": "Overall"
+
+    }
+  }
+
+]

@@ -1,0 +1,46 @@
+{% load acrp_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+</style>
+</head>
+<body>
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs
+Enable Editing</h4>
+
+</div>
+  <div class="container">
+<div class="text-md-center">
+<h5>Select the reviewer and click process to enable re-editing for the selected reviewer</h5>
+</div>
+<hr>
+<div class="container">
+  <p>Select the reviewer and click process to enable re-editing for the selected reviewer.</p>
+
+<form method="post" enctype="application/json">
+  {% csrf_token %}
+  <select name="updateValue">
+    {% for dAppType, dAppValue in dApps.items %}
+      <option value={{ dAppValue.id }}>{{ dAppType }}</option>
+    {% endfor %}
+  </select>
+  <br>
+  <br>
+  <button type="submit"> process </button>
+</form>
+</div>
+<hr>
+
+

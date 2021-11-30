@@ -1,0 +1,53 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Application SUbmitted</title>
+</head>
+<body>
+  <p>Dear {{ name }},</p>
+<p>You have been listed as one of the references for the Graduate Research
+Program on Public-Sector Aviation Issues Award application for {{ details.App_FirstName }} {{ details.App_LastName }}.</p>
+<p>Title of Research Proposal: {{ details.Title_of_reserach_project }}</p>
+<p>The form and a signed letter of commitment/support need to be submitted by
+May 28, 2021 for the 2021 - 2022 Graduate Research Program on Public-Sector
+Aviation Issues Award. Note that you will not be able to save this form and
+return to it so should plan to complete the form and upload your letter in
+the same session. Please access the form and upload your letter at:</p>
+ <p> <a href="{{ url }}">link to submit letter of recommendation</a></p>
+
+ <p>This is a computer generated email. (Please do not reply to this email).<br>
+For further questions, Email: acrp@odu.edu or contact Virginia Space Grant Consortium at 757-766-5210</p>
+
+  </body>
+</html>
+
+
+<!--     <h4>Sponsored by Federal Aviation Administration <br>Administered by Airport Cooperative Research Program<br>
+    Transportation Research Board, National Academies<br>Managed by Virginia Space Grant Consortium</h4>
+  </div>
+  <h2>Reference Request Form</h2>
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p>
+    Hello {{ name }},
+    Your Student {{ details.App_FirstName }} has given your details as faculty advisor,Please click the link below and submit the refernce form.
+  </p> -->
+  
+
+  <!-- <a href="{{ url }}">link to submit letter of recommendation</a> -->
+
+
+
+ <!--  <div class="form-group col-sm-8">
+    <label for="Applicant's Name:">Applicant's Name:</label>
+    <input type="text" class="form-control" id="Applicant's Name:" value="{{ details.App_FirstName }}"readonly>
+  </div>
+  <div class="form-group col-sm-8">
+    <label for="Applicant's Name:">Applicant's Name:</label>
+    <input type="text" class="form-control" id="Applicant's Name:" value="{{ details.App_LastName }}"readonly>
+  </div>
+<i>{{ fName }}</i> -->
+	<!-- <h3>Your applicant number is invalid!</h3> -->
+
+

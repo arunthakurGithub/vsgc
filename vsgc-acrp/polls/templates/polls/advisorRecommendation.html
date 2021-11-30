@@ -1,0 +1,16 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Application SUbmitted</title>
+</head>
+<body>
+  <p>Dear {{ name }},</p>
+<p>You have been listed as Faculty Research Advisor for the 2020 Graduate Research Program on Public-Sector Aviation Issues Award application forr {{ details.App_FirstName }} {{ details.App_LastName }}.</p>
+<p>Title of Research Proposal: {{ details.Title_of_reserach_project }}</p>
+<p>The form and a signed letter of commitment/support need to be submitted by May 29, 2020 for the 2020 Graduate Research Program on Public-Sector Aviation Issues Award. Note that you will not be able to save this form and return to it so should plan to complete the form and upload your letter in the same session. Please access the form and upload your letter at:</p>
+ <p> <a href="{{ url }}">link to submit letter of recommendation</a></p>
+
+ <p>This is a computer generated email. (Please do not reply to this email).<br>
+For further questions, Email: acrp@odu.edu or contact Virginia Space Grant Consortium at 757-766-5210</p>
+  </body>

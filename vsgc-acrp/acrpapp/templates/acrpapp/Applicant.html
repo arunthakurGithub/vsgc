@@ -1,0 +1,60 @@
+{% load acrp_extras %}
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title></title>
+<style>
+
+table{
+    table-layout: fixed;
+    width: 1200px;
+}
+
+th {
+  text-align: left;
+}
+td{
+width:25%;
+}
+}
+</style>
+</head>
+<body>
+  <div class="container">
+  <div class="jumbotron">
+  <h4>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h4>
+
+</div>
+<div class="text-md-center">
+<h5>Notice of Intents</h5>
+</div>
+<br>
+{% for dAppType, dAppValue in dApps.items %}
+<table style="width:100%">
+    <tr>
+  <th>Last Name</th>
+  <th>Project will be done by</th>
+  <th>Submitted Date</th>
+
+
+</tr>
+  <h3>{{ dType|get_item:dAppType }}</h3>
+  {% for applicant in dAppValue %}
+  <tr>
+     {% byte2str applicant.ekey as eKey %}
+     <td><a href="/Applicantdetail/{{ eKey }}/">{{ applicant.Advisor1_LastName }}</a></td>
+     <td>{{ applicant.project_team }}</td>
+     <td>{{ applicant.created_at }}</td>
+
+   </tr>
+  {% endfor %}
+</table>
+<br>
+{% endfor %}
+</div>
+</body>
+</html>
