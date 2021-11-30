@@ -232,7 +232,7 @@ def Applicanturl21(request):
     if len(perms) > 0:  
         for i in perms:     
             daDb[i] = Applicant.objects.filter(design_area=i,semester__in=(['Fall 2021'],['Spring 2022']))  
-         return render(request,'acrpapp/Applicant.html',{'dApps' : daDb,'dType':daType})
+        return render(request,'acrpapp/Applicant.html',{'dApps' : daDb,'dType':daType})
 
 def Applicantdetail(request,ekey):
     saved = Applicant.objects.get_by_ekey_or_404(ekey)
