@@ -3,21 +3,20 @@ from . import views
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 # from django.contrib.auth import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('application/', views.application, name='application'),
-    path('<int:pk>/', views.DesignAppDetailView.as_view(), name='designapp_detail'),
     path('login/',views.evaluator_login,name='evaluator_login'),
     path('acrp/', views.acrp, name='acrp'),
     path('process/', views.process, name='process'),
     path('process_detail/<str:ekey>/', views.process_detail, name='process_detail'),
     path('processed/', views.processed, name='processed'),
     path('processed_detail/<str:ekey>/', views.processed_detail, name='processed_detail'),
+    path('dropdownlist/', views.dropdownlist, name='dropdownlist'),
     path('Applicant/', views.Applicanturl, name='Applicanturl'),
-    path('Applicant21/', views.Applicanturl21, name='Applicanturl21'),
     path('Applicantdetail/<str:ekey>/', views.Applicantdetail, name='Applicantdetail'),
-    path('Applicantdetail21/<str:ekey>/', views.Applicantdetail21, name='Applicantdetail21'),
     path('elogin/',views.user_login,name='user_login'),
     path('reviewerLogin/',views.reviewer_login,name='reviewer_login'),
     path('acrpmembers/', views.acrpmembers, name='acrpmembers'),

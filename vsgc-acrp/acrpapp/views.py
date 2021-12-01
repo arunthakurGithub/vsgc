@@ -24,29 +24,16 @@ from django.core.files.storage import default_storage
 from encrypted_id import decode
 from encrypted_id import ekey
 from django.db.models import Count,Sum
-
-def is_faasupport(user):
-    return user.groups.filter(name='faasupport').exists()
-    return True
-
-
-class DesignAppListView(ListView):
-    model = DesignApp
-    paginate_by = 10
-
-    def get_queryset(self):
-        if is_faasupport(self.request.user):
-            return DesignApp.objects.all()
-        else:
-            raise PermissionDenied
-
-
-
-class DesignAppDetailView(DetailView):
-
-    model = DesignApp
+from . import urls
 
 # Create your views here.
+
+########################################
+#Global Variables
+Date1 = '' 
+Date2 = ''
+########################################
+
 def Thankyou(request):
     return render(request,'acrpapp/Thankyou.html')
 
@@ -64,6 +51,7 @@ def application(request):
     else:
         form = ApplicantForm()
     return render(request, 'acrpapp/application.html', {'form': form})
+
 
 def index(request):
     form=DesignAppForm()
@@ -85,21 +73,6 @@ def index(request):
     else:
         form = DesignAppForm()
     return render(request, 'acrpapp/index.html', {'form': form})
-
-
-
-
-
-
-def acrp(request):
-    daDb = {}
-    perms = getPermissionsFAAS(request)
-    if len(perms) > 0:
-        for i in perms: 
-            daDb[i] = DesignApp.objects.filter(design_area=i,stat=('Application is submitted'))
-        return render(request,'acrpapp/acrp_support.html',{'dApps' : daDb})
-    return render(request,'acrpapp/errormsg.html')
-
     
 def getPermissionsFAAS(request):
     daDetails = []
@@ -116,9 +89,22 @@ def getPermissionsFAAS(request):
         daDetails.append('RS')
     return daDetails
 
+@login_required(login_url='/login/')
+def acrp(request):
+    global Date1
+    global Date2
+    Date1 = str(request.GET.get('param1', None))
+    Date2 = str(request.GET.get('param2', None))
+    daDb = {}
+    perms = getPermissionsFAAS(request)
+    if len(perms) > 0:
+        for i in perms: 
+            daDb[i] = DesignApp.objects.filter(design_area=i,stat=('Application is submitted'))
+        return render(request,'acrpapp/acrp_support.html')
+    return render(request,'acrpapp/errormsg.html')
 
 @login_required(login_url='/login/')
-def process(request):
+def Applicanturl(request):
     daDetails = []
     daDb = {}
     daResults = {}
@@ -131,10 +117,38 @@ def process(request):
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
         for i in perms: 
-            daDb[i] = DesignApp.objects.filter(design_area=i,stat=('Application is submitted'))
+            daDb[i] = Applicant.objects.filter(design_area=i,created_at__range=[Date1, Date2])
+            
+        return render(request,'acrpapp/Applicant.html',{'dApps' : daDb,'dType':daType})
+
+
+def Applicantdetail(request,ekey):
+    saved = Applicant.objects.get_by_ekey_or_404(ekey)
+    applicant_id=saved.id
+    if request.method == "POST":
+        updated_form = ApplicantForm(request.POST,request.FILES, instance = saved)
+        if updated_form.is_valid():
+            f = updated_form.save()
+    else:
+        f=ApplicantForm(instance = saved)
+        return render(request,'acrpapp/ApplicantDetail.html',{'form':f,'saved':saved})
+
+
+@login_required(login_url='/login/')
+def process(request):
+    daDb = {}
+    daType = {
+        'AM':'Airport Management and Planning',
+        'AE':'Airport Environment Interactions',
+        'AO':'Airport Operations and Maintenance',
+        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+    }
+    perms = getPermissionsFAAS(request)
+    if len(perms) > 0:
+
+        for i in perms: 
+            daDb[i] = DesignApp.objects.filter(design_area=i,stat=('Application is submitted'),created_at__range=[Date1, Date2])
         return render(request,'acrpapp/process.html',{'dApps' : daDb,'dType':daType})
-
-
 
 
 from django.shortcuts import get_object_or_404
@@ -147,7 +161,7 @@ def process_detail(request,ekey):
     status=DesignApp.objects.get(pk=designapp_id)
     f=StatusForm()
     if( status.stat=="Approved" or status.stat=="Rejected"):
-        return HttpResponseRedirect("/acrp/")
+        return HttpResponseRedirect("/acrpapp/dropdownlist/")
     else:
         if request.method == "POST":
             status.stat = request.POST["stat"]
@@ -159,7 +173,6 @@ def process_detail(request,ekey):
                 for user in users:
                     up=user_profile(evalutor_id=user,design_app=designapp,stat="Pending")
                     up.save()
-                    print("profile created for ",user.id)
             return HttpResponseRedirect("/process/")
         else:
             f=StatusForm()
@@ -180,9 +193,8 @@ def processed(request):
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
         for i in perms: 
-            daDb[i] = DesignApp.objects.filter(design_area=i,stat__in=('Approved','Rejected'))
+            daDb[i] = DesignApp.objects.filter(design_area=i,stat__in=('Approved','Rejected'),created_at__range=[Date1, Date2])
         return render(request,'acrpapp/processed.html',{'dApps' : daDb,'dType':daType})       
-
 
 def processed_detail(request,ekey):
     designapp = DesignApp.objects.get_by_ekey_or_404(ekey)
@@ -197,64 +209,6 @@ def processed_detail(request,ekey):
         f=StatusForm()
     context={'designapp':designapp,'teammember':teammember,'f':f}
     return render(request,'acrpapp/processed_details.html',context)
-
-@login_required(login_url='/login/')
-def Applicanturl(request):
-    daDetails = []
-    daDb = {}
-    daResults = {}
-    daType = {
-        'AM':'Airport Management and Planning',
-        'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
-    }
-    perms = getPermissionsFAAS(request)
-    if len(perms) > 0:
-        for i in perms: 
-            daDb[i] = Applicant.objects.filter(design_area=i,semester__in=(['Fall 2020'],['Spring 2021']))
-            
-        return render(request,'acrpapp/Applicant.html',{'dApps' : daDb,'dType':daType})
-
-
-@login_required(login_url='/login/') 
-def Applicanturl21(request):    
-    daDetails = []  
-    daDb = {}   
-    daResults = {}  
-    daType = {  
-        'AM':'Airport Management and Planning', 
-        'AE':'Airport Environment Interactions',    
-        'AO':'Airport Operations and Maintenance',  
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'    
-    }   
-    perms = getPermissionsFAAS(request) 
-    if len(perms) > 0:  
-        for i in perms:     
-            daDb[i] = Applicant.objects.filter(design_area=i,semester__in=(['Fall 2021'],['Spring 2022']))  
-        return render(request,'acrpapp/Applicant.html',{'dApps' : daDb,'dType':daType})
-
-def Applicantdetail(request,ekey):
-    saved = Applicant.objects.get_by_ekey_or_404(ekey)
-    applicant_id=saved.id
-    if request.method == "POST":
-        updated_form = ApplicantForm(request.POST,request.FILES, instance = saved)
-        if updated_form.is_valid():
-            f = updated_form.save()
-    else:
-        f=ApplicantForm(instance = saved)
-        return render(request,'acrpapp/ApplicantDetail.html',{'form':f,'saved':saved})
-
-def Applicantdetail21(request,ekey):
-    saved = Applicant.objects.get_by_ekey_or_404(ekey)
-    applicant_id=saved.id
-    if request.method == "POST":
-        updated_form = ApplicantForm(request.POST,request.FILES, instance = saved)
-        if updated_form.is_valid():
-            f = updated_form.save()
-    else:
-        f=ApplicantForm(instance = saved)
-        return render(request,'acrpapp/ApplicantDetail.html',{'form':f,'saved':saved})
 
 
 def getPermissions(request):
@@ -276,7 +230,7 @@ def getPermissions(request):
 def acrpmembers(request):
     return render(request,'acrpapp/acrpmembers.html')
 
-
+@login_required(login_url='/elogin/')
 def evaluator(request):
     daDetails = []
     daDb = {}
@@ -289,7 +243,6 @@ def evaluator(request):
     }
     perms = getPermissions(request)
     if len(perms) > 0:
-        print(request.user.id)
         for i in perms: 
             d_eval = user_profile.objects.filter(evalutor_id_id=request.user.id,stat__in=('Pending','Evaluation Saved'))
             daDb[i]=[]
@@ -313,8 +266,6 @@ def evaluator_detail(request,ekey):
             qBank['quest'+str(i)]=emp.objects.get(id=i)
             res={}
         if request.method == "POST":
-            print("--> ",request.POST["stat"])
-            print("--> updating data for user : ",stat)
             for i in range(1,36):
                 comments = 'N/A' if i == 35 else request.POST['C'+str(i)]
                 res[str(i)]=responce(design_app=designapp,description=qBank['quest'+str(i)],Q_score=float(request.POST['R'+str(i)]),Q_comments=comments,evalutor_id=request.user)
@@ -350,7 +301,6 @@ def saved(request,ekey):
             f=StatusForm()
         context={'designapp':designapp,'f':f}
         reslist=[]
-        print('-> requesting data for user : ',request.user.id)
         for i in range(1,36):
             res=responce.objects.get(design_app_id=designapp_id,description_id=i, evalutor_id_id=request.user.id)
             context['res_'+str(i)]=res
@@ -386,10 +336,11 @@ def evaluator_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('acrp'))     
+                return HttpResponseRedirect(reverse('dropdownlist')) 
+                
             
             else:
-                return HttpResponse("ACCount not active!!")
+                return HttpResponse("Account not active!!")
 
         else:
             print("someone tried to login and falied!")
@@ -397,6 +348,10 @@ def evaluator_login(request):
 
     else:
         return render(request , 'registration/login.html' , {}) 
+
+@login_required(login_url='/login/')
+def dropdownlist(request):
+        return render(request,'acrpapp/datedropdown.html',{})
 
 def reviewer_login(request):
     if request.method == 'POST':
@@ -422,7 +377,7 @@ def reviewer_login(request):
         return render(request , 'registration/login.html' , {}) 
 
 
-   
+@login_required(login_url='/elogin/')  
 def completedsubmissions(request):
     daDetails = []
     daDb = {}
@@ -467,6 +422,7 @@ def sort_detail(request,ekey, evalutor_id=0):
         context['res_'+str(i)]=res
     return render(request,'acrpapp/completedsubmissions_detail.html',context)
 
+@login_required(login_url='/login/')
 def sorted_area(request):
     daDetails = []
     daDb = {}
@@ -495,7 +451,7 @@ def sorted_area(request):
         daDetails.append('RS')
 
     for i in daDetails:
-        upDB[i] = user_profile.objects.filter(stat='Evaluation Completed', design_app_id__in = (DesignApp.objects.filter(design_area=i).only('id'))).only('design_app_id').distinct()
+        upDB[i] = user_profile.objects.filter(stat='Evaluation Completed', design_app_id__in = (DesignApp.objects.filter(design_area=i,created_at__range=[Date1, Date2]).only('id'))).only('design_app_id').distinct()
         avgSum = 0
         avgCount = 0
         for j in range(upDB[i].count()):
@@ -512,6 +468,7 @@ def sorted_area(request):
             daAvg[i] = 0
     return render(request,'acrpapp/sorted_area.html',{'dAvg':daAvg, 'dApps' : upDB, 'dType':daType,'dResult' : daResults, 'evals':daEvals,'keys':daKeys})
 
+@login_required(login_url='/login/')
 def sorted_id(request):
     daDetails = []
     daDb = {}
@@ -540,7 +497,7 @@ def sorted_id(request):
         daDetails.append('RS')
 
     for i in daDetails: 
-        daTitles[i] = DesignApp.objects.filter(design_area=i).values_list('title','Advisor1_LastName').distinct()
+        daTitles[i] = DesignApp.objects.filter(design_area=i,created_at__range=[Date1, Date2]).values_list('title','Advisor1_LastName').distinct()
         for j in daTitles[i]:
             daResults[j[1]+'-'+j[0]+'-'+daType[i]] =  user_profile.objects.filter(stat='Evaluation Completed', design_app_id__in = (DesignApp.objects.filter(design_area=i, title=j[0],Advisor1_LastName=j[1],).only('id'))).only('design_app_id').distinct()
             for k in range(daResults[j[1]+'-'+j[0]+'-'+daType[i]].count()):
@@ -550,6 +507,8 @@ def sorted_id(request):
     return render(request,'acrpapp/sorted_id.html',{'dApps':daDb, 'dResult':daResults,'evals':daEvals,'keys':daKeys})
 
 
+
+@login_required(login_url='/login/')
 def avgscore_designarea(request):
     daDetails = []
     daDb = {}
@@ -578,12 +537,9 @@ def avgscore_designarea(request):
         daDetails.append('RS')
 
     for i in daDetails: 
-        daTitles[i] = DesignApp.objects.filter(design_area=i).values_list('title','Advisor1_LastName').distinct()
-        print('daTitles[i]',daTitles[i])
-        print('daTitles',daTitles)
-        for j in daTitles[i]:
+        daTitles[i] = DesignApp.objects.filter(design_area=i,created_at__range=[Date1, Date2]).values_list('title','Advisor1_LastName').distinct()
+         for j in daTitles[i]:
             daResults[daType[i]+'-'+j[1]+'-'+j[0]] =  user_profile.objects.filter(stat='Evaluation Completed', design_app_id__in = (DesignApp.objects.filter(design_area=i,title=j[0],Advisor1_LastName=j[1],).only('id'))).only('design_app_id').distinct()
-            print("daResults[daType[i]+'-'+j[1]+'-'+j[0]]",daResults[daType[i]+'-'+j[1]+'-'+j[0]])
             avgSum = 0
             avgCount = 0
             for k in range(daResults[daType[i]+'-'+j[1]+'-'+j[0]].count()):
@@ -600,6 +556,7 @@ def avgscore_designarea(request):
                 daAvg[daType[i]+'-'+j[1]+'-'+j[0]] = 0
     return render(request,'acrpapp/avgscore_designarea.html',{'dAvg':daAvg,'dApps':daDb, 'dResult':daResults,'evals':daEvals,'keys':daKeys})
 
+@login_required(login_url='/login/')
 def avgscore(request):
     daDetails = []
     daDb = {}
@@ -628,7 +585,7 @@ def avgscore(request):
         daDetails.append('RS')
 
     for i in daDetails: 
-        daTitles[i] = DesignApp.objects.filter(design_area=i).values_list('title','Advisor1_LastName').distinct()
+        daTitles[i] = DesignApp.objects.filter(design_area=i,created_at__range=[Date1, Date2]).values_list('title','Advisor1_LastName').distinct()
         for j in daTitles[i]:
             daResults[j[1]+'-'+daType[i]+'-'+j[0]] = user_profile.objects.filter(stat='Evaluation Completed', design_app_id__in = (DesignApp.objects.filter(design_area=i, title=j[0],Advisor1_LastName=j[1],).only('id'))).only('design_app_id').distinct()
             avgSum = 0
@@ -678,5 +635,5 @@ def reedit(request):
             daDb[userName+'-'+str(daTitles[0][0])+'-'+str(daTitles[0][1])+'-'+str(daTitles[0][2])] = Finaldata[j]
         return render(request,'acrpapp/reedit.html',{'dApps' : daDb,'dType':daType})
     else:
-        print('no Permission')
+        return HttpResponse("No permission")
 

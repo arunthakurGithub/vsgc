@@ -87,7 +87,7 @@ class Applicant(EncryptedIDModel):
 
 class DesignApp(EncryptedIDModel):
     Inst = models.CharField(max_length=128,default="",)
-    title = models.CharField(max_length=200,default="")
+    title = models.CharField(max_length=300,default="")
 
     FAAAE = 'AE'
     FAAAM = 'AM'
@@ -97,7 +97,7 @@ class DesignApp(EncryptedIDModel):
         (FAAAE, 'Airport Environmental Interactions'),
         (FAAAM, 'Airport Management and Planning'),
         (FAAAO, 'Airport Operations and Maintenance'),
-        (FAARS, 'Runway Safety/Runway Incursions/Runway Excursions'),
+        (FAARS, 'Runway Safety/Runway Incursions/Runway Excursions Including Aprons, Ramps, and Taxiways'),
     ]
     design_area = models.CharField(max_length=3,choices=DesignAreaChoices,)
     Specific_Challenge=models.CharField(max_length=264,default="")

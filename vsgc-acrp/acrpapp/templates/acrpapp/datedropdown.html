@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Year</title>
+<script language="javascript">
+{% load static %}
+function SelectRedirect(){
+window.location=document.getElementById('s1').value
+}
+</script>
+</head>
+<body>
+<center><h1>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs</h1><br><br>
+
+ <div class="container">
+<div class="text-md-center">
+<form>
+<h2> Select Year</h2>
+<SELECT id="s1" NAME="section" onChange="SelectRedirect();">
+<Option value=""><h3>Select Section</h3></option>
+<Option value="/acrp/?param1=2020-11-15&param2=2021-11-15">2020-2021</option>
+<Option value="/acrp/?param1=2021-11-16&param2=2022-11-16">2021-2022</option>
+</SELECT>
+</form>
+</div>
+</div>
+</center>
+</body>
+</html>

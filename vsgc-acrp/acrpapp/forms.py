@@ -67,7 +67,7 @@ class DesignAppForm(forms.ModelForm):
                                  "Advisor2_City","Advisor2_State","Advisor2_Zip_Code","Advisor2_Telephone","Advisor2_Fax","Advisor2_Email","num_team_members",
                                  "Other_Participants","Describe","ACRP_University","Other",'Upload']
 
-        labels = {'title':'Title of Design','Inst':'Institutions','design_area': 'Design Challenge Area','Students_Involved': 'Level of Students Involved','Specific_Challenge':'Specific Challenge Selected',
+        labels = {'title':'Title of Design','Inst':'Institution','design_area': 'Design Challenge Area','Students_Involved': 'Level of Students Involved','Specific_Challenge':'Specific Challenge Selected',
                         'Advisor1_FirstName':'First Name','Advisor1_LastName':'Last Name','Advisor1_Department':'Department','Advisor1_Street_Address':'Street Address','Advisor1_City':'City',
                         'Advisor1_State':'State','Advisor1_Zip_Code':'Zip Code','Advisor1_Telephone':'Telephone','Advisor1_Fax':'Fax','Advisor1_Email':'E-mail',
                         'Advisor2_FirstName':'First Name','Advisor2_LastName':'Last Name','Advisor2_Department':'Department','Advisor2_Street_Address':'Street Address',
