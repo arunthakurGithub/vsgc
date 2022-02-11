@@ -28,6 +28,12 @@ from encrypted_id import decode
 from encrypted_id import ekey
 # Create your views here.
 
+#Global Variables
+Date1 = '' 
+Date2 = ''
+
+
+
 def index(request):
     form=ApplicantForm()
     if request.method == "POST":
@@ -35,18 +41,15 @@ def index(request):
         email=FacultyForm(request.POST)
         if form.is_valid() and email.is_valid():
             cheque_no=request.POST.get('cheque_no')
-            print(cheque_no)
             if Applicant_details.objects.filter(cheque_no=cheque_no).count() == 0:
                 f=form.save()
                 rqt = request.POST.keys()
                 fDetails = {}
                 for i in rqt:
                     fDetails[i] = request.POST[i]
-                print('--> saving email...')
                 #--- save ref1
                 refDict = {}
                 ref1Email = request.POST['Ref1_Email']
-                print('ref1Email',ref1Email)
                 ref2Email = request.POST['Ref2_Email']
                 ref3Email = request.POST['Ref3_Email']
                 refMail = Faculty_details(Ref1_Email=ref1Email, Ref2_Email=ref2Email, Ref3_Email=ref3Email, Applicant_details=f)
@@ -72,9 +75,6 @@ def index(request):
             else:
                 messages.error(request,('Enter unique Nine character id '))
         else:
-            print('----> Form Not Valid....')
-            print('form.errors')
-            print(form.errors)
             messages.error(request,(form.errors))
     else:
         form = ApplicantForm()
@@ -88,7 +88,6 @@ def search(request):
             passCode=request.POST.get('searchValue')
             try:
                 x = Applicant_details.objects.get(cheque_no=passCode)
-                print(x.Email)
                 return render(request,'polls/searchbox.html',{'form' : form,'Applicant_details' : x})
             except Applicant_details.DoesNotExist:
                 messages.error(request,('Enter unique Nine character id '))
@@ -108,7 +107,6 @@ def saved_application(request,Applicant_details_id):
     if request.method == "POST":
         updated_form = ApplicantForm(request.POST,request.FILES, instance = saved)
         updated_faculty=FacultyForm(request.POST,instance=saved_faculty)
-        # print('--> Request ', request.POST)
         Citizenship=request.POST.get('Citizenship')
         if updated_form.is_valid() and updated_faculty.is_valid():
             f = updated_form.save()
@@ -125,7 +123,6 @@ def saved_application(request,Applicant_details_id):
             Faculty_details.objects.filter(Applicant_details_id = Applicant_details_id).update(Ref1_Email=ref1Email, Ref2_Email=ref2Email, Ref3_Email=ref3Email)
             print('faculty data saved...')
             if fDetails['stat'] == 'Evaluation Completed':
-                print('Completed')
                 if fDetails['Citizenship'] == 'Student Visa' and fDetails['visa_expiration'] == '' and fDetails['Describe_type_and_status_if_visa_option_is_checked']=='':
                     messages.error(request,('Please fill the visa expiration date and status of your student visa '))
                 else:
@@ -142,8 +139,6 @@ def saved_application(request,Applicant_details_id):
             else:
                 return HttpResponseRedirect("/graward/evaluator/search")
         else:
-            # return HttpResponseRedirect("/graward/errorreq")
-            print(updated_form.errors)
             messages.error(request,(updated_form.errors))
             return HttpResponseRedirect('/graward/evaluator/saved_application/'+str(Applicant_details_id))
     else:
@@ -248,7 +243,6 @@ def submit(request):
             passCode=request.POST.get('searchValue')
             try:
                 x = Applicant_details.objects.get(cheque_no=passCode)
-                print(x.Email)
                 return render(request,'polls/submit.search.html',{'form' : form,'Applicant_details' : x})
             except Applicant_details.DoesNotExist:
                 messages.error(request,('Enter unique Nine character id '))
@@ -275,7 +269,6 @@ def submit_application(request,Applicant_details_id):
             print('faculty data saved...')
             return render(request,'polls/Thankyou.html') 
         print(' !!! Form Invalid !!!')
-        print(updated_form.errors)
         return render(request,'polls/errormsg.html',{'form':updated_form})
     else:
         f=ApplicantForm(instance = saved)
@@ -301,7 +294,13 @@ def reviewer_login(request):
             return HttpResponse("Invalid Credentials")
      
     else:
-        return render(request, 'registration/project2.html' ,{})        
+        return render(request, 'registration/project2.html' ,{})  
+
+
+
+# @login_required(login_url='/elog/')
+def dropdown(request):
+        return render(request,'polls/datedrop.html',{})      
   
 def user(request):
     if request.method == 'POST':
@@ -312,7 +311,7 @@ def user(request):
             if user.is_active:
                 login(request, user)
                 user=User.objects.get(username=username)
-                print(user)
+                return HttpResponseRedirect(reverse('dropdown')) 
                 if user.has_perm('polls.View_Polls_admin_page'):
                     return HttpResponseRedirect(reverse('support'))
                 else:
@@ -336,16 +335,19 @@ def user(request):
 
 @login_required(login_url='/graward/elog/')
 def support(request):
+    global Date1
+    global Date2
+    Date1 = str(request.GET.get('param1', None))
+    Date2 = str(request.GET.get('param2', None))
     return render(request,'polls/openpage.html')
 
 def process(request):
     details={}
     details1={}
-    saved=Applicant_details.objects.filter(stat="Evaluation Completed")
+    saved=Applicant_details.objects.filter(stat="Evaluation Completed",created_at__range=[Date1, Date2])
     for i in saved:
         vals=list(Recommendation_fields_details.objects.filter(Applicant_details_id=i.id).values_list('faculty_num', flat=True))
         vals1=list(FacultyAdvisor_fields.objects.filter(Applicant_details_id=i.id).values_list('faculty_num', flat=True))
-        print("vals1",vals1)
         tmp = []
         for f in range(0,2):
             if str(f+1) in vals:
@@ -353,10 +355,9 @@ def process(request):
             else:
                 tmp.append(0)
         details[i.id] = tmp
-    savednew=Applicant_details.objects.filter(stat="Evaluation Completed")
+    savednew=Applicant_details.objects.filter(stat="Evaluation Completed",created_at__range=[Date1, Date2])
     for i in savednew:
         vals1=list(FacultyAdvisor_fields.objects.filter(Applicant_details_id=i.id).values_list('faculty_num', flat=True))
-        print("vals1",vals1)
         tmp1=[]
         for f in range(2,3):
             if str(f+1) in vals1:
@@ -364,8 +365,6 @@ def process(request):
             else:
                 tmp1.append(0)
         details1[i.id] = tmp1
-    print(tmp)
-    print(tmp1)
     return render(request,'polls/process.html',{'saved':saved, 'rec': details,'rec1':details1})
 
 def process_detail(request,Applicant_details_id):
@@ -395,10 +394,7 @@ def process_detail(request,Applicant_details_id):
             print('--> num of records : ', numRec)
             print('--> Retrieved Records :',rec)
             for i in rec:
-                print('----> ',i.faculty_num)
                 refRec.append(int(i.faculty_num))
-            print(refRec)
-            # rec=Recommendation_fields_Form(instance=rec)
         except:
             rec = 'Not Submitted'
         faculty_form1 = FacultyForm(instance = saved_faculty)
@@ -409,18 +405,14 @@ def process_detail(request,Applicant_details_id):
             print('--> num of records : ', numRec)
             print('--> Retrieved Records :',rec)
             for i in rec1:
-                print('----> ',i.faculty_num)
                 refRec1.append(int(i.faculty_num))
-            print("refrec1",refRec1)
-            # rec=Recommendation_fields_Form(instance=rec)
         except:
             rec1 = 'Not Submitted'
         return render(request,'polls/process_detail.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec,'refRec':refRec,'rec1':rec1,'refRec1':refRec1,'final':[1,2],'final1':[3]})
 
 
 def processed(request):
-    saved=Applicant_details.objects.filter(stat__in=("Approved","Rejected"))
-    print(saved)
+    saved=Applicant_details.objects.filter(stat__in=("Approved","Rejected"),created_at__range=[Date1, Date2])
     return render(request,'polls/processed.html',{'saved':saved})
 
 
@@ -463,13 +455,11 @@ def facultygetrecommendation(request,cheque_no,ref_num):
 
 def RecommendationsAllInternal(request):
     saved=Applicant_details.objects.filter(stat=("Approved"))
-    print(saved)
     return render(request,'polls/RecommendationsAllInternal.html',{'saved':saved})
 
 
 @login_required(login_url='/graward/log/')
 def evaluators(request):
-    permission = Permission.objects.get(name='view Completed Submissions')
     if request.user.groups.filter(name='polls_evaluators_completed_submissions').exists():
         print('User belongs to the group')
     if 'polls.view_polls_completed_submissions' in request.user.get_group_permissions():
@@ -493,14 +483,18 @@ def EvaluateSubmissions(request):
             daDb[str(applicantId)]={}
         daDb[str(applicantId)]["stat"] =stat
         daDb[str(applicantId)]["student"] =student 
-    print('daDb',daDb)
     return render(request,'polls/EvaluateSubmissions.html',{'dApps' : daDb})
 
 
 
 
 def compute_average(request):
-    d_eval = user_profile_details.objects.filter(stat='Evaluation Completed')
+    applicantIdData = []
+    applicants=Applicant_details.objects.filter(stat = "Approved",created_at__range=[Date1, Date2])
+    for i in range(applicants.count()):
+        applicantId = applicants[i].id
+        applicantIdData.append(int(applicantId))
+    d_eval = user_profile_details.objects.filter(stat='Evaluation Completed',Applicant_details_id__in = applicantIdData)
     applicantNew1={}
     applicantNew={}
     # from the valid items iterate and populate the two data structures
@@ -508,7 +502,6 @@ def compute_average(request):
         applicantId = d_eval[i].Applicant_details_id
         evaluatorId = d_eval[i].eval_id_id
         score = d_eval[i].ranking
-        print("score",score)
         name =Applicant_details.objects.get(id = int(applicantId)).App_FirstName
         profile=User.objects.get(id = int(evaluatorId)).username
         if str(applicantId) not in applicantNew1:
@@ -516,9 +509,6 @@ def compute_average(request):
             applicantNew[str(applicantId)] = {}
         applicantNew1[str(applicantId)]["name"] = name
         applicantNew1[str(applicantId)][evaluatorId] = {profile:score}
-        print("old",applicantNew1)
-        # applicantNew1[str(applicantId)]["score"] = score
-    # applicantNew = applicantNew1
     for k,l in applicantNew1.items():
         count=0
         e=0
@@ -526,16 +516,11 @@ def compute_average(request):
             if type(m) is dict: 
                 for q,w in m.items():
                     e = e+float(w)
-                    print('e',e)
                     count = count+1  
                     newe = e/count
-                    print('newe',newe)
-                    print('count',count)
                     applicantNew[k]["total"] = newe
-                    print('applicantNew',applicantNew)
     for r,t in applicantNew.items():
         applicantNew1[r]["average"] = t
-    print("new",applicantNew1)
     return render(request,'polls/compute_average.html',{'applicantNew':applicantNew1})
     
 
@@ -551,7 +536,6 @@ def compute_average_detail(request,a_id):
         if str(a_id) not in applicantNew1:
             applicantNew1[str(a_id)] = {}
         applicantNew1[str(a_id)][evaluatorId] = {profile:score}
-        print("dict2",applicantNew1) 
     return render(request,'polls/compute_average_detail.html',{'applicant':applicant_info,'eval':d_eval,'applicantNew':applicantNew1})
 
 
@@ -563,13 +547,11 @@ def EvaluateSubmissions_detail(request,Applicant_details_id):
     applicant=Applicant_details.objects.get(pk=Applicant_details_id)
     applicant_info=get_object_or_404(Applicant_details,pk=Applicant_details_id)
     profile=User.objects.get(id=user_data.eval_id_id).username
-    print(profile)
     if(user_data.stat=="Evaluation Completed"):
         return HttpResponseRedirect("/evaluators/")
     else:    
         if request.method == "POST":
             user_data.stat = request.POST["stat"]
-            print(user_data.stat)
             user_data.ranking = request.POST["ranking"]
             user_data.save()
             return HttpResponseRedirect("/graward/EvaluateSubmissions")
@@ -584,13 +566,11 @@ def EvaluateSubmissionsSaved_detail(request,Applicant_details_id):
     applicant=Applicant_details.objects.get(pk=Applicant_details_id)
     applicant_info=get_object_or_404(Applicant_details,pk=Applicant_details_id)
     profile=User.objects.get(id=user_data.eval_id_id).username
-    print(profile)
     if(user_data.stat=="Evaluation Completed"):
         return HttpResponseRedirect("/evaluators/")
     else:    
         if request.method == "POST":
             user_data.stat = request.POST["stat"]
-            print(user_data.stat)
             user_data.ranking = request.POST["ranking"]
             user_data.save()
             return HttpResponseRedirect("/graward/EvaluateSubmissions")
@@ -611,7 +591,6 @@ def user_prof(request):
             if user.is_active:
                 login(request, user)
                 user=User.objects.get(username=username)
-                print(user)
                 return HttpResponseRedirect(reverse('evaluators'))     
             
             else:
@@ -633,20 +612,16 @@ def CompletedSubmissions(request):
     profile={}
     # from the valid items iterate and populate the two data structures
     for i in range(d_eval.count()):
-        applicantId = d_eval[i].Applicant__details_id
+        applicantId = d_eval[i].Applicant_details_id
         evaluatorId = d_eval[i].eval_id_id
         score = d_eval[i].ranking
-        print("score",score)
-        name =Applicant__details.objects.get(id = int(applicantId)).App_FirstName
+        name =Applicant_details.objects.get(id = int(applicantId)).App_FirstName
         profile=User.objects.get(id = int(evaluatorId)).username
         if str(applicantId) not in applicantNew1:
             applicantNew1[str(applicantId)] = {}
             applicantNew[str(applicantId)] = {}
         applicantNew1[str(applicantId)]["name"] = name
         applicantNew1[str(applicantId)][evaluatorId] = {profile:score}
-        print("old",applicantNew1)
-        # applicantNew1[str(applicantId)]["score"] = score
-    # applicantNew = applicantNew1
     for k,l in applicantNew1.items():
         e=0
         count=0
@@ -657,36 +632,13 @@ def CompletedSubmissions(request):
                     e = e+float(w)
                     newe = e/count
                     applicantNew[k]["total"] = newe
-                    print('applicantNew',applicantNew)
     for r,t in applicantNew.items():
         applicantNew1[r]["average"] = t
-    print("new",applicantNew1)
     return render(request,'polls/CompletedSubmissions.html',{'applicantNew':applicantNew1})
-
-# def enableCompleteSubmissions(request):
-#   print(request.user.id)
-#   if User.objects.get(id = request.user.id).is_superuser == 1:
-#       # Enable the permissions to all users in group 'polls_evaluators_completed_submissions'
-#       new_group, created = Group.objects.get_or_create(name='new_group')
-#       messages.error(request,('permission Enabled '))
-#       ct = ContentType.objects.get_for_model(user_profile)
-#       permission = Permission.objects.create(codename='can_add_project',
-#                                    name='Can add project',
-#                                    content_type=ct)
-#       new_group.permissions.add(permission)
-#       print('permission Enabled')
-#       # notify user with permission
-#   else:
-#       # no permission to access this feature
-#       messages.error(request,('User has no permission '))
-#       print('User has no permission')
-#   return redirect('/acrpsite/acrp/support')
 
 
 def enableCompleteSubmissions(request):
-    print(request.user.id)
     if request.user.has_perm('polls.View_Polls_admin_page'):
-    # if User.objects.get(id = request.user.id).is_superuser == 1:
         # Enable the permissions to all users in group 'polls_evaluators_completed_submissions'
         eval_group = Group.objects.get(name = 'polls_evaluators_completed_submissions')
         eval_permission = Permission.objects.get(name='view Completed Submissions')
@@ -703,7 +655,12 @@ def enableCompleteSubmissions(request):
 
 
 def Average_score(request):
-    d_eval = user_profile_details.objects.filter(stat='Evaluation Completed')
+    applicantIdData=[]
+    applicants=Applicant_details.objects.filter(stat = "Approved",created_at__range=[Date1, Date2])
+    for i in range(applicants.count()):
+        applicantId = applicants[i].id
+        applicantIdData.append(int(applicantId))
+    d_eval = user_profile_details.objects.filter(stat ='Evaluation Completed',Applicant_details_id__in = applicantIdData)
     applicantNew1={}
     applicantNew={}
     prof={}
@@ -712,7 +669,6 @@ def Average_score(request):
         applicantId = d_eval[i].Applicant_details_id
         evaluatorId = d_eval[i].eval_id_id
         score = d_eval[i].ranking
-        print("score",score)
         name =Applicant_details.objects.get(id = int(applicantId))
         profile=User.objects.get(id = int(evaluatorId)).username
         if str(applicantId) not in applicantNew1:
@@ -730,14 +686,17 @@ def Average_score(request):
                 e = e+float(b)
                 newe = e/count
                 applicantNew[k]= newe
-                print('applicantNew',applicantNew)
     for r,t in applicantNew.items():
         applicantNew1[r]["average"]= t
-    print("new",applicantNew1)
     return render(request,'polls/AverageScore.html',{'applicantNew':applicantNew1})
 
 def Last_Name(request):
-    d_eval = user_profile_details.objects.filter(stat='Evaluation Completed')
+    applicantIdData=[]
+    applicants=Applicant_details.objects.filter(stat = "Approved",created_at__range=[Date1, Date2])
+    for i in range(applicants.count()):
+        applicantId = applicants[i].id
+        applicantIdData.append(int(applicantId)) 
+    d_eval = user_profile_details.objects.filter(stat='Evaluation Completed',Applicant_details_id__in = applicantIdData)
     applicantNew1={}
     applicantNew={}
     prof={}
@@ -746,7 +705,6 @@ def Last_Name(request):
         applicantId = d_eval[i].Applicant_details_id
         evaluatorId = d_eval[i].eval_id_id
         score = d_eval[i].ranking
-        print("score",score)
         name =Applicant_details.objects.get(id = int(applicantId))
         profile=User.objects.get(id = int(evaluatorId)).username
         if str(applicantId) not in applicantNew1:
@@ -764,15 +722,18 @@ def Last_Name(request):
                 e = e+float(b)
                 newe = e/count
                 applicantNew[k] = newe
-                print('applicantNew',applicantNew)
     for r,t in applicantNew.items():
         applicantNew1[r]["average"]= t
-    print("new",applicantNew1)
     return render(request,'polls/LastName.html',{'applicantNew':applicantNew1})
 
 
 
 def reedit(request):
+    applicantIdData =[]
+    applicants=Applicant_details.objects.filter(stat = "Approved",created_at__range=[Date1,Date2])
+    for i in range(applicants.count()):
+        applicantId = applicants[i].id
+        applicantIdData.append(int(applicantId)) 
     if request.method == "POST":
         id=request.POST.get('updateValue')
         applicant=get_object_or_404(user_profile_details,pk=id)
@@ -780,11 +741,10 @@ def reedit(request):
         applicant.save()
         return render(request,'polls/statuschange.html')
     results={}
-    Finaldata=user_profile_details.objects.filter(stat="Evaluation Completed")
+    Finaldata=user_profile_details.objects.filter(stat="Evaluation Completed",Applicant_details_id__in = applicantIdData)
     for i in range(Finaldata.count()):
         username=User.objects.get(id=Finaldata[i].eval_id_id).username
         details=Applicant_details.objects.filter(id=Finaldata[i].Applicant_details_id).values_list('App_LastName','clg_or_univ_Enrolled','Major_Field')
-        print('details',details)
         results[username+'-'+str(details[0][0])+'-'+str(details[0][1])+'-'+str(details[0][2])]=Finaldata[i]
     return render(request,'polls/reedit.html',{'dApps' : results})
 
@@ -792,26 +752,26 @@ def reedit(request):
 def adminupdatescore(request):
     results={}
     Finaldata=user_profile_details.objects.filter(stat="Evaluation Completed")
-    print(Finaldata)
     for i in range(Finaldata.count()):
         applicantId = Finaldata[i].Applicant_details_id
         evaluatorId = Finaldata[i].eval_id_id
         score = Finaldata[i].ranking
         details=Applicant_details.objects.get(id=int(applicantId))
         profile=User.objects.get(id = int(evaluatorId)).username
-        print(details)
-        print(profile)
         if str(applicantId) not in results:
             results[str(applicantId)]={}
         results[str(applicantId)]["details"]=details
         results[str(applicantId)][evaluatorId]={profile : score}
-        print("results",results)
     return render(request,'polls/adminupdatescore.html',{'results':results})
 
 def evaluatorupdatescore(request):
+    applicantIdData=[]
+    applicants=Applicant_details.objects.filter(stat = "Approved",created_at__range=[Date1, Date2])
+    for i in range(applicants.count()):
+        applicantId = applicants[i].id
+        applicantIdData.append(int(applicantId))
     results={}
-    Finaldata=user_profile_details.objects.filter(stat="Evaluation Completed")
-    print(Finaldata)
+    Finaldata=user_profile_details.objects.filter(stat="Evaluation Completed",Applicant_details_id__in = applicantIdData)
     for i in range(Finaldata.count()):
         applicantId = Finaldata[i].Applicant_details_id
         evaluatorId = Finaldata[i].eval_id_id
@@ -819,27 +779,21 @@ def evaluatorupdatescore(request):
         details=Applicant_details.objects.get(id=int(applicantId))
         advisor=user_profile_details.objects.get(Applicant_details_id=int(applicantId),eval_id_id=int(evaluatorId))
         profile=User.objects.get(id = int(evaluatorId)).username
-        print(details)
-        print(profile)
         if str(applicantId) not in results:
             results[str(applicantId)]={}
         results[str(applicantId)]["details"]=details
         results[str(applicantId)][evaluatorId]={advisor:profile}
-        print("results",results)
     return render(request,'polls/evaluatorupdatescore.html',{'results':results})
 
 
 def EvaluateSaved_detail(request,Applicant_details_id,eval_id):
     user_data=user_profile_details.objects.get(Applicant_details_id=Applicant_details_id,eval_id_id=eval_id)
-    print('EvaluateSaved_detail',user_data)
     stat=Status()
     applicant=Applicant_details.objects.get(pk=Applicant_details_id)
     applicant_info=get_object_or_404(Applicant_details,pk=Applicant_details_id)
     profile=User.objects.get(id=user_data.eval_id_id).username
-    print(profile)  
     if request.method == "POST":
         user_data.stat = request.POST["stat"]
-        print(user_data.stat)
         user_data.ranking = request.POST["ranking"]
         user_data.save()
         return HttpResponseRedirect("/graward/support/evaluatorupdatescore")
@@ -849,11 +803,10 @@ def EvaluateSaved_detail(request,Applicant_details_id,eval_id):
     return render(request,'polls/EvaluateSubmissionsSaved_detail.html',{'f':f,'applicant':applicant,'form':applicant_info,'user':user_data,'stat':stat,'profile':profile})
 
 def reference_reminder(request):
-    appli=Applicant_details.objects.filter(stat="Evaluation Completed")
+    appli=Applicant_details.objects.filter(stat="Evaluation Completed",created_at__range=[Date1, Date2])
     for i in range(appli.count()):
         applicantId = appli[i].id
         applicantname = appli[i].App_FirstName
-        print(applicantId)
         rec1=Recommendation_fields_details.objects.filter(Applicant_details_id=applicantId,faculty_num=1)
         rec2=Recommendation_fields_details.objects.filter(Applicant_details_id=applicantId,faculty_num=2)
         rec3=FacultyAdvisor_fields.objects.filter(Applicant_details_id=applicantId,faculty_num=3)
@@ -870,70 +823,3 @@ def reference_reminder(request):
             msg_html=render_to_string('polls/advisorRecommendation.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+appli[i].cheque_no+'/'+'3','name':appli[i].Ref3_Name})
             send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref3_Name,settings.EMAIL_HOST_USER,[fac3.Ref3_Email],html_message=msg_html,fail_silently=False)
     return render(request,'polls/reference_reminder.html')
-    # advisor=faculty.objects.get(Applicant_id=)
-
-
-# def user_login(request):
-#   if request.method == 'POST':
-#       username = request.POST.get('Username')
-#       password = request.POST.get('Password')
-#       user = authenticate(username = username , password = password)
-#       print(user)
-#       if user is not None:
-#           if user.is_active:
-#               login(request, user)
-#               if request.user.has_perm('polls.view_evaluator_page'):
-#                   return HttpResponseRedirect("/acrpsite/acrp/support/evaluatorupdatescore")
-#                   print('sales users landing page')
-#                   # sales users landing page
-#               elif request.user.has_perm('polls.view_admin_page'):
-#                   return HttpResponseRedirect("/acrpsite/acrp/support/adminupdatescore")
-#                   print('operations users landing page')
-#               else:
-#                   return HttpResponse("Sorry!You don't have permission to access this page")
-
-#       else:
-#           print("someone tried to login and falied!")
-#           print("Username : {} and Password : {}".format(username,password))
-#           return HttpResponse("Invalid credentials!")
-#   else:
-#       return render(request , 'registration/login.html' , {})
-
-# if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
-# def Average_score(request):
-#     d_eval = user_profile.objects.filter(stat='Evaluation Completed')
-#     applicantNew1={}
-#     applicantNew={}
-#     # from the valid items iterate and populate the two data structures
-#     for i in range(d_eval.count()):
-#         applicantId = d_eval[i].Applicant_id
-#         evaluatorId = d_eval[i].eval_id_id
-#         score = d_eval[i].ranking
-#         print("score",score)
-#         name =Applicant.objects.get(id = int(applicantId))
-#         profile=User.objects.get(id = int(evaluatorId)).username
-#         if str(applicantId) not in applicantNew1:
-#             applicantNew1[str(applicantId)] = {}
-#             applicantNew[str(applicantId)] = {}
-        
-#         applicantNew1[str(applicantId)]["name"] = name
-#         applicantNew1[str(applicantId)][evaluatorId] = {profile:score}
-#         print("old",applicantNew1)
-#         # applicantNew1[str(applicantId)]["score"] = score
-#     # applicantNew = applicantNew1
-#     for k,l in applicantNew1.items():
-#         e=0
-#         count=0
-#         for p,m in l.items():
-#             if type(m) is dict:   
-#                 for q,w in m.items():
-#                     count = count+1
-#                     e = e+int(w)
-#                     e = e/count
-#                     applicantNew[k]["total"] = e
-#                     print('applicantNew',applicantNew)
-#     for r,t in applicantNew.items():
-#         applicantNew1[r]["average"]= t
-#     print("new",applicantNew1)
-#     return render(request,'polls/AverageScore.html',{'applicantNew':applicantNew1,'new':applicantNew})
-

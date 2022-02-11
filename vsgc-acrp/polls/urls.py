@@ -9,6 +9,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('index', views.index, name='index'),
+    path('support/GRAAward2022',TemplateView.as_view(template_name='pdf/Application_Instructions_for_Graduate_Research_Award_Program2022_23.html')),
+    path('support/GRACoverPage2022',TemplateView.as_view(template_name='pdf/Attach_B_Cover Page_GRA_updated_2022.html')),
     path('evaluator/search', views.search, name='search'),
     path('evaluator/saved_application/<int:Applicant_details_id>/', views.saved_application, name='saved_application'),
     path('evaluator/submit', views.submit, name='submit'),
