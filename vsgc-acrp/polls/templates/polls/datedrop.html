@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Year</title>
+<script language="javascript">
+{% load static %}
+function SelectRedirect(){
+window.location=document.getElementById('s1').value
+}
+</script>
+</head>
+<body>
+<center><h1>Graduate Research Program on Public-Sector Aviation Issues</h1><br><br>
+
+ <div class="container">
+<div class="text-md-center">
+<form>
+<h2> Select Year</h2>
+<SELECT id="s1" NAME="section" onChange="SelectRedirect();">
+<Option value=""><h3>Select Section</h3></option>
+<Option value="/graward/support/?param1=2020-11-15&param2=2022-02-05">2020-2021</option>
+<Option value="/graward/support/?param1=2022-02-05&param2=2023-11-16">2021-2022</option>
+</SELECT>
+</form>
+</div>
+</div>
+</center>
+</body>
+</html>

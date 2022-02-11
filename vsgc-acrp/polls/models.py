@@ -167,8 +167,12 @@ class Applicant_details(models.Model):
          default="",
     )
     cheque_no = models.CharField(max_length=9,unique=True)
+<<<<<<< HEAD
     # cheque_no = models.CharField(validators=[RegexValidator(regex='^.{9}$', message='Length has to be 9 numbers', code='nomatch')],max_length=128,unique=True)
 
+=======
+    created_at = models.DateField(blank=True, default='2022-02-07')
+>>>>>>> 712994426b18e76d0aeaf45a7363462e53d4a6ce
 
 class Faculty_details(models.Model):
     Applicant_details = models.ForeignKey('Applicant_details', on_delete=models.DO_NOTHING)
