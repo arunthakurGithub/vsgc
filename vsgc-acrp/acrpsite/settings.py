@@ -22,10 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'bfo%v50iwa8z&si6m4f)!2^mwhhp!vrgcie*qzozn0oug=zvxb'
-<<<<<<< HEAD
+
 ID_ENCRYPT_KEY = 'k71MdIHPKwEOtHe-aTJJ5KakXeqZouQQJZcMBUd-g2Y='
-=======
->>>>>>> 712994426b18e76d0aeaf45a7363462e53d4a6ce
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -72,11 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-<<<<<<< HEAD
-		        'django.template.context_processors.media'
-=======
+		'django.template.context_processors.media'
                 'django.template.context_processors.media'
->>>>>>> 712994426b18e76d0aeaf45a7363462e53d4a6ce
             ],
         },
     },

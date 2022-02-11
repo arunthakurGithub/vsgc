@@ -538,11 +538,7 @@ def avgscore_designarea(request):
 
     for i in daDetails: 
         daTitles[i] = DesignApp.objects.filter(design_area=i,created_at__range=[Date1, Date2]).values_list('title','Advisor1_LastName').distinct()
-<<<<<<< HEAD
         for j in daTitles[i]:
-=======
-         for j in daTitles[i]:
->>>>>>> 712994426b18e76d0aeaf45a7363462e53d4a6ce
             daResults[daType[i]+'-'+j[1]+'-'+j[0]] =  user_profile.objects.filter(stat='Evaluation Completed', design_app_id__in = (DesignApp.objects.filter(design_area=i,title=j[0],Advisor1_LastName=j[1],).only('id'))).only('design_app_id').distinct()
             avgSum = 0
             avgCount = 0
@@ -640,4 +636,3 @@ def reedit(request):
         return render(request,'acrpapp/reedit.html',{'dApps' : daDb,'dType':daType})
     else:
         return HttpResponse("No permission")
-
