@@ -167,7 +167,7 @@ class Applicant_details(models.Model):
          default="",
     )
     cheque_no = models.CharField(max_length=9,unique=True)
-    created_at = models.DateField(blank=True, default='2022-02-07')
+    created_at = models.DateField(auto_now_add=True)
 
 class Faculty_details(models.Model):
     Applicant_details = models.ForeignKey('Applicant_details', on_delete=models.DO_NOTHING)
@@ -215,6 +215,7 @@ class FacultyAdvisor_fields(models.Model):
     Do_you_consider_the_applicant_research_plan_reasonable=models.CharField(
          max_length=25,
          choices=proposed,
+         default="",
     )
     If_no_please_comment_1=models.CharField(max_length=128,blank=True)
     Research_within_the_time_frame_indicated=models.CharField(

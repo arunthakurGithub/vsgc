@@ -50,12 +50,14 @@
     <div class="form-group col-sm-8">
     <i>{{ f.visa_expiration|as_crispy_field }}</i>
     </div>
+    {% if showGenderRace == 'True' %}
     <div class="form-group col-sm-8">
        <i>{{ f.Gender|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
        <i>{{ f.Ethnicity|as_crispy_field }}</i>
     </div>
+    {% endif %}
     <div class="form-group col-sm-8">
     <i>{{ f.Mailing_Address|as_crispy_field }}</i>
      </div>
@@ -738,7 +740,6 @@ Electronic application submissions are due by May 15, 2020.</p>
 {% if rec == 'Not Submitted' %}
   <p> Reference Contact 1 Recommendation - Not Submitted</p><br>
   <p> Reference Contact 2 Recommendation - Not Submitted</p><br>
-  <p> Reference Contact 3 Recommendation - Not Submitted</p><br>
 {% else %}
   {% for i in final %}
     {% if i in refRec %}
@@ -748,6 +749,20 @@ Electronic application submissions are due by May 15, 2020.</p>
     {% endif %}
   {% endfor %}
  {% endif %}
+
+{% if rec1 == 'Not Submitted' %}
+  <p> Faculty Advisor Recommendation - Not Submitted</p><br>
+{% else %}
+  {% for i in final1 %}
+    {% if i in refRec1 %}
+      <a href="https://vsgcapps.odu.edu/graward/advisorrecommendation/{{ f.cheque_no.value }}/{{ i }}"> Reference Contact {{ i }} Recommendation</a><br>
+    {% else %}
+      <p> Faculty Advisor Recommendation - Not Submitted</p><br>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+
    <script>
     function hideField() {
       check = document.getElementsById("visa")[0].value;  

@@ -64,10 +64,10 @@ def index(request):
                         else:
                             for i in range(1,3):
                                 msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/advisor/'+fDetails['cheque_no']+'/'+str(i),'name':fDetails['Ref'+str(i)+'_Name']})
-                                send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
+                                send_mail('2022-2023 ACRP Graduate Award Application Forms','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
                             for i in range(3,4):
                                 msg_html =render_to_string('polls/advisorRecommendation.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+fDetails['cheque_no']+'/'+'3','name':fDetails['Ref'+'3'+'_Name']})
-                                send_mail('django test mail','Hello '+fDetails['Ref'+'3'+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+'3'+'_Email']],html_message=msg_html,fail_silently=False)
+                                send_mail('2022-2023 ACRP Graduate Award Faculty Advisor Commitment Form','Hello '+fDetails['Ref'+'3'+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+'3'+'_Email']],html_message=msg_html,fail_silently=False)
                             return render(request,'polls/Thankyou.html',{'f':f})
                             return HttpResponseRedirect("/graward/")
                 else:
@@ -416,23 +416,28 @@ def processed(request):
     return render(request,'polls/processed.html',{'saved':saved})
 
 
-def processed_detail(request,Applicant_details_id):
+def processed_detail(request,Applicant_details_id,showGenderRace):
     saved=get_object_or_404(Applicant_details,pk=Applicant_details_id)
     refRec = []
+    refRec1 = []
     saved_faculty = get_object_or_404(Faculty_details,Applicant_details_id = Applicant_details_id)
     f=ApplicantForm(instance = saved)
     faculty_form = FacultyForm(instance = saved_faculty)
     try:
         rec=Recommendation_fields_details.objects.order_by('faculty_num')
         rec = rec.filter(Applicant_details_id=saved.id)
-        numRec=Recommendation_fields_details.objects.filter(Applicant_details_id=saved.id).count()
-        print('--> num of records : ', numRec)
-        print('--> Retrieved Records :',rec)
         for i in rec:
             refRec.append(int(i.faculty_num))
     except:
         rec = 'Not Submitted'
-    return render(request,'polls/processed_detail.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec,'refRec':refRec,'final':[1,2,3]})
+    try:
+        rec1=FacultyAdvisor_fields.objects.order_by('faculty_num')
+        rec1 = rec1.filter(Applicant_details_id=saved.id)
+        for i in rec1:
+            refRec1.append(int(i.faculty_num))
+    except:
+        rec1 = 'Not Submitted'
+    return render(request,'polls/processed_detail.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec,'refRec':refRec,'rec1':rec1,'refRec1':refRec1 ,'final':[1,2],'final1':[3],'showGenderRace':showGenderRace})
 
 def getrecommendations(request,cheque_no,ref_num):
     saved=get_object_or_404(Applicant_details,cheque_no=cheque_no)
@@ -813,13 +818,13 @@ def reference_reminder(request):
         if rec1.count()==0:
             fac1=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
             msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'1','name':appli[i].Ref1_Name})
-            send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref1_Name,settings.EMAIL_HOST_USER,[fac1.Ref1_Email],html_message=msg_html,fail_silently=False)
+            send_mail('2022-2023 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref1_Name,settings.EMAIL_HOST_USER,[fac1.Ref1_Email],html_message=msg_html,fail_silently=False)
         if rec2.count()==0:
             fac2=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
             msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'2','name':appli[i].Ref2_Name})
-            send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref2_Name,settings.EMAIL_HOST_USER,[fac2.Ref2_Email],html_message=msg_html,fail_silently=False)
+            send_mail('2022-2023 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref2_Name,settings.EMAIL_HOST_USER,[fac2.Ref2_Email],html_message=msg_html,fail_silently=False)
         if rec3.count()==0:
             fac3=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
             msg_html=render_to_string('polls/advisorRecommendation.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+appli[i].cheque_no+'/'+'3','name':appli[i].Ref3_Name})
-            send_mail('2021-2022 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref3_Name,settings.EMAIL_HOST_USER,[fac3.Ref3_Email],html_message=msg_html,fail_silently=False)
+            send_mail('2022-2023 ACRP Graduate Award Application Forms','Hello '+appli[i].Ref3_Name,settings.EMAIL_HOST_USER,[fac3.Ref3_Email],html_message=msg_html,fail_silently=False)
     return render(request,'polls/reference_reminder.html')
