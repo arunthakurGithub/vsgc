@@ -64,10 +64,10 @@ def index(request):
                         else:
                             for i in range(1,3):
                                 msg_html =render_to_string('polls/error.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/advisor/'+fDetails['cheque_no']+'/'+str(i),'name':fDetails['Ref'+str(i)+'_Name']})
-                                send_mail('2022-2023 ACRP Graduate Award Application Forms','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
+                                send_mail('2023-2024 ACRP Graduate Award Application Forms','Hello '+fDetails['Ref'+str(i)+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+str(i)+'_Email']],html_message=msg_html,fail_silently=False)    
                             for i in range(3,4):
                                 msg_html =render_to_string('polls/advisorRecommendation.html',{'details' : fDetails,'url':'https://vsgcapps.odu.edu/graward/FacultyAdvisorRecommendation/'+fDetails['cheque_no']+'/'+'3','name':fDetails['Ref'+'3'+'_Name']})
-                                send_mail('2022-2023 ACRP Graduate Award Faculty Advisor Commitment Form','Hello '+fDetails['Ref'+'3'+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+'3'+'_Email']],html_message=msg_html,fail_silently=False)
+                                send_mail('2023-2024 ACRP Graduate Award Faculty Advisor Commitment Form','Hello '+fDetails['Ref'+'3'+'_Name'],settings.EMAIL_HOST_USER,[fDetails['Ref'+'3'+'_Email']],html_message=msg_html,fail_silently=False)
                             return render(request,'polls/Thankyou.html',{'f':f})
                             return HttpResponseRedirect("/graward/")
                 else:
