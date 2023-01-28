@@ -1,0 +1,197 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+__device__ float multiply_row(int rowsize,int *Aj,float *Av,float *x)
+{ float sum=0;
+  for(int column=0;column<rowsize;++column)
+      sum += Av[column] * x[Aj[column]];
+  return sum;
+}
+float multiply_row_CPU(int rowsize,int *Aj,float *Av,float *x)
+{float sum=0;
+ for(int column=0;column<rowsize;++column)
+     sum += Av[column] * x[Aj[column]];
+ return sum;
+}
+
+//This kernel computes the vector c=a*b
+//each thread performs one pair-wise multiplication
+
+__global__ void SparseMatVecMult(float *AV, int *AJ,int *AP, int n, float *V, float *R)
+{
+  unsigned int row=threadIdx.x + blockDim.x * blockIdx.x;
+  if(row<n)
+  {
+   int row_Begin=AP[row];
+   int row_End=AP[row+1];
+   R[row]=multiply_row((row_End-row_Begin),(AJ+row_Begin),(AV+row_Begin),V);
+  }
+}
+
+int main(int argc,char *argv[])
+{
+  const int nnz = 1282;
+  const int rows = 130;
+  const int cols = 130;
+  
+  int i=0;
+  int a,b;
+  float c;
+  float coo_val[nnz];
+  int coo_row[nnz],coo_col[nnz];
+  
+  while(scanf("%i %i %f" , &a,&b,&c)==3)
+  { 
+    coo_row[i]=a;
+    coo_col[i]=b;
+    coo_val[i]=c;
+    i++;
+  }
+  //coo to csr:
+  float csr_val[nnz]={ 0 };
+  int csr_col[nnz]={ 0 };
+  int csr_row[rows+1]={ 0 };
+  for(int i=0;i<nnz;i++)
+  {
+   csr_val[i]=coo_val[i];
+   csr_col[i]=coo_col[i];
+   csr_row[coo_row[i]+1]++;
+  }
+  for(int i=0;i<rows;i++)
+  {
+     csr_row[i+1]+=csr_row[i];
+  }
+  
+  //Example of runing sparse mat in GPU
+  int AV=nnz;
+  int AJ=nnz;
+  int AP=rows+1;
+  int V=cols;
+  int R=rows;
+  
+  float num_bytes_AV=AV * sizeof(float);
+  int num_bytes_AJ = AJ * sizeof(int);
+  int num_bytes_AP = AP * sizeof(int);
+  float num_bytes_V = V * sizeof(float);
+  float num_bytes_R = R * sizeof(float);
+  
+  //points to host and device arrays
+  float *device_array_AV = 0;
+  int *device_array_AJ = 0;
+  int *device_array_AP = 0;
+  float *device_array_V = 0;
+  float *device_array_R = 0;
+  
+  float *host_array_AV = 0;
+  int *host_array_AJ = 0;
+  int *host_array_AP = 0;
+  float *host_array_V = 0;
+  float *host_array_R = 0;
+  
+  
+  //cudaMalloc the device arrays
+  cudaMalloc((void**)&device_array_AV,num_bytes_AV);
+  cudaMalloc((void**)&device_array_AJ,num_bytes_AJ);
+  cudaMalloc((void**)&device_array_AP,num_bytes_AP);
+  cudaMalloc((void**)&device_array_V,num_bytes_V);
+  cudaMalloc((void**)&device_array_R,num_bytes_R);
+  
+  //malloc the host arrays
+  host_array_AV=(float*)malloc(num_bytes_AV);
+  host_array_AJ=(int*)malloc(num_bytes_AJ);
+  host_array_AP=(int*)malloc(num_bytes_AP);
+  host_array_V=(float*)malloc(num_bytes_V);
+  host_array_R=(float*)malloc(num_bytes_R);
+  
+  float v[cols] = { 0 };
+  //Initialize vector randonmly
+  for(int ml_ID=0; ml_ID<cols; ml_ID++)
+    {
+     v[ml_ID] = (float)(rand()%99)+1;
+    } 
+   //Initialize results R with 0
+  for(int R_ID2=0;R_ID2<rows;R_ID2++)
+  {
+      host_array_R[R_ID2]=0.0;
+  }
+  
+  memcpy(host_array_AV,csr_val,num_bytes_AV);
+  memcpy(host_array_AJ,csr_col,num_bytes_AJ);
+  memcpy(host_array_AP,csr_row,num_bytes_AP);
+  memcpy(host_array_V,v,num_bytes_V);
+  
+  cudaMemcpy(device_array_AV,host_array_AV,num_bytes_AV,cudaMemcpyHostToDevice);
+  cudaMemcpy(device_array_AJ,host_array_AJ,num_bytes_AJ,cudaMemcpyHostToDevice);
+  cudaMemcpy(device_array_AP,host_array_AP,num_bytes_AP,cudaMemcpyHostToDevice);
+  cudaMemcpy(device_array_V,host_array_V,num_bytes_V,cudaMemcpyHostToDevice);
+  
+  
+  //B and G size
+  int num_row = rows;
+  int block_size4= 256;
+  int grid_size4 = (num_row/256) + 1;
+  
+  // launch the kernel
+  printf("Resulted matrix of [V]*[M] in GPU_Kernel(Spars Mat)\n");
+  SparseMatVecMult<<<grid_size4,block_size4>>>(device_array_AV,device_array_AJ,device_array_AP,num_row,device_array_V,device_array_R);
+  
+  // copy the result back to the host memory space
+  cudaMemcpy(host_array_R,device_array_R,num_bytes_R,cudaMemcpyDeviceToHost);
+  
+  
+  //Vec*Mat in CPU with CSR_format
+  float multiplied_matrix [rows] = { 0 };
+  for(int row=0;row<rows;row++)
+  {
+   int row_begin = host_array_AP[row];
+   int row_end = host_array_AP[row+1];
+   multiplied_matrix[row] = multiply_row_CPU((row_end - row_begin),(host_array_AJ+row_begin),(host_array_AV+row_begin),host_array_V);
+  }
+
+  //print  the results from GPU
+  for(int R_ID2=0;R_ID2<rows;R_ID2++)
+  { 
+   printf("%1f",host_array_R[R_ID2]);
+  }
+  printf("\n");
+  printf("\n");
+  printf("Resulted Matrix of [V]*[M] in CPU (Spars Mat)\n");
+  //print  the results from CPU
+  for(int R_ID2=0;R_ID2<rows;R_ID2++)
+  { 
+   printf("%1f",multiplied_matrix[R_ID2]);
+  }
+  printf("\n");
+  printf("\n");
+  //Compare the results from GPU with CPU results
+  printf("The difference between CPU result and GPU kernel\n");
+  float Diff=0.0;
+  float Sub=0.0;
+  float Threshold=0.0001;
+  for(int i=0;i<rows;++i)
+  {
+  Sub=multiplied_matrix[i] - host_array_R[i];
+  Diff+= fabs(Sub);
+  if(Sub>Threshold)
+    printf("The difference between the CPU and GPU element %li is larger than threshold\n",i);
+  }
+  printf("%1f\n",Diff/rows);//Final ouput
+ 
+  //Deallocate the memo
+  cudaFree(device_array_AV);
+  cudaFree(device_array_AJ);
+  cudaFree(device_array_AP);
+  cudaFree(device_array_V);
+  cudaFree(device_array_R);
+  
+  free(host_array_AV);
+  free(host_array_AJ);
+  free(host_array_AP);
+  free(host_array_V);
+  free(host_array_R);
+
+printf("\n");
+return 0;
+  
+}

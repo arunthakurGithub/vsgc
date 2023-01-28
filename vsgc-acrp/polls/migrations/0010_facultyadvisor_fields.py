@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('Have_you_examined_the_applicant_proposed_researchplan', models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='', max_length=25)),
-                ('Do_you_consider_the_applicant_research_plan_reasonable', models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], max_length=25)),
+                ('Do_you_consider_the_applicant_research_plan_reasonable', models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')],default='', max_length=25)),
                 ('If_no_please_comment_1', models.CharField(blank=True, max_length=128)),
                 ('Research_within_the_time_frame_indicated', models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='', max_length=25)),
                 ('If_no_please_comment_2', models.CharField(blank=True, max_length=128)),
