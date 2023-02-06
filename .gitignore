@@ -1,4 +1,5 @@
 vsgc-acrp/static
+vsgc-acrp/media
 vsgc-acrp/acrpsite/__pycache__
 vsgc-acrp/polls/__pycache__
 vsgc-acrp/polls/migrations/__pycache__
