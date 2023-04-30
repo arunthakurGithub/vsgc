@@ -1,6 +1,7 @@
+from django.forms import ModelForm
 from django import forms
 from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details,FacultyAdvisor_fields
-
+from django.conf import settings
 
 class DateInput(forms.DateInput):
     input_type = 'date'
