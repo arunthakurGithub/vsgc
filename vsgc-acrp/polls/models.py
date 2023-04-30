@@ -1,12 +1,6 @@
 from django.db import models
-from django.conf import settings
-from django.contrib.auth.models import AbstractUser 
-from django.utils.translation import gettext_lazy
-from django.core.validators import MaxValueValidator
-from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 
-# from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class Applicant_details(models.Model):
@@ -146,7 +140,7 @@ class Applicant_details(models.Model):
     Award6_Date=models.CharField(max_length=128,blank=True)
     Award6_Description=models.CharField(max_length=128,blank=True)
     Awards_Notes=models.CharField(max_length=128,blank=True)
-    Carrer_goals=models.TextField(max_length=512,blank=True)
+    Carrer_goals=models.TextField(max_length=128,blank=True)
     Title_of_reserach_project=models.CharField(max_length=128,blank=True)
     Ref3_Name=models.CharField(max_length=128,blank=True)
     Ref3_Title=models.CharField(max_length=128,blank=True)

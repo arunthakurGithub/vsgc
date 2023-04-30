@@ -1,30 +1,18 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.exceptions import PermissionDenied
-from django.forms import ModelForm
-from .forms import DesignAppForm,StatusForm,ResponceForm,ApplicantForm,TeamForm
-from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.files.storage import FileSystemStorage
-from django.conf import settings
+from .forms import DesignAppForm,StatusForm,ApplicantForm
+from django.contrib.auth.decorators import login_required
 from .models import DesignApp, TeamMember,emp,responce,Applicant,user_profile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
-from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
-from django.db.models import Avg
 from django.contrib.auth.models import Permission
 from django.core.files.storage import default_storage
-from encrypted_id import decode
 from encrypted_id import ekey
-from django.db.models import Count,Sum
-from . import urls
 
 # Create your views here.
 
@@ -232,9 +220,7 @@ def acrpmembers(request):
 
 @login_required(login_url='/elogin/')
 def evaluator(request):
-    daDetails = []
     daDb = {}
-    daResults = {}
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
@@ -300,7 +286,6 @@ def saved(request,ekey):
         else:
             f=StatusForm()
         context={'designapp':designapp,'f':f}
-        reslist=[]
         for i in range(1,36):
             res=responce.objects.get(design_app_id=designapp_id,description_id=i, evalutor_id_id=request.user.id)
             context['res_'+str(i)]=res
@@ -379,9 +364,7 @@ def reviewer_login(request):
 
 @login_required(login_url='/elogin/')  
 def completedsubmissions(request):
-    daDetails = []
     daDb = {}
-    daResults = {}
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
@@ -404,7 +387,6 @@ def completedsubmissions_detail(request,ekey):
     designapp = DesignApp.objects.get_by_ekey_or_404(ekey)
     designapp_id = designapp.id
     context={'designapp':designapp}
-    reslist=[]
     for i in range(1,36):
         res=get_object_or_404(responce,design_app_id=designapp_id,description_id=i,evalutor_id_id=request.user.id)
         context['res_'+str(i)]=res
@@ -416,7 +398,6 @@ def sort_detail(request,ekey, evalutor_id=0):
     designapp = DesignApp.objects.get_by_ekey_or_404(ekey)
     designapp_id = designapp.id
     context={'designapp':designapp}
-    reslist=[]
     for i in range(1,36):
         res=get_object_or_404(responce,design_app_id=designapp_id,description_id=i,evalutor_id_id=evalutor_id)
         context['res_'+str(i)]=res
@@ -425,7 +406,6 @@ def sort_detail(request,ekey, evalutor_id=0):
 @login_required(login_url='/login/')
 def sorted_area(request):
     daDetails = []
-    daDb = {}
     upDB = {}
     daResults = {}
     daAvg = {}
@@ -474,7 +454,6 @@ def sorted_id(request):
     daDb = {}
     daTitles={}
     daResults = {}
-    daAvg = {}
     daEvals={}
     daKeys={}
     subTotalIds = [3,6,9,16,19,22,27,29,34,35]
@@ -617,9 +596,7 @@ def reedit(request):
         designapp.stat = "Evaluation Saved"
         designapp.save()
         return render(request,'acrpapp/statuschange.html')
-    daDetails = []
     daDb = {}
-    daResults = {}
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
@@ -636,3 +613,4 @@ def reedit(request):
         return render(request,'acrpapp/reedit.html',{'dApps' : daDb,'dType':daType})
     else:
         return HttpResponse("No permission")
+

@@ -142,7 +142,6 @@ class DesignApp(EncryptedIDModel):
     ACRP_University = models.CharField(max_length=256,null=True,verbose_name="Please check How did you hear about the ACRP University Design Competition for Addressing Airport Needs?")
     Other = models.CharField(max_length=100,default='',blank=True)
     Upload=models.FileField(max_length=256,upload_to='media/', null=True,validators=[validate_file_size])
-    #Upload=models.FileField(max_length=256,upload_to=settings.MEDIA_URL,null=True)
 
     RADIOS = [
     ('Approved','Application Approved'),

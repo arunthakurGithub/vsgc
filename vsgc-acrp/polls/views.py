@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.forms import ModelForm
 from .forms import ApplicantForm,SearchForm,FacultyForm,Recommendation_fields_Form,Status,FacultyAdvisor_fields_Form
 from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details,FacultyAdvisor_fields
-from django.shortcuts import get_list_or_404, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
-from django.template.loader import render_to_string, get_template
+from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
@@ -13,18 +12,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Permission
 from django.urls import reverse
 from django.contrib import messages 
-from collections import defaultdict
-from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib.auth.decorators import login_required 
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.db.models import Avg
-from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import Group, Permission
-from django.contrib.contenttypes.models import ContentType
-from encrypted_id import decode
 from encrypted_id import ekey
 # Create your views here.
 
@@ -114,9 +107,7 @@ def saved_application(request,Applicant_details_id):
             fDetails = {}
             for i in rqt:
                 fDetails[i] = request.POST[i]
-            print('--> saving email...')
             print('Applicant data updated...')
-            refDict = {}
             ref1Email = request.POST['Ref1_Email']
             ref2Email = request.POST['Ref2_Email']
             ref3Email = request.POST['Ref3_Email']
@@ -290,7 +281,7 @@ def reviewer_login(request):
             else:
                 return HttpResponse("Account not active")
         else:
-            print('someone tried to ogin and failed')
+            print('someone tried to login and failed')
             return HttpResponse("Invalid Credentials")
      
     else:
@@ -298,7 +289,7 @@ def reviewer_login(request):
 
 
 
-# @login_required(login_url='/elog/')
+@login_required(login_url='/graward/elog/')
 def dropdown(request):
         return render(request,'polls/datedrop.html',{})      
   
@@ -312,23 +303,13 @@ def user(request):
                 login(request, user)
                 user=User.objects.get(username=username)
                 return HttpResponseRedirect(reverse('dropdown')) 
-                if user.has_perm('polls.View_Polls_admin_page'):
-                    return HttpResponseRedirect(reverse('support'))
-                else:
-                    messages.error(request,('Invalid credentials!'))
-                    return render(request , 'registration/project2.html')
-                    # return HttpResponse("Invalid credentials!")
-
-            
             else:
                 return HttpResponse("ACCount not active!!")
-
         else:
             print("someone tried to login and falied!")
             print("Username : {} and Password : {}".format(username,password))
             messages.error(request,('Invalid credentials!'))
             return render(request , 'registration/project2.html')
-            # return HttpResponse("Invalid credentials!")
 
     else:
         return render(request , 'registration/project2.html' , {})
@@ -382,7 +363,6 @@ def process_detail(request,Applicant_details_id):
                 up=user_profile_details(eval_id=user,Applicant_details=saved,stat="Pending")
                 up.save()
                 print("profile created for ",user.id)
-        # return HttpResponseRedirect("/process/")
         return HttpResponseRedirect("/graward/support/process")
     else:
         f=ApplicantForm(instance = saved)
@@ -416,7 +396,7 @@ def processed(request):
     return render(request,'polls/processed.html',{'saved':saved})
 
 
-def processed_detail(request,Applicant_details_id,showGenderRace):
+def processed_detail(request,Applicant_details_id, showGenderRace):
     saved=get_object_or_404(Applicant_details,pk=Applicant_details_id)
     refRec = []
     refRec1 = []
@@ -426,6 +406,9 @@ def processed_detail(request,Applicant_details_id,showGenderRace):
     try:
         rec=Recommendation_fields_details.objects.order_by('faculty_num')
         rec = rec.filter(Applicant_details_id=saved.id)
+        numRec=Recommendation_fields_details.objects.filter(Applicant_details_id=saved.id).count()
+        print('--> num of records : ', numRec)
+        print('--> Retrieved Records :',rec)
         for i in rec:
             refRec.append(int(i.faculty_num))
     except:
@@ -437,7 +420,9 @@ def processed_detail(request,Applicant_details_id,showGenderRace):
             refRec1.append(int(i.faculty_num))
     except:
         rec1 = 'Not Submitted'
-    return render(request,'polls/processed_detail.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec,'refRec':refRec,'rec1':rec1,'refRec1':refRec1 ,'final':[1,2],'final1':[3],'showGenderRace':showGenderRace})
+    return render(request,'polls/processed_detail.html',{'form' : saved,'f':f, 'faculty':faculty_form,'rec':rec,'refRec':refRec,'rec1':rec1,'refRec1':refRec1 ,'final':[1,2],'final1':[3], 'showGenderRace' : showGenderRace})
+
+
 
 def getrecommendations(request,cheque_no,ref_num):
     saved=get_object_or_404(Applicant_details,cheque_no=cheque_no)
@@ -517,9 +502,9 @@ def compute_average(request):
     for k,l in applicantNew1.items():
         count=0
         e=0
-        for p,m in l.items():
+        for _,m in l.items():
             if type(m) is dict: 
-                for q,w in m.items():
+                for _,w in m.items():
                     e = e+float(w)
                     count = count+1  
                     newe = e/count
@@ -530,7 +515,6 @@ def compute_average(request):
     
 
 def compute_average_detail(request,a_id):
-    applicant={}
     applicantNew1={}
     applicant_info=get_object_or_404(Applicant_details,pk=a_id)
     d_eval=user_profile_details.objects.filter(Applicant_details_id=a_id)
@@ -650,7 +634,6 @@ def enableCompleteSubmissions(request):
         eval_group.permissions.add(eval_permission)
         messages.error(request,('permission Enabled '))
         return redirect('/graward/support/')
-        print('permission Enabled')
         # notify user with permission
     else:
         # no permission to access this feature
@@ -815,6 +798,7 @@ def reference_reminder(request):
         rec1=Recommendation_fields_details.objects.filter(Applicant_details_id=applicantId,faculty_num=1)
         rec2=Recommendation_fields_details.objects.filter(Applicant_details_id=applicantId,faculty_num=2)
         rec3=FacultyAdvisor_fields.objects.filter(Applicant_details_id=applicantId,faculty_num=3)
+        
         if rec1.count()==0:
             fac1=get_object_or_404(Faculty_details,Applicant_details_id=applicantId)
             msg_html=render_to_string('polls/reminder.html',{'details' : applicantname,'url':'https://vsgcapps.odu.edu/graward/advisor/'+appli[i].cheque_no+'/'+'1','name':appli[i].Ref1_Name})

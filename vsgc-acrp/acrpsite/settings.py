@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'bfo%v50iwa8z&si6m4f)!2^mwhhp!vrgcie*qzozn0oug=zvxb'
-
-ID_ENCRYPT_KEY = 'k71MdIHPKwEOtHe-aTJJ5KakXeqZouQQJZcMBUd-g2Y='
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+ID_ENCRYPT_KEY='bMZ3wc90GsnoDWLudDx9xMYn-40ERHEwC54DhP5p6aM='
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media'
+		        'django.template.context_processors.media'
             ],
         },
     },
@@ -87,23 +88,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "acrpsite",
-        'USER': 'rbond001',#'zubair',
-        'PASSWORD':'J8e4MYjS7365eREn',# 'sahil92',
-        'HOST': 'localhost',
+        'USER': 'root',#'zubair',
+        'PASSWORD':'',# 'sahil92',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': "acrpsite",
-#         'USER': 'root',#'zubair',
-#         'PASSWORD':'',# 'sahil92',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#     }
-# }
 
 
 # Password validation
@@ -160,16 +150,10 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 #MEDIA_ROOT= '/opt/vsgc-acrp/vsgc-acrp/media/'
 MEDIA_URL = '/'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = "rbond4747@gmail.com"
-# EMAIL_HOST_PASSWORD = 'Bindupp:1327'
-# EMAIL_PORT = '587'
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = False
-EMAIL_HOST = 'smtp.odu.edu'
-EMAIL_HOST_USER = "donotreply@acrp.odu.edu"
-EMAIL_PORT = '25'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'binduchowdary7777@gmail.com'
+EMAIL_HOST_PASSWORD = 'jwzkyhksvvlliuvo'
+EMAIL_PORT = 587
 
