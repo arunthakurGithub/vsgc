@@ -9,9 +9,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('index', views.index, name='index'),
-    path('evaluator/search', views.search, name='search'),
     path('support/GRAAward2022',TemplateView.as_view(template_name='pdf/Application_Instructions_for_Graduate_Research_Award_Program2022_23.html')),
-    path('GRACoverPage2022',TemplateView.as_view(template_name='pdf/Attach_B_Cover Page_GRA_updated_2022.html')),
+    path('support/GRACoverPage2022',TemplateView.as_view(template_name='pdf/Attach_B_Cover Page_GRA_updated_2022.html')),
+    path('evaluator/search', views.search, name='search'),
+    path('dropdown/', views.dropdown, name='dropdown'),
     path('evaluator/saved_application/<int:Applicant_details_id>/', views.saved_application, name='saved_application'),
     path('evaluator/submit', views.submit, name='submit'),
     path('evaluator/submit_application/<int:Applicant_details_id>/', views.submit_application, name='submit_application'),
@@ -20,7 +21,6 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='polls/urls.html')),
     path('errorreq', TemplateView.as_view(template_name='polls/extra.html')),
     path('elog/',views.user,name='user'),
-    path('dropdown/', views.dropdown, name='dropdown'),
     path('grareviewers/',views.reviewer_login , name = 'grareviewer'),
     path('errorvisa/', TemplateView.as_view(template_name='polls/errorvisa.html')),
     path('CoverPage2021_KW',TemplateView.as_view(template_name='pdf/CoverPage2021_KW.html')),
@@ -51,4 +51,7 @@ urlpatterns = [
     path('support/reference_reminder',views.reference_reminder,name='reference_reminder'),
     path('support/EvaluateSubmissionsSaved_detail/<int:Applicant_details_id>/', views.EvaluateSubmissionsSaved_detail, name='EvaluateSubmissionsSaved_detail'),
     path('support/EvaluateSaved_detail/<int:Applicant_details_id>/<int:eval_id>/',views.EvaluateSaved_detail,name='EvaluateSaved_detail'),
+
+
+
 ]
