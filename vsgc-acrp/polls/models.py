@@ -140,7 +140,7 @@ class Applicant_details(models.Model):
     Award6_Date=models.CharField(max_length=128,blank=True)
     Award6_Description=models.CharField(max_length=128,blank=True)
     Awards_Notes=models.CharField(max_length=128,blank=True)
-    Carrer_goals=models.TextField(max_length=128,blank=True)
+    Carrer_goals=models.TextField(max_length=512,blank=True)
     Title_of_reserach_project=models.CharField(max_length=128,blank=True)
     Ref3_Name=models.CharField(max_length=128,blank=True)
     Ref3_Title=models.CharField(max_length=128,blank=True)
