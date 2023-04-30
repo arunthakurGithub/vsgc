@@ -1,7 +1,5 @@
-from django.forms import ModelForm
 from django import forms
 from .models import Applicant_details,Faculty_details,Recommendation_fields_details,user_profile_details,FacultyAdvisor_fields
-from django.conf import settings
 
 
 class DateInput(forms.DateInput):
@@ -18,9 +16,7 @@ Ethni =(
 class ApplicantForm(forms.ModelForm):
     Ethnicity= forms.MultipleChoiceField(label='Ethnicity (optional):',choices=Ethni, widget=forms.CheckboxSelectMultiple(), required=False)
     Upload = forms.FileField(label='Upload File (Single PDF file):', required=False)
-    # Expected_Graduation = forms.CharField(widget=CalendarWidget)
     dob=forms.DateField(label='Date of birth', required=False,widget=forms.TextInput(attrs={'placeholder':'(example: 05/31/70)'}))
-    # Expected_Graduation=forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, required=False,widget=forms.TextInput(attrs={'class':'datepicker',}))
     visa_expiration=forms.DateField(widget=forms.TextInput(attrs={'placeholder':'(example: 05/31/70)'}),required=False)
     cheque_no=forms.CharField(label='Nine-Character ID:',max_length=9,min_length=9)
   

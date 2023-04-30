@@ -172,4 +172,3 @@ EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp.odu.edu'
 EMAIL_HOST_USER = "donotreply@acrp.odu.edu"
 EMAIL_PORT = '25'
-

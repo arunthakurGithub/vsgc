@@ -1,12 +1,6 @@
 from django.db import models
-from django.conf import settings
-from django.contrib.auth.models import AbstractUser 
-from django.utils.translation import gettext_lazy
-from django.core.validators import MaxValueValidator
-from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 
-# from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class Applicant_details(models.Model):

@@ -24,7 +24,6 @@ urlpatterns = [
     path('acrpapp/', include('acrpapp.urls')),
     path('graward/', include('polls.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    #path('media/',include('')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -18,16 +18,8 @@
 </div>
   <form method="post" enctype="multipart/form-data" action="">
   {% csrf_token %} 
-<!--       {% if messages %}
-            <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %} -->
   {% if form.stat == 'Evaluation Completed' %}
   <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.cheque_no|as_crispy_field }}</i>
     </div>
    <h3>PART I – APPLICANT PERSONAL INFORMATION</h3>
@@ -435,7 +427,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table><br>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Interruptions_of_schooling|as_crispy_field }}</i>
     </div>
   </div>
@@ -547,7 +538,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Prof_exp_Notes|as_crispy_field }}</i>
     </div>
 <h6>
@@ -666,7 +656,6 @@ Awards, honors, and publications: List fellowships, scholarships, and other acad
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Prof_exp_Notes }}</i>
     </div>
 <h4>
@@ -674,18 +663,15 @@ Awards, honors, and publications: List fellowships, scholarships, and other acad
 <table>
   <thead>
   <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Awards_Notes|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Carrer_goals|as_crispy_field }}</i>
     </div>
 <h6>
 Writing Sample: Provide a writing sample such as a previous publication, a paper written for a class assignment, a research project report or similar example of professional writing. This will be provided as part of the PDF document you will be uploading in Part VI of this application.</h6><br>
 <h3>PART III – RESEARCH PROJECT PROPOSAL</h3>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Title_of_reserach_project|as_crispy_field }}</i>
     </div>
 <h6>
@@ -699,23 +685,18 @@ To enrich the educational experience gained from your proposed research project,
 Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2022 to complete your application.</p><br>
 <h5>Research Faculty Advisor Contact Information:</h5>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Name|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Title|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Inst|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Phone|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ faculty.Ref3_Email|as_crispy_field }}</i>
     </div>
 

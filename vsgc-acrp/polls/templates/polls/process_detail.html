@@ -20,7 +20,6 @@
   {% csrf_token %} 
   {% if form.stat == 'Evaluation Completed' %}
   <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.cheque_no|as_crispy_field }}</i>
     </div>
    <h2>PART I – APPLICANT PERSONAL INFORMATION</h2>
@@ -429,7 +428,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table><br>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Interruptions_of_schooling|as_crispy_field }}</i>
     </div>
 
@@ -541,7 +539,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Prof_exp_Notes|as_crispy_field }}</i>
     </div>
 <h6>
@@ -660,7 +657,6 @@ Awards, honors, and publications: List fellowships, scholarships, and other acad
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Prof_exp_Notes }}</i>
     </div>
 <h6>
@@ -668,18 +664,15 @@ Awards, honors, and publications: List fellowships, scholarships, and other acad
 <table>
   <thead>
   <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Awards_Notes|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Carrer_goals|as_crispy_field }}</i>
     </div>
 <h6>
 Writing Sample: Provide a writing sample such as a previous publication, a paper written for a class assignment, a research project report or similar example of professional writing. This will be provided as part of the PDF document you will be uploading in Part VI of this application.</h6><br>
 <h3>PART III – RESEARCH PROJECT PROPOSAL</h3>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Title_of_reserach_project|as_crispy_field }}</i>
     </div>
 <h6>
@@ -693,23 +686,18 @@ To enrich the educational experience gained from your proposed research project,
 Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2022 to complete your application.</p><br>
 <h5>Research Faculty Advisor Contact Information:</h5>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Name|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Title|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Inst|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Phone|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ faculty.Ref3_Email|as_crispy_field }}</i>
     </div>
 
@@ -762,7 +750,7 @@ Use the save feature when subsequent data entry is required prior to submission.
 You will not be able to make changes to the document once it has been submitted; however, you will be able to access the application for printing.
 Please double check that you have selected the final submission box when you are ready to submit your application.
 Application submission confirmation - once you hit continue, a bold red message will appear for you to print for your records. THIS WILL BE THE ONLY CONFIRMATION YOU WILL RECEIVE. NO E-MAIL WILL BE SENT.
-Electronic application submissions are due by May 15, 2020.</p> 
+Electronic application submissions are due by May 15, 2022.</p> 
 <div class="row">
  <div class="form-group col-md-6 mb-0 ">
   <i>{{ f.stat.2 }}</i>

@@ -32,11 +32,9 @@ th, td {
 <div>
 
   {% if Applicant_details.stat == 'Evaluation Saved' %}
-  <table>
+<table>
       <td> Click here to modify your application --->>><a href="/graward/evaluator/saved_application/{{Applicant_details.id}}/">{{ Applicant_details.App_FirstName }}</a></td>
-       <!-- <td>{{ data.App_LastName }}</td>
-       <td>{{ data.stat }}<br/></td> 
- -->  </table>
+</table>
  <br>
 
  {% elif Applicant_details.stat == 'Evaluation Completed' %}<br><br>

@@ -39,7 +39,7 @@ ul
 </div>
 {% block content %}
 
-  <form method="post" enctype="multipart/form-data" action="">
+	<form method="post" enctype="multipart/form-data" action="">
   {% csrf_token %} 
 
   <div class="form-group col-sm-8">
@@ -56,99 +56,76 @@ Choose a nine-character identifier that can be used to track your application. Y
       <i>{{ form.App_FirstName|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.App_MiddleName|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.App_LastName|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.dob|as_crispy_field }}</i>
     </div>
-    <div class="form-group col-sm-8">      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
+    <div class="form-group col-sm-8">
       <i>{{ form.place_of_birth|as_crispy_field }}
 </i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Citizenship|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Describe_type_and_status_if_visa_option_is_checked|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.visa_expiration|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Gender|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Ethnicity|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Mailing_Address|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Mailing_City|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Mailing_State|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Mailing_Zip_Code|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Current_phone|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Permanent_Home_Address|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Permanent_City|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Permanent_State|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Permanent_Zip_Code|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Permanent_Home_phone|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Email|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.clg_or_univ_Enrolled|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Major_Field|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Degree_objective|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-<!--       <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i id="datepicker">{{ form.Expected_Graduation|as_crispy_field }}</i>
     </div>
   </div>
@@ -477,7 +454,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table><br>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Interruptions_of_schooling|as_crispy_field }}</i>
     </div>
   </div>
@@ -590,7 +566,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Prof_exp_Notes|as_crispy_field }}</i>
     </div>
 <h6>
@@ -709,18 +684,15 @@ Awards, honors, and publications: List fellowships, scholarships, and other acad
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Awards_Notes|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Carrer_goals|as_crispy_field }}</i>
     </div>
 <h6>
 Writing Sample: Provide a writing sample such as a previous publication, a paper written for a class assignment, a research project report or similar example of professional writing. This will be provided as part of the PDF document you will be uploading in Part VI of this application.</h6><br>
 <h3>PART III – RESEARCH PROJECT PROPOSAL</h3>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Title_of_reserach_project|as_crispy_field }}</i>
     </div>
 <h6>
@@ -734,23 +706,18 @@ To enrich the educational experience gained from your proposed research project,
 Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2023 to complete your application.</p><br>
 <h5>Research Faculty Advisor Contact Information:</h5>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Ref3_Name|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Ref3_Title|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Ref3_Inst|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Ref3_Phone|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ email.Ref3_Email|as_crispy_field }}</i>
     </div>
 
@@ -787,7 +754,6 @@ Electronic application submissions are due by May 15, 2023.</p>
     <input type="submit" value=Submit>
 
 </form>
-<!-- <button type="submit" class="btn btn-primary btn-lg">Submit</button> -->
 </body>
 </div>
  <script>

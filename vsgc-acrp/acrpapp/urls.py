@@ -1,10 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
-from django.conf import settings
-from django.contrib.auth import views as auth_views
-from django.conf.urls.static import static
-from django.views.generic import TemplateView
-# from django.contrib.auth import views
+from django.contrib.auth import views
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('application/', views.application, name='application'),

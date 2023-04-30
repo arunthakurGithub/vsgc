@@ -48,9 +48,6 @@
   <form method="post" enctype="multipart/form-data" action="">
   {% csrf_token %} 
 <div class="form-group col-sm-8" >
-
-
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
      <i> <p id ="read">{{ f.cheque_no|as_crispy_field }}</p></i>
     </div>
    <h2>PART I – APPLICANT PERSONAL INFORMATION</h2>
@@ -458,7 +455,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table><br>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Interruptions_of_schooling|as_crispy_field }}</i>
     </div>
   </div>
@@ -570,7 +566,6 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Prof_exp_Notes|as_crispy_field }}</i>
     </div>
 <h6>
@@ -689,7 +684,6 @@ Awards, honors, and publications: List fellowships, scholarships, and other acad
 </tbody>
 </table>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Prof_exp_Notes }}</i>
     </div>
 <h4>
@@ -697,18 +691,15 @@ Awards, honors, and publications: List fellowships, scholarships, and other acad
 <table>
   <thead>
   <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Awards_Notes|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Carrer_goals|as_crispy_field }}</i>
     </div>
 <h6>
 Writing Sample: Provide a writing sample such as a previous publication, a paper written for a class assignment, a research project report or similar example of professional writing. This will be provided as part of the PDF document you will be uploading in Part VI of this application.</h6><br>
 <h3>PART III – RESEARCH PROJECT PROPOSAL</h3>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Title_of_reserach_project|as_crispy_field }}</i>
     </div>
 <h6>
@@ -722,29 +713,24 @@ To enrich the educational experience gained from your proposed research project,
 Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2022 to complete your application.</p><br>
 <h5>Research Faculty Advisor Contact Information:</h5>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Name|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Title|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Inst|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Ref3_Phone|as_crispy_field }}</i>
     </div>
 <div class="form-group col-sm-8">
-      <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ faculty.Ref3_Email|as_crispy_field }}</i>
     </div>
 
 <h4>PART V – COVER PAGE WITH CERTIFICATIONS</h4><br>
 <p>
-Download the Cover Page with Certifications form. Complete the applicant portion of the form and sign and date this section. Have your university Sponsored Programs Office complete the bottom portion of the form and sign and date it. The signed Cover Page with Certification will be submitted as part of the PDF document you will submit in Part VI of the application. Submit the signed original with the hard copy of your application. The hard copy of the application must be received no later than May 22, 2022.</p>
+Download the <a href="/projectPdfs/Attach_B_Cover Page_GRA_updated_2023.pdf">Cover Page with Certifications form</a>. Complete the applicant portion of the form and sign and date this section. Have your university Sponsored Programs Office complete the bottom portion of the form and sign and date it. The signed Cover Page with Certification will be submitted as part of the PDF document you will submit in Part VI of the application.</p>
 
 <h4>PART VI – SUBMISSION OF REQUIRED APPLICATION DOCUMENTS</h4>
 <p>
@@ -754,7 +740,6 @@ Create one PDF document which should be saved as Last Name.First Name.GRA2022 (e
 3. Writing Sample<br>
 4. Transcripts<br>
 Please try to limit your file size to be no larger than 10 MB.</p>
-  <!-- <a href="/"{{ f.Upload }}> Full Design </a> -->
 <div id="upload-div">
   {{ f.Upload }}
 </div> 

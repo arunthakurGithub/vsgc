@@ -25,7 +25,6 @@ urlpatterns = [
     path('errorvisa/', TemplateView.as_view(template_name='polls/errorvisa.html')),
     path('CoverPage2021_KW',TemplateView.as_view(template_name='pdf/CoverPage2021_KW.html')),
     path('GraduateResearchAwardProgramApplication',TemplateView.as_view(template_name='pdf/Application For Graduate Research Award Program_Instructions.html')),
-    # path('', TemplateView.as_view(template_name='polls/mainpage.html')),
     path('support/process', views.process, name='process'),
     path('support/process_detail/<int:Applicant_details_id>/', views.process_detail, name='process_detail'),
     path('support/processed', views.processed, name='processed'),
@@ -51,10 +50,7 @@ urlpatterns = [
     path('support/evaluatorupdatescore',views.evaluatorupdatescore,name='evaluatorupdatescore'),
     path('support/reference_reminder',views.reference_reminder,name='reference_reminder'),
     path('support/EvaluateSubmissionsSaved_detail/<int:Applicant_details_id>/', views.EvaluateSubmissionsSaved_detail, name='EvaluateSubmissionsSaved_detail'),
-    # path('acrp/support/userlogin/',views.user_login,name='user_login'),
     path('support/EvaluateSaved_detail/<int:Applicant_details_id>/<int:eval_id>/',views.EvaluateSaved_detail,name='EvaluateSaved_detail'),
-    # path('acrp/support/EvaluateSaved_detail/<int:Applicant_id>/', views.EvaluateSaved_detail, name='EvaluateSaved_detail'),
-    # path('acrp/login/', views.login, name ='login'), 
 
 
 
