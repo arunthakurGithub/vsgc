@@ -1,24 +1,26 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<style>
- .asteriskField {
-    display: none;
-ul
-{
-    list-style-type: none;
-}
-}
-</style>
-<script>
-window.onload = function () {
-    /* event listener */
-    document.getElementById("id_num_team_members").addEventListener('change', addVariableTeamMembers);
-    /* function */
-    function addVariableTeamMembers(){
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+    .asteriskField {
+      display: none;
+
+      ul {
+        list-style-type: none;
+      }
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      /* event listener */
+      document.getElementById("id_num_team_members").addEventListener('change', addVariableTeamMembers);
+      /* function */
+      function addVariableTeamMembers() {
         var numTeamMembers = this.value;
         var el = document.getElementById("team_member_form");
         el.innerHTML = "";
@@ -29,7 +31,7 @@ window.onload = function () {
         var firstFormCol = document.createElement("div");
         firstFormCol.setAttribute("class", "col-md-4");
 
-        if(numTeamMembers > 0){
+        if (numTeamMembers > 0) {
           var firstLabel = document.createElement("label");
           firstLabel.innerHTML = "Team Member Name:";
           firstFormCol.appendChild(firstLabel);
@@ -56,7 +58,7 @@ window.onload = function () {
 
           el.appendChild(newFormRowDiv);
         }
-       for (i = 0; i < numTeamMembers; i++) {
+        for (i = 0; i < numTeamMembers; i++) {
           var newFormRowDiv = document.createElement("div");
           newFormRowDiv.setAttribute("class", "form-row");
           newFormRowDiv.style.paddingBottom = "10px";
@@ -88,7 +90,7 @@ window.onload = function () {
           teamMemberLevel.setAttribute("type", "text");
           teamMemberLevel.setAttribute("id", "teamMemberLevel-" + i.toString());
           teamMemberLevel.setAttribute("name", "teamMemberLevel-" + i.toString());
-          teamMemberLevel.required=true;
+          teamMemberLevel.required = true;
           thirdFormCol.appendChild(teamMemberLevel);
 
 
@@ -98,27 +100,38 @@ window.onload = function () {
 
           el.appendChild(newFormRowDiv);
 
-       }
+        }
+      }
     }
-}
-</script>
+  </script>
 </head>
+
 <body>
 
   <div class="jumbotron">
-  <h3>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs Design Package Cover Page/Submission Form</h3>
-</div>
- <div class="container">
-  <p>
-Participating individuals or teams are required to submit the design package electronically using this form. All electronic submissions should include the sign-off form that is available on the Competition website (See Appendix D under Appendixes on the website). All electronic submissions must be submitted by the 5:00 pm (Eastern Daylight Time) deadline on May 12, 2023. All submissions will be acknowledged via email.<br><br>
+    <h3>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs Design
+      Package Cover Page/Submission Form</h3>
+  </div>
+  <div class="container">
+    <p>
+      Participating individuals or teams are required to submit the design package electronically using this form. All
+      electronic submissions should include the sign-off form that is available on the Competition website (See Appendix
+      D under Appendixes on the website). All electronic submissions must be submitted by the 5:00 pm (Eastern Daylight
+      Time) deadline on May 12, 2023. All submissions will be acknowledged via email.<br><br>
 
-By design submission, Competition participants are agreeing that their design may be publicly shared. In addition, participants are giving permission that photographs that may be taken as part of Competition activities can be used for public information purposes and to promote the Program.<br><br>
+      By design submission, Competition participants are agreeing that their design may be publicly shared. In addition,
+      participants are giving permission that photographs that may be taken as part of Competition activities can be
+      used for public information purposes and to promote the Program.<br><br>
 
-If you have questions regarding the Design Package submission process, you can contact the Virginia Space Grant Consortium between 8 a.m. and 4:30 p.m. EST on weekdays at 757/766-5210. Click here for <a href="https://vsgc.odu.edu/acrpdesigncompetition/guidelines/">Detailed Submission Guidelines</a></p>
-<br><br>
-<p><b>Full competition guidelines and all updates are posted on the Competition Website: <a href="https://vsgc.odu.edu/acrpdesigncompetition/">ACRP Design Competition</a></b></p>
+      If you have questions regarding the Design Package submission process, you can contact the Virginia Space Grant
+      Consortium between 8 a.m. and 4:30 p.m. EST on weekdays at 757/766-5210. Click here for <a
+        href="https://vsgc.odu.edu/acrpdesigncompetition/guidelines/">Detailed Submission Guidelines</a></p>
+    <br><br>
+    <p><b>Full competition guidelines and all updates are posted on the Competition Website: <a
+          href="https://vsgc.odu.edu/acrpdesigncompetition/">ACRP Design Competition</a></b></p>
     {% block content %}
     {% endblock %}
   </div>
 </body>
+
 </html>

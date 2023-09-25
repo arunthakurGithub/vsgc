@@ -11,8 +11,8 @@ level=[
 sem=[
                ('Fall 2022','Fall 2022'),
                ('Spring 2023','Spring 2023'),
-               ('Fall 2022','Fall 2022'),
-               ('Spring 2023','Spring 2023')
+               ('Fall 2023','Fall 2023'),
+               ('Spring 2024','Spring 2024')
                ]
 
 
@@ -24,7 +24,7 @@ class ApplicantForm(forms.ModelForm):
         fields=["Advisor1_FirstName","Advisor1_LastName","Advisor1_Inst","Advisor1_Department","Advisor1_Street_Address","Advisor1_City","Advisor1_State",
         "Advisor1_Zip_Code","Advisor1_Telephone","Advisor1_Fax","Advisor1_Email","Advisor2_FirstName","Advisor2_LastName","Advisor2_Inst","Advisor2_Department",
         "Advisor2_Street_Address","Advisor2_City","Advisor2_State","Advisor2_Zip_Code","Advisor2_Telephone","Advisor2_Fax","Advisor2_Email",
-        "design_area","Specific_Challenge","Briefly_Describe","project_team","project_undertaken","Other","Students_Involved",
+        "design_area","Specific_Challenge","Proposed_Project","Briefly_Describe","project_team","project_undertaken","Other","Students_Involved",
         "UG_level","no_of_participants_UG","no_of_participants_G","no_of_participants_FA","no_of_participants_Other","semester"]
 
 
@@ -32,7 +32,7 @@ class ApplicantForm(forms.ModelForm):
                         'Advisor1_State':'State','Advisor1_Zip_Code':'Zip Code','Advisor1_Telephone':'Telephone','Advisor1_Fax':'Fax','Advisor1_Email':'E-mail',
                         'Advisor2_FirstName':'First Name','Advisor2_LastName':'Last Name','Advisor2_Inst':'Institution','Advisor2_Department':'Department','Advisor2_Street_Address':'Street Address',
                         'Advisor2_City':'City','Advisor2_State':'State','Advisor2_Zip_Code':'Zip Code','Advisor2_Telephone':'Telephone','Advisor2_Fax':'Fax',
-                        'Advisor2_Email':'E-mail','design_area': 'Design Challenge Area','Specific_Challenge':'Specific Challenge Selected',
+                        'Advisor2_Email':'E-mail','design_area': 'Design Challenge Area','Specific_Challenge':'Specific Challenge Selected','Proposed_Project':'Briefly describe the proposed project. Please Note: We will provide this information to our program partners, airport operators, and industry experts if you request our help to find contacts.',
                         'Briefly_Describe':'Briefly describe planned approach, including involvement of other departments, institutions, industry or other advisors if anticipated:',
                         'project_team':'This project will be done by:','project_undertaken':'Project will be undertaken as part of:',
                         'Other':'Other (Explain):','Students_Involved':'Levels of students(s) involved:','UG_level':' Check all undergraduate levels that apply','no_of_participants_UG':

@@ -8,7 +8,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
-from .models import DesignApp, TeamMember,emp,responce,Applicant,user_profile
+from .models import DesignApp, TeamMember, NOITeamMember,emp,responce,Applicant,user_profile,NOITeamMember
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
@@ -43,6 +43,28 @@ def application(request):
         form=ApplicantForm(request.POST)
         if form.is_valid():
             f=form.save()
+            for i in range(int(request.POST["no_of_participants_UG"])):
+                team_member_first_name = request.POST["teamMemberFirstName-" + str(i)]
+                team_member_last_name = request.POST["teamMemberLastName-" + str(i)]
+                team_member_email = request.POST["teamMemberEmail-" + str(i)]
+                team_member = NOITeamMember(
+                    first_name=team_member_first_name,
+                    last_name=team_member_last_name,
+                    email=team_member_email,
+                    level="Undergraduate",
+                    noi_app=f)
+                team_member.save()
+            for i in range(int(request.POST["no_of_participants_G"])):
+                team_member_first_name = request.POST["teamMemberFirstNameG-" + str(i)]
+                team_member_last_name = request.POST["teamMemberLastNameG-" + str(i)]
+                team_member_email = request.POST["teamMemberEmailG-" + str(i)]
+                team_member = NOITeamMember(
+                    first_name=team_member_first_name,
+                    last_name=team_member_last_name,
+                    email=team_member_email,
+                    level="Graduate",
+                    noi_app=f)
+                team_member.save()
             messages.success(request, 'Submited Successfully')
             return render(request,'acrpapp/Thankyou.html',{'f':f})
         else:
@@ -82,10 +104,10 @@ def getPermissionsFAAS(request):
     if request.user.has_perm('acrpapp.view_Airport_Environment_Interactions_FAAS'):
         daDetails.append('AE')
 
-    if request.user.has_perm('acrpapp.view_Airport_Operations_and_Maintenance_FAAS'):
+    if request.user.has_perm('acrpapp.view_Airport_Safety_Operations_and_Maintenance_FAAS'):
         daDetails.append('AO')
 
-    if request.user.has_perm('acrpapp.view_Runway_Safety/Runway_Incursions/Runway_Excursions_FAAS'):
+    if request.user.has_perm('acrpapp.view_Passenger_Experience_Terminal_FAAS'):
         daDetails.append('RS')
     return daDetails
 
@@ -111,8 +133,8 @@ def Applicanturl(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
@@ -125,13 +147,17 @@ def Applicanturl(request):
 def Applicantdetail(request,ekey):
     saved = Applicant.objects.get_by_ekey_or_404(ekey)
     applicant_id=saved.id
+    NOIUnderGraduateteams = NOITeamMember.objects.filter(noi_app_id = applicant_id,level = "Undergraduate")
+    print("NOIteams", NOIUnderGraduateteams)
+    NOIGraduateteams = NOITeamMember.objects.filter(noi_app_id = applicant_id,level = "Graduate")
+    print("NOIteams", NOIGraduateteams)
     if request.method == "POST":
         updated_form = ApplicantForm(request.POST,request.FILES, instance = saved)
         if updated_form.is_valid():
             f = updated_form.save()
     else:
         f=ApplicantForm(instance = saved)
-        return render(request,'acrpapp/ApplicantDetail.html',{'form':f,'saved':saved})
+        return render(request,'acrpapp/ApplicantDetail.html',{'form':f,'saved':saved,'NOIUnderGraduateteams':NOIUnderGraduateteams,'NOIGraduateteams':NOIGraduateteams})
 
 
 @login_required(login_url='/login/')
@@ -140,8 +166,8 @@ def process(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
@@ -187,8 +213,8 @@ def processed(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
@@ -219,10 +245,10 @@ def getPermissions(request):
     if request.user.has_perm('acrpapp.view_Airport_Environment_Interactions'):
         daDetails.append('AE')
 
-    if request.user.has_perm('acrpapp.view_Airport_Operations_and_Maintenance'):
+    if request.user.has_perm('acrpapp.view_Airport_Safety_Operations_and_Maintenance'):
         daDetails.append('AO')
 
-    if request.user.has_perm('acrpapp.view_Runway_Safety/Runway_Incursions/Runway_Excursions'):
+    if request.user.has_perm('acrpapp.view_Passenger_Experience_Terminal'):
         daDetails.append('RS')
     return daDetails
 
@@ -238,8 +264,8 @@ def evaluator(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissions(request)
     if len(perms) > 0:
@@ -385,8 +411,8 @@ def completedsubmissions(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissions(request)
     if len(perms) > 0:
@@ -435,8 +461,8 @@ def sorted_area(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -444,10 +470,10 @@ def sorted_area(request):
     if request.user.has_perm('acrpapp.view_Airport_Environment_Interactions_FAAS'):
         daDetails.append('AE')
 
-    if request.user.has_perm('acrpapp.view_Airport_Operations_and_Maintenance_FAAS'):
+    if request.user.has_perm('acrpapp.view_Airport_Safety_Operations_and_Maintenance_FAAS'):
         daDetails.append('AO')
 
-    if request.user.has_perm('acrpapp.view_Runway_Safety/Runway_Incursions/Runway_Excursions_FAAS'):
+    if request.user.has_perm('acrpapp.view_Passenger_Experience_Terminal_FAAS'):
         daDetails.append('RS')
 
     for i in daDetails:
@@ -481,8 +507,8 @@ def sorted_id(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -490,10 +516,10 @@ def sorted_id(request):
     if request.user.has_perm('acrpapp.view_Airport_Environment_Interactions_FAAS'):
         daDetails.append('AE')
 
-    if request.user.has_perm('acrpapp.view_Airport_Operations_and_Maintenance_FAAS'):
+    if request.user.has_perm('acrpapp.view_Airport_Safety_Operations_and_Maintenance_FAAS'):
         daDetails.append('AO')
 
-    if request.user.has_perm('acrpapp.view_Runway_Safety/Runway_Incursions/Runway_Excursions_FAAS'):
+    if request.user.has_perm('acrpapp.view_Passenger_Experience_Terminal_FAAS'):
         daDetails.append('RS')
 
     for i in daDetails: 
@@ -521,8 +547,8 @@ def avgscore_designarea(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -530,10 +556,10 @@ def avgscore_designarea(request):
     if request.user.has_perm('acrpapp.view_Airport_Environment_Interactions_FAAS'):
         daDetails.append('AE')
 
-    if request.user.has_perm('acrpapp.view_Airport_Operations_and_Maintenance_FAAS'):
+    if request.user.has_perm('acrpapp.view_Airport_Safety_Operations_and_Maintenance_FAAS'):
         daDetails.append('AO')
 
-    if request.user.has_perm('acrpapp.view_Runway_Safety/Runway_Incursions/Runway_Excursions_FAAS'):
+    if request.user.has_perm('acrpapp.view_Passenger_Experience_Terminal_FAAS'):
         daDetails.append('RS')
 
     for i in daDetails: 
@@ -569,8 +595,8 @@ def avgscore(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -578,10 +604,10 @@ def avgscore(request):
     if request.user.has_perm('acrpapp.view_Airport_Environment_Interactions_FAAS'):
         daDetails.append('AE')
 
-    if request.user.has_perm('acrpapp.view_Airport_Operations_and_Maintenance_FAAS'):
+    if request.user.has_perm('acrpapp.view_Airport_Safety_Operations_and_Maintenance_FAAS'):
         daDetails.append('AO')
 
-    if request.user.has_perm('acrpapp.view_Runway_Safety/Runway_Incursions/Runway_Excursions_FAAS'):
+    if request.user.has_perm('acrpapp.view_Passenger_Experience_Terminal_FAAS'):
         daDetails.append('RS')
 
     for i in daDetails: 
@@ -623,8 +649,8 @@ def reedit(request):
     daType = {
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
-        'AO':'Airport Operations and Maintenance',
-        'RS':'Runway Safety/Runway Incursions/Runway Excursions'
+        'AO':'Airport Safety, Operations, and Maintenance',
+        'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissionsFAAS(request)
     if len(perms) > 0: 
