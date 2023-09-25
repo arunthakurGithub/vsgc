@@ -41,11 +41,12 @@ class Applicant(EncryptedIDModel):
     DesignAreaChoices = [
         (FAAAE, 'Airport Environmental Interactions'),
         (FAAAM, 'Airport Management and Planning'),
-        (FAAAO, 'Airport Operations and Maintenance'),
-        (FAARS, 'Runway Safety/Runway Incursions/Runway Excursions Including Aprons,Ramps,and Taxiways'),
+        (FAAAO, 'Airport Safety, Operations, and Maintenance'),
+        (FAARS, 'Passenger Experience and Innovations in Terminal Design'),
     ]
     design_area = models.CharField(max_length=50,choices=DesignAreaChoices,default="")
     Specific_Challenge=models.CharField(max_length=264,default="")
+    Proposed_Project=models.CharField(max_length=264,default="")
     Briefly_Describe=models.CharField(max_length=264,default="")
     team=[
              ('Student Team','Student Team'),
@@ -96,8 +97,8 @@ class DesignApp(EncryptedIDModel):
     DesignAreaChoices = [
         (FAAAE, 'Airport Environmental Interactions'),
         (FAAAM, 'Airport Management and Planning'),
-        (FAAAO, 'Airport Operations and Maintenance'),
-        (FAARS, 'Runway Safety/Runway Incursions/Runway Excursions Including Aprons, Ramps, and Taxiways'),
+        (FAAAO, 'Airport Safety, Operations, and Maintenance'),
+        (FAARS, 'Passenger Experience and Innovations in Terminal Design'),
     ]
     design_area = models.CharField(max_length=3,choices=DesignAreaChoices,)
     Specific_Challenge=models.CharField(max_length=264,default="")
@@ -190,6 +191,17 @@ class TeamMember(models.Model):
     level=models.CharField( max_length=100,choices=levels)
     design_app = models.ForeignKey('DesignApp', on_delete=models.DO_NOTHING)
 
+class NOITeamMember(models.Model):
+    levels = [
+    ('Undergraduate','Undergraduate'),
+    ('Graduate','Graduate'),
+    ]
+
+    first_name = models.CharField(max_length=500)
+    last_name = models.CharField(max_length=500)
+    email = models.CharField(max_length=500)
+    level=models.CharField( max_length=100,choices=levels)
+    noi_app = models.ForeignKey('Applicant', on_delete=models.DO_NOTHING)
 
 
 class emp(models.Model):
