@@ -17,7 +17,7 @@
   <div class="container">
   <div class="jumbotron">
     <h3>Airport Cooperative Research Program (ACRP) University Design Competition for Addressing Airport Needs
-2018-2019 Academic Year
+2023-2024 Academic Year
 Panelist Evaluation Form</h3>
 </div>
 
@@ -254,421 +254,500 @@ Panelist Evaluation Form</h3>
 
 <!-- QUESTION-4 -->
 <div class="row">
-<div class="form-group col-sm-8">
-    <label for="title" value="{{ quest4_1.Q_title }}"><b>{{ quest10.Q_title }}</b></label>
+  <div class="form-group col-sm-8">
+      <label for="title" value="{{ quest4_1.Q_title }}"><b>{{ quest10.Q_title }}</b></label>
+    </div>
   </div>
-</div>
- <div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest4_1.Q_questions }}">{{ quest10.Q_questions }}</label>
+   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="title" value="{{ quest4_1.Q_questions }}">{{ quest10.Q_questions }}</label>
+    </div>
+    <div class="form-group col-md-6">
+      <select name="R10" id="t4_q1_input" onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option> 
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option>
+        <option>4.5</option> 
+        <option>5</option> 
+        <option>5.5</option>
+        <option>6</option>
+        <option>6.5</option>
+        <option>7</option> 
+        <option>7.5</option> 
+        <option>8</option>
+        <option>8.5</option>
+        <option>9</option>
+        <option>9.5</option>
+        <option>10</option>                        
+      </select>
+    </div>
   </div>
-  <div class="form-group col-md-6">
-    <select name="R10" id="t4_q1_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option>
-      <option>4.5</option> 
-      <option>5</option> 
-      <option>5.5</option>
-      <option>6</option>
-      <option>6.5</option>
-      <option>7</option> 
-      <option>7.5</option> 
-      <option>8</option>
-      <option>8.5</option>
-      <option>9</option>
-      <option>9.5</option>
-      <option>10</option>                        
-    </select>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C10" id="t4_q1_comments" cols="70" rows="3"></textarea>
   </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C10" id="t4_q1_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
- <div class="form-group col-md-6">
-    <label for="title" value="{{ quest4_2.Q_questions }}">{{ quest11.Q_questions }}</label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R11" id="t4_q2_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option>
-      <option>4.5</option> 
-      <option>5</option>   
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C11" id="t4_q2_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
- <div class="form-group col-md-6">
-    <label for="title" value="{{ quest4_3.Q_questions }}">{{ quest12.Q_questions }}</label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R12" id="t4_q3_input"onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option> 
-      <option>4.5</option> 
-      <option>5</option>   
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C12" id="t4_q3_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
- <div class="form-group col-md-6">
-    <label for="title" value="{{ quest4_4.Q_questions }}"> {{ quest13.Q_questions }}</label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R13" id="t4_q4_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option>   
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C13" id="t4_q4_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
- <div class="form-group col-md-6">
-    <label for="title" value="{{ quest4_5.Q_questions }}">{{ quest14.Q_questions }}</label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R14" id="t4_q5_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option>
-      <option>4.5</option>
-      <option>5</option>    
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C14" id="t4_q5_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
- <div class="form-group col-md-6">
-    <label for="title" value="{{ quest4_6.Q_questions }}">{{ quest15.Q_questions }} </label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R15" id="t4_q6_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option>
-      <option>4.5</option>
-      <option>5</option>    
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C15" id="t4_q6_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6"></div>
+  <div class="form-row">
    <div class="form-group col-md-6">
-    <label>Subtotal</label>
-<input type="text" name="R16" id="t4_overall" value='0' onchange="add_number()" readonly>
-</div>
-</div>
+      <label for="title" value="{{ quest4_2.Q_questions }}">{{ quest11.Q_questions }}</label>
+  </div>
+  <div class="form-group col-md-6">
+      <select name="R11" id="t4_q2_input" onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option> 
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option>
+        <option>4.5</option> 
+        <option>5</option>   
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C11" id="t4_q2_comments" cols="70" rows="3"></textarea>
+  </div>
+  <div class="form-row">
+   <div class="form-group col-md-6">
+      <label for="title" value="{{ quest4_3.Q_questions }}">{{ quest12.Q_questions }}</label>
+  </div>
+  <div class="form-group col-md-6">
+      <select name="R12" id="t4_q3_input"onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option> 
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option> 
+        <option>4.5</option> 
+        <option>5</option>   
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C12" id="t4_q3_comments" cols="70" rows="3"></textarea>
+  </div>
+  <div class="form-row">
+   <div class="form-group col-md-6">
+      <label for="title" value="{{ quest4_4.Q_questions }}"> {{ quest13.Q_questions }}</label>
+  </div>
+  <div class="form-group col-md-6">
+      <select name="R13" id="t4_q4_input" onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option> 
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option>   
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C13" id="t4_q4_comments" cols="70" rows="3"></textarea>
+  </div>
+  <div class="form-row">
+   <div class="form-group col-md-6">
+      <label for="title" value="{{ quest4_5.Q_questions }}">{{ quest14.Q_questions }}</label>
+  </div>
+  <div class="form-group col-md-6">
+      <select name="R14" id="t4_q5_input" onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option> 
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option>
+        <option>4.5</option>
+        <option>5</option>    
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C14" id="t4_q5_comments" cols="70" rows="3"></textarea>
+  </div>
+  <div class="form-row">
+   <div class="form-group col-md-6">
+      <label for="title" value="{{ quest4_6.Q_questions }}">{{ quest15.Q_questions }} </label>
+  </div>
+  <div class="form-group col-md-6">
+      <select name="R15" id="t4_q6_input" onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option> 
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option>
+        <option>4.5</option>
+        <option>5</option>    
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C15" id="t4_q6_comments" cols="70" rows="3"></textarea>
+  </div>
+  <p><b> Evidence of effective interaction with airport operators and industry experts in the design process.
+    Note: per the guidelines, students must connect with both airport operators and industry experts.</b></p>
+  
+  <div class="form-row">
+   <div class="form-group col-md-6">
+      <label for="title" value="{{ quest6_1.Q_questions }}">{{ quest20.Q_questions }}</label>
+  </div>
+  
+  <div class="form-group col-md-6">
+      <select name="R20" id="t6_q1_input" onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option>
+        <option>2.5</option>
+        <option>3</option>
+        <option>3.5</option>
+        <option>4</option> 
+        <option>4.5</option> 
+        <option>5</option>
+        <option>5.5</option>
+        <option>6</option>  
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C20" id="t6_q1_comments" cols="70" rows="3"></textarea>
+  </div>
+   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="title" value="{{ quest6_2.Q_questions }}">{{ quest21.Q_questions }}</label>
+    </div>
+    <div class="form-group col-md-6">
+      <select name="R21" id="t6_q2_input" onchange="updateTotal();">
+        <option>0</option>
+        <option>0.5</option>
+        <option>1</option>
+        <option>1.5</option>
+        <option>2</option> 
+        <option>2.5</option>
+        <option>3</option> 
+        <option>3.5</option>
+        <option>4</option> 
+        <option>4.5</option> 
+        <option>5</option>
+        <option>5.5</option>
+        <option>6</option>       
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p>Comments:</p>
+  <textarea name="C21" id="t6_q2_comments" cols="70" rows="3"></textarea>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6"></div>
+     <div class="form-group col-md-6">
+      <label>Subtotal</label>
+  <input type="text" name="R16" id="t4_overall" value='0' onchange="add_number()" readonly>
+  </div>
+  </div>
+  
+  <div class="form-group">
+    <p>Overall Comments:</p>
+  <textarea name="C16" id="t4_overall_comments" cols="70" rows="3"></textarea>
+  </div>
+  
 
-<div class="form-group">
-  <p>Overall Comments:</p>
-<textarea name="C16" id="t4_overall_comments" cols="70" rows="3"></textarea>
-</div>
-<!-- QUESTION-5 -->
+<!-- QUESTION-7 Practicality & Feasibility now Q5 -->
 <div class="row">
- <div class="form-group col-sm-8">
-    <label for="title" value="{{ quest5_1.Q_title }}"><b>{{ quest17.Q_title }}</b></label>
-  </div>
-</div>
-    <div class="form-row">
+  <div class="form-group col-sm-8">
+     <label for="title" value="{{ quest7_1.Q_title }}"><b>{{ quest23.Q_title }}</b></label>
+   </div>
+ </div>
+     <div class="form-row">
+  <div class="form-group col-md-6">
+     <label for="title" value="{{ quest7_1.Q_questions }}">{{ quest23.Q_questions }}</label>
+ </div>
  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest5_1.Q_questions }}">{{ quest17.Q_questions }}</label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R17" id="t5_q1_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option>
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option>   
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C17" id="t5_q1_comments" cols="70" rows="3"></textarea>
-</div>
- <div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest5_2.Q_questions }}">{{ quest18.Q_questions }}</label>
-  </div>
-  <div class="form-group col-md-6">
-    <select name="R18" id="t5_q2_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option> 
-      <option>3.5</option>
-      <option>4</option>    
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C18" id="t5_q2_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6"></div>
+     <select name="R23" id="t7_q1_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option>
+       <option>2.5<option>
+       <option>3</option>
+       <option>3.5</option>
+       <option>4</option> 
+       <option>4.5</option> 
+       <option>5</option>  
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C23" id="t7_q1_comments" cols="70" rows="3"></textarea>
+ </div>
+  <div class="form-row">
    <div class="form-group col-md-6">
-    <label>Subtotal</label>
-<input type="text" name="R19" id="t5_overall" value='0' onchange="add_number()" readonly>
-</div>
-</div>
+     <label for="title" value="{{ quest7_2.Q_questions }}">{{ quest24.Q_questions }}</label>
+   </div>
+   <div class="form-group col-md-6">
+     <select name="R24" id="t7_q2_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option> 
+       <option>2.5</option>
+       <option>3</option> 
+       <option>3.5</option>
+       <option>4</option> 
+       <option>4.5</option> 
+       <option>5</option>       
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C24" id="t7_q2_comments" cols="70" rows="3"></textarea>
+ </div>
+  
+ 
+ 
+ <div class="form-row">
+   <div class="form-group col-md-6">
+     <label for="title" value="{{ quest7_3.Q_questions }}">{{ quest25.Q_questions }}</label>
+   </div>
+   <div class="form-group col-md-6">
+     <select name="R25" id="t7_q3_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option> 
+       <option>2.5</option>
+       <option>3</option> 
+       <option>3.5</option>
+       <option>4</option> 
+       <option>4.5</option> 
+       <option>5</option>       
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C25" id="t7_q3_comments" cols="70" rows="3"></textarea>
+ </div>
+  <div class="form-row">
+   <div class="form-group col-md-6">
+     <label for="title" value="{{ quest7_4.Q_questions }}">{{ quest26.Q_questions }}</label>
+   </div>
+   <div class="form-group col-md-6">
+     <select name="R26" id="t7_q4_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option> 
+       <option>2.5</option>
+       <option>3</option> 
+       <option>3.5</option>
+       <option>4</option> 
+       <option>4.5</option> 
+       <option>5</option>       
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C26" id="t7_q4_comments" cols="70" rows="3"></textarea>
+ </div>
+ <div class="form-row">
+   <div class="form-group col-md-6"></div>
+    <div class="form-group col-md-6">
+     <label>Subtotal</label>
+ <input type="text" name="R27" id="t7_overall" value='0'  onchange="add_number()" readonly>
+ </div>
+ </div>
+ <div class="form-group">
+   <p>Overall Comments:</p>
+ <textarea name="C27" id="t7_overall_comments" cols="70" rows="3"></textarea>
+ </div>
 
-<div class="form-group">
-  <p>Overall Comments:</p>
-<textarea name="C19" id="t5_overall_comments" cols="70" rows="3"></textarea>
-</div>
-<!-- QUESTION-6 -->
-<div class="row">
- <div class="form-group col-md-6">
-    <label for="title" value="{{ quest6_1.Q_title }}"><b>{{ quest20.Q_title }}</b></label>
-    <p><b>Note: per the guidelines, students must connect with both airport operators and industry experts.</b></p>
-  </div>
-</div>
-    <div class="form-row">
- <div class="form-group col-md-6">
-    <label for="title" value="{{ quest6_1.Q_questions }}">{{ quest20.Q_questions }}</label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R20" id="t6_q1_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option>
-      <option>2.5</option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option> 
-      <option>4.5</option> 
-      <option>5</option>
-      <option>5.5</option>
-      <option>6</option>  
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C20" id="t6_q1_comments" cols="70" rows="3"></textarea>
-</div>
- <div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest6_2.Q_questions }}">{{ quest21.Q_questions }}</label>
-  </div>
-  <div class="form-group col-md-6">
-    <select name="R21" id="t6_q2_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option> 
-      <option>3.5</option>
-      <option>4</option> 
-      <option>4.5</option> 
-      <option>5</option>
-      <option>5.5</option>
-      <option>6</option>       
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C21" id="t6_q2_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6"></div>
-   <div class="form-group col-md-6">
-    <label>Subtotal</label>
-<input type="text" name="R22" id="t6_overall" value='0' onchange="add_number()" readonly>
-</div>
-</div>
-<div class="form-group">
-  <p>Overall Comments:</p>
-<textarea name="C22" id="t6_overall_comments" cols="70" rows="3"></textarea>
-</div>
 
-<!-- QUESTION-7 -->
+  <!-- QUESTION-5 Safety Risk now Q6-->
 <div class="row">
- <div class="form-group col-sm-8">
-    <label for="title" value="{{ quest7_1.Q_title }}"><b>{{ quest23.Q_title }}</b></label>
-  </div>
-</div>
-    <div class="form-row">
+  <div class="form-group col-sm-8">
+     <label for="title" value="{{ quest5_1.Q_title }}"><b>{{ quest17.Q_title }}</b></label>
+   </div>
+ </div>
+     <div class="form-row">
+  <div class="form-group col-md-6">
+     <label for="title" value="{{ quest5_1.Q_questions }}">{{ quest17.Q_questions }}</label>
+ </div>
  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest7_1.Q_questions }}">{{ quest23.Q_questions }}</label>
-</div>
-<div class="form-group col-md-6">
-    <select name="R23" id="t7_q1_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option>
-      <option>2.5<option>
-      <option>3</option>
-      <option>3.5</option>
-      <option>4</option> 
-      <option>4.5</option> 
-      <option>5</option>  
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C23" id="t7_q1_comments" cols="70" rows="3"></textarea>
-</div>
- <div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest7_2.Q_questions }}">{{ quest24.Q_questions }}</label>
-  </div>
-  <div class="form-group col-md-6">
-    <select name="R24" id="t7_q2_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option> 
-      <option>3.5</option>
-      <option>4</option> 
-      <option>4.5</option> 
-      <option>5</option>       
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C24" id="t7_q2_comments" cols="70" rows="3"></textarea>
-</div>
- <div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest7_3.Q_questions }}">{{ quest25.Q_questions }}</label>
-  </div>
-  <div class="form-group col-md-6">
-    <select name="R25" id="t7_q3_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option> 
-      <option>3.5</option>
-      <option>4</option> 
-      <option>4.5</option> 
-      <option>5</option>       
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C25" id="t7_q3_comments" cols="70" rows="3"></textarea>
-</div>
- <div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="title" value="{{ quest7_4.Q_questions }}">{{ quest26.Q_questions }}</label>
-  </div>
-  <div class="form-group col-md-6">
-    <select name="R26" id="t7_q4_input" onchange="updateTotal();">
-      <option>0</option>
-      <option>0.5</option>
-      <option>1</option>
-      <option>1.5</option>
-      <option>2</option> 
-      <option>2.5</option>
-      <option>3</option> 
-      <option>3.5</option>
-      <option>4</option> 
-      <option>4.5</option> 
-      <option>5</option>       
-    </select>
-  </div>
-</div>
-<div class="form-group">
-  <p>Comments:</p>
-<textarea name="C26" id="t7_q4_comments" cols="70" rows="3"></textarea>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6"></div>
+     <select name="R17" id="t5_q1_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option>
+       <option>2.5</option>
+       <option>3</option>
+       <option>3.5</option>
+       <option>4</option>   
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C17" id="t5_q1_comments" cols="70" rows="3"></textarea>
+ </div>
+  <div class="form-row">
    <div class="form-group col-md-6">
-    <label>Subtotal</label>
-<input type="text" name="R27" id="t7_overall" value='0'  onchange="add_number()" readonly>
-</div>
-</div>
-<div class="form-group">
-  <p>Overall Comments:</p>
-<textarea name="C27" id="t7_overall_comments" cols="70" rows="3"></textarea>
-</div>
-<!-- QUESTION-8 -->
+     <label for="title" value="{{ quest5_2.Q_questions }}">{{ quest18.Q_questions }}</label>
+   </div>
+   <div class="form-group col-md-6">
+     <select name="R18" id="t5_q2_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option> 
+       <option>2.5</option>
+       <option>3</option> 
+       <option>3.5</option>
+       <option>4</option>    
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C18" id="t5_q2_comments" cols="70" rows="3"></textarea>
+ </div>
+ <div class="form-row">
+   <div class="form-group col-md-6"></div>
+    <div class="form-group col-md-6">
+     <label>Subtotal</label>
+ <input type="text" name="R19" id="t5_overall" value='0' onchange="add_number()" readonly>
+ </div>
+ </div>
+ 
+ <div class="form-group">
+   <p>Overall Comments:</p>
+ <textarea name="C19" id="t5_overall_comments" cols="70" rows="3"></textarea>
+ </div>
+ 
+ 
+ <!-- QUESTION-6 -->
+<!-- <div class="row">
+  <div class="form-group col-md-6">
+     <label for="title" value="{{ quest6_1.Q_title }}"><b>{{ quest20.Q_title }}</b></label>
+     <p><b>Note: per the guidelines, students must connect with both airport operators and industry experts.</b></p>
+   </div>
+ </div>
+  
+  
+  <div class="form-row">
+  <div class="form-group col-md-6">
+     <label for="title" value="{{ quest6_1.Q_questions }}">{{ quest20.Q_questions }}</label>
+ </div>
+ 
+ <div class="form-group col-md-6">
+     <select name="R20" id="t6_q1_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option>
+       <option>2.5</option>
+       <option>3</option>
+       <option>3.5</option>
+       <option>4</option> 
+       <option>4.5</option> 
+       <option>5</option>
+       <option>5.5</option>
+       <option>6</option>  
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C20" id="t6_q1_comments" cols="70" rows="3"></textarea>
+ </div>
+  <div class="form-row">
+   <div class="form-group col-md-6">
+     <label for="title" value="{{ quest6_2.Q_questions }}">{{ quest21.Q_questions }}</label>
+   </div>
+   <div class="form-group col-md-6">
+     <select name="R21" id="t6_q2_input" onchange="updateTotal();">
+       <option>0</option>
+       <option>0.5</option>
+       <option>1</option>
+       <option>1.5</option>
+       <option>2</option> 
+       <option>2.5</option>
+       <option>3</option> 
+       <option>3.5</option>
+       <option>4</option> 
+       <option>4.5</option> 
+       <option>5</option>
+       <option>5.5</option>
+       <option>6</option>       
+     </select>
+   </div>
+ </div>
+ <div class="form-group">
+   <p>Comments:</p>
+ <textarea name="C21" id="t6_q2_comments" cols="70" rows="3"></textarea>
+ </div>
+ <div class="form-row">
+   <div class="form-group col-md-6"></div>
+    <div class="form-group col-md-6">
+     <label>Subtotal</label>
+ <input type="text" name="R22" id="t6_overall" value='0' onchange="add_number()" readonly>
+ </div>
+ </div>
+ 
+ 
+ <div class="form-group">
+   <p>Overall Comments:</p>
+ <textarea name="C22" id="t6_overall_comments" cols="70" rows="3"></textarea>
+ </div> -->
+ 
+ 
+ 
+ 
+
+
+
+  
+
+
+<!-- QUESTION-8 Innovation now QUESTION-7 -->
 <div class="row">
 <div class="form-group col-sm-8">
     <label for="title" value="{{ quest8_1.Q_title }}"><b>{{ quest28.Q_title }}</b></label>
@@ -728,7 +807,7 @@ Panelist Evaluation Form</h3>
   <p>Overall Comments:</p>
 <textarea name="C29" id="t8_overall_comments" cols="70" rows="3"></textarea>
 </div>
-<!-- QUESTION-9 -->
+<!-- QUESTION-9 Overall Quality changed to QUESTION-8 -->
 <div class="row">
 <div class="form-group col-sm-8">
     <label for="title" value="{{ quest9_1.Q_title }}"><b>{{ quest30.Q_title }}</b></label>
@@ -925,40 +1004,57 @@ var q43 = document.getElementById("t4_q3_input");
 var q44 = document.getElementById("t4_q4_input");
 var q45 = document.getElementById("t4_q5_input");
 var q46 = document.getElementById("t4_q6_input");
+var q61 = document.getElementById("t6_q1_input");
+var q62 = document.getElementById("t6_q2_input");
+
 var total_q4 = document.getElementById("t4_overall");
 var total_overall = document.getElementById("total_overall");
 q41.onchange = function() {
-  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+ parseFloat(q61.value) + parseFloat(q62.value);
   total_q4.value = total;
   overall();
   console.log(total);
 }
 q42.onchange = function() {
-  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+ parseFloat(q61.value) + parseFloat(q62.value);
   total_q4.value = total;
   overall();
   console.log(total);
 }
 q43.onchange = function() {
-  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+  parseFloat(q61.value) + parseFloat(q62.value);
   total_q4.value = total;
   overall();
   console.log(total);
 }
 q44.onchange = function() {
-  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+  parseFloat(q61.value) + parseFloat(q62.value);
   total_q4.value = total;
   overall();
   console.log(total);
 }
 q45.onchange = function() {
-  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+ parseFloat(q61.value) + parseFloat(q62.value);
   total_q4.value = total;
   overall();
   console.log(total);
 }
 q46.onchange = function() {
-  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value);
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+ parseFloat(q61.value) + parseFloat(q62.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+
+q61.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+ parseFloat(q61.value) + parseFloat(q62.value);
+  total_q4.value = total;
+  overall();
+  console.log(total);
+}
+
+q62.onchange = function() {
+  var total = parseFloat(q41.value) + parseFloat(q42.value)+ parseFloat(q43.value)+ parseFloat(q44.value)+ parseFloat(q45.value)+ parseFloat(q46.value)+ parseFloat(q61.value) + parseFloat(q62.value);
   total_q4.value = total;
   overall();
   console.log(total);
@@ -983,6 +1079,9 @@ q52.onchange = function() {
   overall(); 
 }
 
+
+
+/*
 var q61 = document.getElementById("t6_q1_input");
 var q62 = document.getElementById("t6_q2_input");
 var total_overall = document.getElementById("total_overall");
@@ -1002,6 +1101,8 @@ q62.onchange = function() {
   overall();
   
 }
+*/
+
 var q71 = document.getElementById("t7_q1_input");
 var q72 = document.getElementById("t7_q2_input");
 var q73 = document.getElementById("t7_q3_input");

@@ -25,6 +25,7 @@ from encrypted_id import decode
 from encrypted_id import ekey
 from django.db.models import Count,Sum
 from . import urls
+from itertools import chain
 
 # Create your views here.
 
@@ -170,8 +171,9 @@ def process(request):
         'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissionsFAAS(request)
-    if len(perms) > 0:
 
+    
+    if len(perms) > 0:
         for i in perms: 
             daDb[i] = DesignApp.objects.filter(design_area=i,stat=('Application is submitted'),created_at__range=[Date1, Date2])
         return render(request,'acrpapp/process.html',{'dApps' : daDb,'dType':daType})
@@ -183,19 +185,26 @@ def process_detail(request,ekey):
     da={'AM':62,'AE':61,'AO':63,'RS':64}
     designapp = DesignApp.objects.get_by_ekey_or_404(ekey)
     designapp_id = designapp.id
+    
     teammember=TeamMember.objects.filter(design_app_id=designapp_id)
     status=DesignApp.objects.get(pk=designapp_id)
+    
     f=StatusForm()
     if( status.stat=="Approved" or status.stat=="Rejected"):
+        
         return HttpResponseRedirect("/acrpapp/dropdownlist/")
     else:
         if request.method == "POST":
             status.stat = request.POST["stat"]
             status.reason=request.POST["reason"]
             status.save()
+            
             permissions = Permission.objects.get(id=da[designapp.design_area])
+            
+            
             users = User.objects.filter(user_permissions=permissions)
             if status.stat=="Approved":
+                
                 for user in users:
                     up=user_profile(evalutor_id=user,design_app=designapp,stat="Pending")
                     up.save()
@@ -258,6 +267,7 @@ def acrpmembers(request):
 
 @login_required(login_url='/elogin/')
 def evaluator(request):
+    
     daDetails = []
     daDb = {}
     daResults = {}
@@ -268,12 +278,15 @@ def evaluator(request):
         'RS':'Passenger Experience and Innovations in Terminal Design'
     }
     perms = getPermissions(request)
+    
     if len(perms) > 0:
         for i in perms: 
             d_eval = user_profile.objects.filter(evalutor_id_id=request.user.id,stat__in=('Pending','Evaluation Saved'))
+            
             daDb[i]=[]
             for j in d_eval:
                 daDb[i].append((DesignApp.objects.get(id=j.design_app_id),j))
+                
         return render(request,'acrpapp/evaluator.html',{'dApps' : daDb,'dType':daType, 'stat':d_eval})
 
 
@@ -292,7 +305,7 @@ def evaluator_detail(request,ekey):
             qBank['quest'+str(i)]=emp.objects.get(id=i)
             res={}
         if request.method == "POST":
-            for i in range(1,36):
+            for i in chain(range(1,22), range(23,36)):
                 comments = 'N/A' if i == 35 else request.POST['C'+str(i)]
                 res[str(i)]=responce(design_app=designapp,description=qBank['quest'+str(i)],Q_score=float(request.POST['R'+str(i)]),Q_comments=comments,evalutor_id=request.user)
                 res[str(i)].save()
@@ -315,7 +328,7 @@ def saved(request,ekey):
         return HttpResponseRedirect("/acrpmembers/")
     else:
         if request.method == "POST":
-            for i in range(1,36):
+            for i in chain(range(1,22), range(23,36)):
                 esc = get_object_or_404(responce,design_app_id=designapp_id,description_id=i,evalutor_id_id=request.user)
                 esc.Q_score = request.POST['R'+str(i)]
                 esc.Q_comments = 'N/A' if i == 35 else request.POST['C'+str(i)]
@@ -327,7 +340,7 @@ def saved(request,ekey):
             f=StatusForm()
         context={'designapp':designapp,'f':f}
         reslist=[]
-        for i in range(1,36):
+        for i in chain(range(1,22), range(23,36)):
             res=responce.objects.get(design_app_id=designapp_id,description_id=i, evalutor_id_id=request.user.id)
             context['res_'+str(i)]=res
         return render(request,'acrpapp/saved.html',context)
@@ -431,7 +444,7 @@ def completedsubmissions_detail(request,ekey):
     designapp_id = designapp.id
     context={'designapp':designapp}
     reslist=[]
-    for i in range(1,36):
+    for i in chain(range(1,22), range(23,36)):
         res=get_object_or_404(responce,design_app_id=designapp_id,description_id=i,evalutor_id_id=request.user.id)
         context['res_'+str(i)]=res
     return render(request,'acrpapp/completedsubmissions_detail.html',context)
@@ -443,7 +456,7 @@ def sort_detail(request,ekey, evalutor_id=0):
     designapp_id = designapp.id
     context={'designapp':designapp}
     reslist=[]
-    for i in range(1,36):
+    for i in chain(range(1,22), range(23,36)):
         res=get_object_or_404(responce,design_app_id=designapp_id,description_id=i,evalutor_id_id=evalutor_id)
         context['res_'+str(i)]=res
     return render(request,'acrpapp/completedsubmissions_detail.html',context)
