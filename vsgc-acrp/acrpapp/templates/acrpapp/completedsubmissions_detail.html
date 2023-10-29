@@ -187,7 +187,7 @@ th, td {
 <!-- QUESTION-4 -->
 
 <div class="form-group col-sm-8">
-    <label for="title" value="{{ quest4_1.Q_title }}"><b>4. Problem Solving Approach – 34 points</b></label>
+    <label for="title" value="{{ quest4_1.Q_title }}"><b>4. Problem Solving Approach – 46 points</b></label>
   </div>
  <div class="row">
   <div class="form-group col-md-6 mb-0">
@@ -262,6 +262,50 @@ Is the work presented an appropriate level of effort for the design participants
   <p>Comments:</p>
 <textarea name="" class="form-control" value="{{ res_15.Q_comments }}" cols="50" rows="3" readonly>{{ res_15.Q_comments }}</textarea>
 </div>
+
+<!-- QUESTION-6 merged with QUESTION-4-->
+
+<!--<div class="form-group col-sm-8">
+  <label for="title" value="{{ quest5_1.Q_title }}"><b>
+Evidence of effective interaction with airport operators and industry experts in the design process. – 12 points</label>
+  <p>Note: per the guidelines, students must connect with both airport operators and industry experts.</b></p>
+</div> -->
+<div class="row">
+<div class="form-group col-md-6 mb-0">
+  <label for="title" value="{{ quest6_1.Q_questions }}">Is there evidence of effective interaction with an airport operator and impact on the design process/result? (6 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+<input type="text" name="" class="form-control" value="{{ res_20.Q_score }}" readonly> 
+   </div>
+</div>
+<div class="form-group col-sm-8">
+<p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_20.Q_comments }}" cols="50" rows="3" readonly>{{ res_20.Q_comments }}</textarea>
+</div>
+<div class="row">
+<div class="form-group col-md-6 mb-0">
+  <label for="title" value="{{ quest6_2.Q_questions }}">Is there evidence of effective interaction with one or more industry experts with a resulting impact on the design process? (6 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_21.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+<p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_21.Q_comments }}" cols="50" rows="3" readonly>{{ res_21.Q_comments }}</textarea>
+</div>
+<!--<div class="row">
+<div class="form-group col-md-6 mb-0"></div>
+ <div class="form-group col-sm-1 mb-0">
+  <label>Subtotal</label>
+<input type="text" name="" class="form-control" id="t5_overall" oninput="overall()" value="{{ res_22.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+<p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_22.Q_comments }}" cols="50" rows="3" readonly>{{ res_22.Q_comments }}</textarea>
+</div>-->
+
 <div class="row">
   <div class="form-group col-md-6 mb-0"></div>
    <div class="form-group col-sm-1 mb-0">
@@ -275,10 +319,82 @@ Is the work presented an appropriate level of effort for the design participants
 <textarea name="" class="form-control" value="{{ res_16.Q_comments }}" cols="50" rows="3" readonly>{{ res_16.Q_comments }}</textarea>
 </div>
 
-<!-- QUESTION-5 -->
+
+<!-- QUESTION-7 changed to QUESTION-5 -->
+
+<div class="form-group col-sm-8">
+  <label for="title" value="{{ quest7_1.Q_title }}"><b>5. Practicality and Feasibility of the Proposed Design – 20 points</b></label>
+</div>
+  <div class="row">
+<div class="form-group col-md-6 mb-0">
+  <label for="title" value="{{ quest7_1.Q_questions }}">
+How well does the proposed design meet identified national needs for the area being addressed? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_23.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+<p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_23.Q_comments }}" cols="50" rows="3" readonly>{{ res_23.Q_comments }}</textarea></div>
+<div class="row">
+<div class="form-group col-md-6 mb-0">
+  <label for="title" value="{{ quest7_2.Q_questions }}">Is a solid cost-benefit analysis provided? Does the proposed solution offer increased affordability and utility? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_24.Q_score }}" readonly> 
+</div>
+</div>
+<div class="form-group col-sm-8">
+<p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_24.Q_comments }}" cols="50" rows="3" readonly>{{ res_24.Q_comments }}</textarea>
+</div>
+<div class="row">
+<div class="form-group col-md-6 mb-0">
+  <label for="title" value="{{ quest7_3.Q_questions }}">What is the potential real-world impact of the proposed solution, including commercial potential? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+   <input type="text" name="" class="form-control" value="{{ res_25.Q_score }}" readonly> 
+    </div>
+</div>
+<div class="form-group col-sm-8">
+<p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_25.Q_comments }}" cols="50" rows="3" readonly>{{ res_25.Q_comments }}</textarea>
+</div>
+<div class="row">
+<div class="form-group col-md-6 mb-0">
+  <label for="title" value="{{ quest7_4.Q_questions }}">Is there a description of the processes that would need to be undertaken to bring the design to the product/implementation state? (5 points)</label>
+</div>
+<div class="form-group col-sm-1 mb-0">
+  <input type="text" name="" class="form-control" value="{{ res_26.Q_score }}" readonly>
+   </div>
+</div>
+<div class="form-group col-sm-8">
+<p>Comments:</p>
+<textarea name="" class="form-control" value="{{ res_26.Q_comments }}" cols="50" rows="3" readonly>{{ res_26.Q_comments }}</textarea>
+</div>
+<div class="row">
+<div class="form-group col-md-6 mb-0"></div>
+ <div class="form-group col-sm-1 mb-0">
+  <label>Subtotal</label>
+<input type="text" name="" class="form-control" id="t7_overall" oninput="overall()" value="{{ res_27.Q_score }}" readonly>
+
+</div>
+</div>
+<div class="form-group col-sm-8">
+<p>Overall Comments:</p>
+<textarea name="" class="form-control" value="{{ res_27.Q_comments }}" cols="50" rows="3" readonly>{{ res_27.Q_comments }}</textarea>
+</div>
+
+
+
+
+
+
+<!-- QUESTION-5 changed to QUESTION-6 -->
 
  <div class="form-group col-sm-8">
-    <label for="title" value="{{ quest5_1.Q_title }}"><b>5. Safety Risk Assessment – 8 points</b></label>
+    <label for="title" value="{{ quest5_1.Q_title }}"><b>6. Safety Risk Assessment – 8 points</b></label>
   </div>
     <div class="row">
  <div class="form-group col-md-6 mb-0">
@@ -320,121 +436,14 @@ Appropriate FAA documents, including Introduction to Safety Management Systems f
 </div>
 
 
-<!-- QUESTION-6 -->
-
- <div class="form-group col-sm-8">
-    <label for="title" value="{{ quest5_1.Q_title }}"><b>
-6. Evidence of effective interaction with airport operators and industry experts in the design process. – 12 pointsb></label>
-    <p>Note: per the guidelines, students must connect with both airport operators and industry experts.</b></p>
-  </div>
-    <div class="row">
- <div class="form-group col-md-6 mb-0">
-    <label for="title" value="{{ quest6_1.Q_questions }}">Is there evidence of effective interaction with an airport operator and impact on the design process/result? (6 points)</label>
-</div>
-<div class="form-group col-sm-1 mb-0">
-  <input type="text" name="" class="form-control" value="{{ res_20.Q_score }}" readonly> 
-     </div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Comments:</p>
-<textarea name="" class="form-control" value="{{ res_20.Q_comments }}" cols="50" rows="3" readonly>{{ res_20.Q_comments }}</textarea>
-</div>
- <div class="row">
-  <div class="form-group col-md-6 mb-0">
-    <label for="title" value="{{ quest6_2.Q_questions }}">Is there evidence of effective interaction with one or more industry experts with a resulting impact on the design process? (6 points)</label>
-  </div>
-<div class="form-group col-sm-1 mb-0">
-    <input type="text" name="" class="form-control" value="{{ res_21.Q_score }}" readonly> 
-  </div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Comments:</p>
-<textarea name="" class="form-control" value="{{ res_21.Q_comments }}" cols="50" rows="3" readonly>{{ res_21.Q_comments }}</textarea>
-</div>
-<div class="row">
-  <div class="form-group col-md-6 mb-0"></div>
-   <div class="form-group col-sm-1 mb-0">
-    <label>Subtotal</label>
- <input type="text" name="" class="form-control" id="t5_overall" oninput="overall()" value="{{ res_20.Q_score }}" readonly> 
-</div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Overall Comments:</p>
-<textarea name="" class="form-control" value="{{ res_22.Q_comments }}" cols="50" rows="3" readonly>{{ res_22.Q_comments }}</textarea>
-</div>
 
 
-<!-- QUESTION-7 -->
-
- <div class="form-group col-sm-8">
-    <label for="title" value="{{ quest7_1.Q_title }}"><b>7. Practicality and Feasibility of the Proposed Design – 20 points</b></label>
-  </div>
-    <div class="row">
- <div class="form-group col-md-6 mb-0">
-    <label for="title" value="{{ quest7_1.Q_questions }}">
-How well does the proposed design meet identified national needs for the area being addressed? (5 points)</label>
-</div>
-<div class="form-group col-sm-1 mb-0">
-    <input type="text" name="" class="form-control" value="{{ res_23.Q_score }}" readonly> 
-  </div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Comments:</p>
-<textarea name="" class="form-control" value="{{ res_23.Q_comments }}" cols="50" rows="3" readonly>{{ res_23.Q_comments }}</textarea></div>
- <div class="row">
-  <div class="form-group col-md-6 mb-0">
-    <label for="title" value="{{ quest7_2.Q_questions }}">Is a solid cost-benefit analysis provided? Does the proposed solution offer increased affordability and utility? (5 points)</label>
-  </div>
- <div class="form-group col-sm-1 mb-0">
-    <input type="text" name="" class="form-control" value="{{ res_24.Q_score }}" readonly> 
-  </div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Comments:</p>
-<textarea name="" class="form-control" value="{{ res_24.Q_comments }}" cols="50" rows="3" readonly>{{ res_24.Q_comments }}</textarea>
-</div>
- <div class="row">
-  <div class="form-group col-md-6 mb-0">
-    <label for="title" value="{{ quest7_3.Q_questions }}">What is the potential real-world impact of the proposed solution, including commercial potential? (5 points)</label>
-  </div>
- <div class="form-group col-sm-1 mb-0">
-     <input type="text" name="" class="form-control" value="{{ res_25.Q_score }}" readonly> 
-      </div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Comments:</p>
-<textarea name="" class="form-control" value="{{ res_25.Q_comments }}" cols="50" rows="3" readonly>{{ res_25.Q_comments }}</textarea>
-</div>
- <div class="row">
-  <div class="form-group col-md-6 mb-0">
-    <label for="title" value="{{ quest7_4.Q_questions }}">Is there a description of the processes that would need to be undertaken to bring the design to the product/implementation state? (5 points)</label>
-  </div>
-  <div class="form-group col-sm-1 mb-0">
-    <input type="text" name="" class="form-control" value="{{ res_26.Q_score }}" readonly>
-     </div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Comments:</p>
-<textarea name="" class="form-control" value="{{ res_26.Q_comments }}" cols="50" rows="3" readonly>{{ res_26.Q_comments }}</textarea>
-</div>
-<div class="row">
-  <div class="form-group col-md-6 mb-0"></div>
-   <div class="form-group col-sm-1 mb-0">
-    <label>Subtotal</label>
-<input type="text" name="" class="form-control" id="t7_overall" oninput="overall()" value="{{ res_27.Q_score }}" readonly>
-
-</div>
-</div>
-<div class="form-group col-sm-8">
-  <p>Overall Comments:</p>
-<textarea name="" class="form-control" value="{{ res_27.Q_comments }}" cols="50" rows="3" readonly>{{ res_27.Q_comments }}</textarea>
-</div>
 
 
-<!-- QUESTION-8 -->
+<!-- QUESTION-8 Innovation changed to QUESTION-7-->
 
 <div class="form-group col-sm-8">
-    <label for="title" value="{{ quest8_1.Q_title }}"><b>8. Innovation – 14 points</b></label>
+    <label for="title" value="{{ quest8_1.Q_title }}"><b>7. Innovation – 14 points</b></label>
   </div>
     <div class="row">
  <div class="form-group col-md-6 mb-0">
@@ -463,11 +472,11 @@ Does the design offer fresh thinking or new ways of approaching the problem cons
 </div>
 
 
-<!-- QUESTION-9 -->
+<!-- QUESTION-9 Quality changed to QUESTION-8 -->
 
 <div class="form-group col-sm-8">
     <label for="title" value="{{ quest9_1.Q_title }}"><b>
-9.Overall quality of the design package – 16 points</b></label>
+8. Overall quality of the design package – 16 points</b></label>
   </div>
     <div class="row">
  <div class="form-group col-md-6 mb-0">
