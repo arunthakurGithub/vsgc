@@ -135,7 +135,7 @@ def Applicanturl(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
@@ -168,7 +168,7 @@ def process(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     perms = getPermissionsFAAS(request)
 
@@ -223,7 +223,7 @@ def processed(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     perms = getPermissionsFAAS(request)
     if len(perms) > 0:
@@ -275,7 +275,7 @@ def evaluator(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     perms = getPermissions(request)
     
@@ -425,7 +425,7 @@ def completedsubmissions(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     perms = getPermissions(request)
     if len(perms) > 0:
@@ -475,7 +475,7 @@ def sorted_area(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -521,7 +521,7 @@ def sorted_id(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -561,7 +561,7 @@ def avgscore_designarea(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -609,7 +609,7 @@ def avgscore(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     if request.user.has_perm('acrpapp.view_Airport_Management_and_Planning_FAAS'):
         daDetails.append('AM')
@@ -663,7 +663,7 @@ def reedit(request):
         'AM':'Airport Management and Planning',
         'AE':'Airport Environment Interactions',
         'AO':'Airport Safety, Operations, and Maintenance',
-        'RS':'Passenger Experience and Innovations in Terminal Design'
+        'RS':'Passenger Experience and Innovations in Airport Terminal Design'
     }
     perms = getPermissionsFAAS(request)
     if len(perms) > 0: 

@@ -98,7 +98,7 @@ class DesignApp(EncryptedIDModel):
         (FAAAE, 'Airport Environmental Interactions'),
         (FAAAM, 'Airport Management and Planning'),
         (FAAAO, 'Airport Safety, Operations, and Maintenance'),
-        (FAARS, 'Passenger Experience and Innovations in Terminal Design'),
+        (FAARS, 'Passenger Experience and Innovations in Airport Terminal Design'),
     ]
     design_area = models.CharField(max_length=3,choices=DesignAreaChoices,)
     Specific_Challenge=models.CharField(max_length=264,default="")
